@@ -134,7 +134,7 @@
     <!-- Phần Video -->
     <div class="video-container">
   <video class="responsive-video" autoplay muted loop>
-    <source src="/img/videotrailer.mp4" type="video/mp4">
+    <source src="/img/VideoNLCNTT.mp4" type="video/mp4">
     Không thấy Video.
   </video>
 </div>
@@ -291,29 +291,36 @@
 
 
       <!-- Thanh danh mục chuyển sang bên phải và có thể toggle -->
-<div class="col-lg-3 col-12">
-  <div class="m-0 bg-white shadow-sm rounded">
-    <h5 class="p-3 mt-1 category-toggle d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#categoryList">
-      <span><i class="fa-solid fa-list me-2"></i>DANH MỤC</span>
+<div class="col-lg-3 col-12 position-relative">
+  <div class="m-0 bg-white shadow-sm rounded p-3">
+    <h5 class="category-toggle d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#categoryList">
+      <span><i class="fa-solid fa-list me-2"></i>CHỌN THEO HÃNG LAPTOP</span>
       <i class="fa-solid fa-caret-down"></i>
     </h5>
-    <div id="categoryList" class="category-list category-collapse">
+    <div id="categoryList" class="category-list collapse position-absolute bg-white w-100 shadow p-2 rounded" style="z-index: 1000;">
       <div class="list-group">
-        <a href="#laptops" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-solid fa-laptop me-2"></i> Laptop
+         <a href="#apple" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-brands fa-apple me-2"></i> Apple
         </a>
-        <a href="#phones" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-solid fa-mobile-alt me-2"></i> Điện Thoại
+        <a href="#dell" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> Dell
         </a>
-        <a href="#tablets" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-solid fa-tablet-alt me-2"></i> Máy Tính Bảng
+        <a href="#hp" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> HP
         </a>
-        <a href="#watches" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-solid fa-clock me-2"></i> Đồng Hồ
+        <a href="#asus" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> Asus
+        </a>
+        <a href="#lenovo" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> Lenovo
+        </a>
+        <a href="#msi" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> MSI
         </a>
       </div>
     </div>
   </div>
+
                <!-- Phần Tin Tức Nổi Bật -->
 <div class="m-0 bg-white mt-4 p-3 shadow-sm rounded">
   <h5 class="category-toggle d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#newsList">
@@ -349,7 +356,7 @@
     </div>
   </div>
 </div>
-
+</div>
 
 
        

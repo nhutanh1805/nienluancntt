@@ -29,31 +29,39 @@
 
     <!-- DANH MỤC & PHÂN LOẠI -->
 <div class="row mb-3">
-  <!-- DANH MỤC -->
-  <div class="col-md-6 position-relative">
-    <div class="bg-white shadow-sm rounded p-3">
-      <h5 class="category-toggle d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#categoryList">
-        <span><i class="fa-solid fa-list me-2"></i> DANH MỤC</span>
-        <i class="fa-solid fa-caret-down"></i>
-      </h5>
-      <div id="categoryList" class="category-list collapse position-absolute bg-white w-100 shadow p-2 rounded"> 
-        <div class="list-group">
-          <a href="#laptops" class="list-group-item list-group-item-action d-flex align-items-center">
-            <i class="fa-solid fa-laptop me-2"></i> Laptop
-          </a>
-          <a href="#phones" class="list-group-item list-group-item-action d-flex align-items-center">
-            <i class="fa-solid fa-mobile-alt me-2"></i> Điện Thoại
-          </a>
-          <a href="#tablets" class="list-group-item list-group-item-action d-flex align-items-center">
-            <i class="fa-solid fa-tablet-alt me-2"></i> Máy Tính Bảng
-          </a>
-          <a href="#watches" class="list-group-item list-group-item-action d-flex align-items-center">
-            <i class="fa-solid fa-clock me-2"></i> Đồng Hồ
-          </a>
-        </div>
+  
+  <!-- DANH MỤC HÃNG LAPTOP -->
+<div class="col-md-6 position-relative">
+  <div class="bg-white shadow-sm rounded p-3">
+    <h5 class="category-toggle d-flex align-items-center justify-content-between" data-bs-toggle="collapse" data-bs-target="#categoryList">
+      <span><i class="fa-solid fa-list me-2"></i> DANH MỤC THEO HÃNG LAPTOP</span>
+      <i class="fa-solid fa-caret-down"></i>
+    </h5>
+    <div id="categoryList" class="category-list collapse position-absolute bg-white w-100 shadow p-2 rounded"> 
+      <div class="list-group">
+         <a href="#apple" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-brands fa-apple me-2"></i> Apple
+        </a>
+        <a href="#dell" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> Dell
+        </a>
+        <a href="#hp" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> HP
+        </a>
+        <a href="#asus" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> Asus
+        </a>
+        <a href="#lenovo" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> Lenovo
+        </a>
+        <a href="#msi" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fa-solid fa-laptop me-2"></i> MSI
+        </a>
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- PHÂN LOẠI -->
   <div class="col-md-6 position-relative">

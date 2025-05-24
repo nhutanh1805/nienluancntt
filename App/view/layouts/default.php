@@ -41,10 +41,33 @@
         <div class="row">
           <!-- Phần logo -->
           <div class="col-md-3 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
-            <a href="#!" class="ms-md-4">
-              <img class="logo" src="/img/3.png" height="100" />
-            </a>
-          </div>
+  <a href="#!" class="ms-md-4 text-decoration-none">
+    <h1 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3); font-weight: 900; font-style: italic; font-family: 'Poppins', sans-serif;">
+      <span style="
+        font-size: 3rem; 
+        background: linear-gradient(45deg, #0066ff, #00ccff);
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent; 
+        text-shadow: 0 0 8px rgba(0,102,255,0.7);
+        letter-spacing: 2px;
+        ">
+        Lap
+      </span>
+      <span style="
+        font-size: 2rem; 
+        color: #ff6f61; 
+        text-shadow: 1px 1px 4px rgba(255,111,97,0.8);
+        font-family: 'Georgia', serif;
+        letter-spacing: 1.5px;
+        ">
+        Store
+      </span>
+    </h1>
+  </a>
+</div>
+
+
+
        
           
           
@@ -112,18 +135,17 @@
 
 
    <!-- Câu giới thiệu về cửa hàng -->
-   <marquee class="mt-2 text-muted fs-4" behavior="scroll" direction="left" scrollamount="5">
-  💎 <strong>Electronics Shop</strong> – đỉnh cao thời thượng,  
-  Công nghệ hội tụ, dẫn đường tương lai.  
-  🌟 <strong>Laptop</strong> bền bỉ, dáng hình sang,  
-  Đẳng cấp dẫn lối, vững vàng bước đi.  
-  📱 <strong>Điện thoại</strong> sắc nét diệu kỳ,  
-  Trải nghiệm mượt lướt, tinh vi từng giờ.  
-  📟 <strong>Máy tính bảng</strong> – nét say sưa,  
-  Học hành, công việc, chẳng thừa phút giây.  
-  ⌚ <strong>Đồng hồ</strong> đẳng cấp trên tay,  
-  Kiêu sa một nét, tầm này ai hơn? ✨  
+  <marquee class="mt-2 text-muted fs-4" behavior="scroll" direction="left" scrollamount="5">
+  💎 <strong>LapStore</strong> – đỉnh cao thời thượng,  
+  🖥️ Công nghệ hội tụ, dẫn đường tương lai.  
+  💻 <strong>Laptop</strong> bền bỉ, dáng hình sang,  
+  🎛️ Đẳng cấp dẫn lối, vững vàng bước đi.  
+  🖥️ <strong>Màn hình</strong> sắc nét diệu kỳ,  
+  🖱️ Trải nghiệm mượt lướt, tinh vi từng giờ.  
+  💻 <strong>Phần cứng ổn</strong> – nét say sưa,  
+  🧑‍💻 Học hành, công việc, chẳng thừa phút giây.  
 </marquee>
+
 
     <!-- Phần menu điều hướng -->
     

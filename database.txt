@@ -1,0 +1,179 @@
+-- Tạo bảng users
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    role TINYINT NOT NULL
+);
+
+-- Chèn dữ liệu vào bảng users
+INSERT INTO users (id, name, email, password, created_at, updated_at, role) 
+VALUES
+(6, 'Student', 'student@cit.ctu.edu.vn', '$2y$10$Use.MHRzGdW3IVu0dqVNT.Wnmibj0eNPr8q7RFlclQl...', '2016-10-08 15:20:51', '2016-10-08 15:20:51', 0),
+(10, 'Admin', 'admin@cit.ctu.edu.vn', '$2y$10$abcdefg...', NOW(), NOW(), 1);
+
+
+-- Tạo bảng product 
+CREATE TABLE `product` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `img` VARCHAR(255) NOT NULL,
+    `description` TEXT NULL,
+    `price` DECIMAL(10, 2) NOT NULL,
+    `priceGoc` DECIMAL(10, 2) NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) -- Giả sử bạn có bảng `users` để liên kết người dùng
+);
+
+
+INSERT INTO product (id, name, img, description, price, priceGoc, user_id, created_at, updated_at) VALUES
+-- Laptops
+(90, 'Laptop MSI Cybong 15 A13VEK Gaming', 'img/Laptop2.jpg', 'i7 13620H', 24990000.00, 26990000.00, 10, '2024-11-04 23:56:24', '2024-11-04 23:56:24'),
+(91, 'Laptop Lenovo Ideapad Slim 3 15IAH8', 'img/Laptop3.jpg', 'i5 12450H', 14490000.00, 15990000.00, 10, '2024-11-05 00:00:49', '2024-11-05 00:00:49'),
+(92, 'Laptop Asus TUF Gaming A15 FA506NF', 'img/Laptop4.jpg', 'AMD Ryzen 5 7535HS', 16990000.00, 18990000.00, 10, '2024-11-05 00:03:07', '2024-11-05 00:03:07'),
+(93, 'Laptop Acer Nitro 5 AN515-58', 'img/Laptop1.jpg', 'i7 12700H', 15990000.00, 17990000.00, 10, '2024-11-05 00:20:07', '2024-11-05 00:20:07'),
+
+-- Phones
+(94, 'Điện thoại iPhone 16 Pro Max', 'img/Dienthoai1.png', '256GB', 34990000.00, 37990000.00, 10, '2024-11-05 00:07:53', '2024-11-05 00:07:53'),
+(95, 'Điện thoại Samsung Galaxy S24 Ultra 5G', 'img/Dienthoai2.jpg', '12GB/256GB', 29990000.00, 32990000.00, 10, '2024-11-05 00:11:30', '2024-11-05 00:11:30'),
+(96, 'Điện thoại Xiaomi 14 Pro 5G', 'img/Dienthoai4.jpg', 'Snapdragon 8 Gen 3', 16250000.00, 17990000.00, 10, '2024-11-05 00:13:16', '2024-11-05 00:13:16'),
+(97, 'Điện thoại Google Pixel 8 Pro', 'img/google-pixel-8-pro-5g-xanh.jpg', '128GB/8GB', 24990000.00, 26990000.00, 10, '2024-11-05 00:21:00', '2024-11-05 00:21:00'),
+
+-- Tablets
+(100, 'Máy tính bảng iPad Pro M2 11 inch', 'img/Tablet1.jpg', '128GB', 24990000.00, 26990000.00, 10, '2024-11-05 00:22:07', '2024-11-05 00:22:07'),
+(101, 'Máy tính bảng Samsung Galaxy Tab S9 Ultra', 'img/Tablet2.jpg', '256GB/12GB', 29990000.00, 31990000.00, 10, '2024-11-05 00:23:14', '2024-11-05 00:23:14'),
+(102, 'Máy tính bảng Xiaomi Pad 6', 'img/Tablet3.jpg', 'Snapdragon 870', 11990000.00, 12990000.00, 10, '2024-11-05 00:24:20', '2024-11-05 00:24:20'),
+(103, 'Máy tính bảng Lenovo Tab P12 Pro', 'img/Tablet4.jpg', '128GB/8GB', 17990000.00, 19990000.00, 10, '2024-11-05 00:25:33', '2024-11-05 00:25:33'),
+
+-- Watches
+(104, 'Đồng hồ CASIO 45 x 42.1 mm Nam AE-1200WHD-1AVDF', 'img/casio-ae-1200whd-1avdf-bac-thumb-600x600.jpg', 'Kim loại', 1129000.00, 1299000.00, 10, '2024-11-05 00:37:42', '2024-11-05 00:38:08'),
+(105, 'Samsung Galaxy Watch Ultra LTE 47mm', 'img/Dongho2.jpg', 'Dây silicon', 16990000.00, 17990000.00, 10, '2024-11-05 00:39:54', '2024-11-05 00:39:54'),
+(106, 'Garmin Vivoactive 5 42.2mm', 'img/Dongho3.jpg', 'dây silicone', 7870000.00, 8490000.00, 10, '2024-11-05 00:41:05', '2024-11-05 00:41:05'),
+(107, 'Apple Watch Series 9 Untra LTE', 'img/Dongho4.jpg', '41mm', 15990000.00, 16990000.00, 10, '2024-11-05 00:42:10', '2024-11-05 00:42:10');
+
+
+
+
+CREATE TABLE `productdetails` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `product_id` INT NOT NULL,
+    `product_type` VARCHAR(100) NOT NULL,
+    `cpu` VARCHAR(100) NOT NULL,
+    `ram` VARCHAR(100) NOT NULL,
+    `storage` VARCHAR(100) NOT NULL,
+    `battery_capacity` VARCHAR(100) NOT NULL,
+    `camera_resolution` VARCHAR(100) NOT NULL,
+    `screen_size` VARCHAR(100) NOT NULL,
+    `os` VARCHAR(100) NOT NULL,
+    `band` VARCHAR(100) NOT NULL,
+    `strap_material` VARCHAR(100) NOT NULL,
+    `water_resistance` VARCHAR(100) NOT NULL,
+    FOREIGN KEY (`product_id`) REFERENCES `product`(`id`) ON DELETE CASCADE
+);
+
+
+
+INSERT INTO productdetails (product_id, product_type, cpu, ram, storage, battery_capacity, camera_resolution, screen_size, os, band, strap_material, water_resistance) VALUES
+-- Laptops
+(90, 'Laptop', 'Intel Core i7 13620H', '16GB', '512GB SSD', 'Không có', 'Không có', 15.6, 'Windows 11', 'Không có', 'Không có', 'Không có'),
+(91, 'Laptop', 'Intel Core i5 12450H', '8GB', '256GB SSD', 'Không có', 'Không có', 15.6, 'Windows 11', 'Không có', 'Không có', 'Không có'),
+(92, 'Laptop', 'AMD Ryzen 5 7535HS', '16GB', '512GB SSD', 'Không có', 'Không có', 15.6, 'Windows 11', 'Không có', 'Không có', 'Không có'),
+(93, 'Laptop', 'Intel Core i7 12700H', '16GB', '512GB SSD', 'Không có', 'Không có', 15.6, 'Windows 11', 'Không có', 'Không có', 'Không có'),
+
+-- Phones
+(94, 'Phone', 'Không có', '8GB', '256GB', '4500 mAh', '48MP', 6.7, 'iOS', '5G', 'Không có', 'IP68'),
+(95, 'Phone', 'Không có', '12GB', '256GB', '5000 mAh', '200MP', 6.8, 'Android', '5G', 'Không có', 'IP68'),
+(96, 'Phone', 'Snapdragon 8 Gen 3', '12GB', '512GB', '4600 mAh', '50MP', 6.7, 'Android', '5G', 'Không có', 'IP68'),
+(97, 'Phone', 'Google Tensor G3', '8GB', '128GB', '5100 mAh', '50MP', 6.8, 'Android', '5G', 'Không có', 'IP68'),
+
+-- Tablets
+(100, 'Tablet', 'Không có', '8GB', '128GB', '7538 mAh', '12MP', 11.0, 'iPadOS', 'Không có', 'Không có', 'Không có'),
+(101, 'Tablet', 'Không có', '12GB', '256GB', '10090 mAh', '13MP', 14.6, 'Android', 'Không có', 'Không có', 'Không có'),
+(102, 'Tablet', 'Snapdragon 870', '6GB', '128GB', '8720 mAh', '8MP', 11.0, 'Android', 'Không có', 'Không có', 'Không có'),
+(103, 'Tablet', 'MediaTek Kompanio 1300T', '8GB', '128GB', '10000 mAh', '13MP', 12.6, 'Android', 'Không có', 'Không có', 'Không có'),
+
+-- Watches
+(102, 'Watch', 'Không có', 'Không có', 'Không có', 'Không có', 'Không có', 1.5, 'Không có', 'Không có', 'Stainless Steel', '50m'),
+(105, 'Watch', 'Không có', 'Không có', 'Không có', 'Không có', 'Không có', 1.6, 'Wear OS', '4G LTE', 'Silicon', 'IP68'),
+(106, 'Watch', 'Không có', 'Không có', 'Không có', 'Không có', 'Không có', 1.7, 'Proprietary OS', 'Không có', 'Silicon', '50m'),
+(107, 'Watch', 'Không có', 'Không có', 'Không có', 'Không có', 'Không có', 1.9, 'watchOS', 'Không có', 'Silicon', 'WR50');
+
+
+ALTER TABLE users
+ADD COLUMN address VARCHAR(255) NULL;
+
+CREATE TABLE cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL, -- Số lượng sản phẩm
+    price DECIMAL(10, 2) NOT NULL, -- Giá sản phẩm tại thời điểm mua
+    total_price DECIMAL(10, 2) NOT NULL, -- Tổng giá (số lượng * giá)
+    purchased_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Thời gian mua
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE, -- Liên kết với bảng users
+    FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE -- Liên kết với bảng product
+);
+ALTER TABLE cart MODIFY total_price DECIMAL(15, 2);
+ALTER TABLE product MODIFY price DECIMAL(15, 2);
+
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,  -- Liên kết với người dùng
+    total_amount DECIMAL(15, 2) NOT NULL,  -- Tổng giá trị đơn hàng
+    status ENUM('pending', 'completed', 'canceled') DEFAULT 'pending',  -- Trạng thái đơn hàng
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Thời gian tạo đơn hàng
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- Thời gian cập nhật đơn hàng
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE  -- Liên kết với bảng users
+);
+
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,  -- Liên kết với đơn hàng
+    product_id INT NOT NULL,  -- Liên kết với sản phẩm
+    quantity INT NOT NULL,  -- Số lượng sản phẩm trong đơn hàng
+    price DECIMAL(15, 2) NOT NULL,  -- Giá sản phẩm tại thời điểm mua
+    total_price DECIMAL(15, 2) NOT NULL,  -- Tổng giá (số lượng * giá)
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,  -- Liên kết với bảng orders
+    FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE  -- Liên kết với bảng product
+);
+
+CREATE TABLE inventory (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,  -- Liên kết với sản phẩm trong bảng `product`
+    quantity INT NOT NULL,    -- Số lượng sản phẩm trong kho
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Thời gian tạo bản ghi
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- Thời gian cập nhật bản ghi
+    FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE  -- Liên kết với bảng `product`
+);
+
+
+INSERT INTO inventory (product_id, quantity, created_at, updated_at) VALUES
+-- Laptops
+(90, 50, '2024-11-04 23:56:24', '2024-11-04 23:56:24'),
+(91, 60, '2024-11-05 00:00:49', '2024-11-05 00:00:49'),
+(92, 40, '2024-11-05 00:03:07', '2024-11-05 00:03:07'),
+(93, 30, '2024-11-05 00:20:07', '2024-11-05 00:20:07'),
+
+-- Phones
+(94, 100, '2024-11-05 00:07:53', '2024-11-05 00:07:53'),
+(95, 120, '2024-11-05 00:11:30', '2024-11-05 00:11:30'),
+(96, 150, '2024-11-05 00:13:16', '2024-11-05 00:13:16'),
+(97, 80, '2024-11-05 00:21:00', '2024-11-05 00:21:00'),
+
+-- Tablets
+(100, 70, '2024-11-05 00:22:07', '2024-11-05 00:22:07'),
+(101, 60, '2024-11-05 00:23:14', '2024-11-05 00:23:14'),
+(102, 80, '2024-11-05 00:24:20', '2024-11-05 00:24:20'),
+(103, 90, '2024-11-05 00:25:33', '2024-11-05 00:25:33'),
+
+-- Watches
+(104, 150, '2024-11-05 00:37:42', '2024-11-05 00:38:08'),
+(105, 130, '2024-11-05 00:39:54', '2024-11-05 00:39:54'),
+(106, 120, '2024-11-05 00:41:05', '2024-11-05 00:41:05'),
+(107, 110, '2024-11-05 00:42:10', '2024-11-05 00:42:10');

@@ -1,0 +1,308 @@
+-- Cơ sở dữ liệu: `nienluancoso`
+
+CREATE DATABASE IF NOT EXISTS `nienluancoso` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `nienluancoso`;
+
+-- --------------------------------------------------------
+
+-- Cấu trúc bảng `cart`
+
+CREATE TABLE `cart` (
+  `id` int(11) AUTO_INCREMENT NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `total_price` decimal(15,2) DEFAULT NULL,
+  `purchased_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dữ liệu cho bảng `cart`
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `price`, `total_price`, `purchased_at`, `updated_at`) VALUES
+(1, 6, 90, 2, 24990000.00, 49980000.00, '2025-03-21 09:22:25', '2025-03-21 10:02:24'),
+(11, 12, 95, 5, 29990000.00, 149950000.00, '2025-03-21 10:04:52', '2025-03-21 10:05:01'),
+(12, 11, 103, 5, 17990000.00, 89950000.00, '2025-03-21 10:05:48', '2025-03-21 10:05:51');
+
+-- Chỉ mục và khóa ngoại cho bảng `cart`
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE;
+
+-- --------------------------------------------------------
+
+-- Cấu trúc bảng `comment`
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `image_link` text DEFAULT NULL,
+  `rate` int(11) DEFAULT NULL CHECK (`rate` BETWEEN 1 AND 5),
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Chỉ mục và khóa ngoại cho bảng `comment`
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+-- --------------------------------------------------------
+
+-- Cấu trúc bảng `product`
+
+CREATE TABLE `product` (
+  `id` int(11) AUTO_INCREMENT NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(15,2) DEFAULT NULL,
+  `priceGoc` decimal(15,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `product`
+ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) 
+ON DELETE CASCADE 
+ON UPDATE CASCADE;
+
+-- Dữ liệu cho bảng `product`
+INSERT INTO `product` (`id`, `user_id`, `name`, `img`, `description`, `price`, `priceGoc`, `created_at`, `updated_at`) VALUES
+(90, 10, 'Laptop MSI Cybong 15 A13VEK Gaming', 'img/Laptop2.jpg', 'Hiệu năng vượt trội với Intel i7-13620H, RTX 4050, màn hình 144Hz mượt mà, thiết kế cyberpunk đầy đẳng cấp và cuốn hút', 24990000.00, 26990000.00, '2024-11-04 16:56:24', '2025-02-24 09:30:19'),
+(92, 10, 'Laptop Asus TUF Gaming A15 FA506NF', 'img/Laptop4.jpg', 'Hiệu năng vượt trội với AMD Ryzen 5 7535HS, RTX 2050, RAM 8GB, SSD 512GB, màn hình 15.6\" FHD 144Hz mượt mà, thiết kế bền bỉ, tản nhiệt tối ưu – sẵn sàng chinh phục mọi trận đấu', 16990000.00, 18990000.00, '2024-11-04 17:03:07', '2025-03-13 15:13:48');
+
+-- Chỉ mục và khóa ngoại cho bảng `product`
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+-- --------------------------------------------------------
+
+-- Cấu trúc bảng `productdetails`
+
+CREATE TABLE `productdetails` (
+  `id` int(11) AUTO_INCREMENT NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_type` varchar(100) NOT NULL,
+  `cpu` varchar(100) NOT NULL,
+  `ram` varchar(100) NOT NULL,
+  `storage` varchar(100) NOT NULL,
+  `battery_capacity` varchar(100) NOT NULL,
+  `camera_resolution` varchar(100) NOT NULL,
+  `screen_size` varchar(100) NOT NULL,
+  `os` varchar(100) NOT NULL,
+  `band` varchar(100) NOT NULL,
+  `strap_material` varchar(100) NOT NULL,
+  `water_resistance` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dữ liệu cho bảng `productdetails`
+INSERT INTO `productdetails` (`id`, `product_id`, `product_type`, `cpu`, `ram`, `storage`, `battery_capacity`, `camera_resolution`, `screen_size`, `os`, `band`, `strap_material`, `water_resistance`) VALUES
+(1, 90, 'Laptop', 'Intel Core i7 13620H', '16GB', '512GB SSD', 'Không có', 'Không có', '15.6', 'Windows 11', 'Không có', 'Không có', 'Không có'),
+(3, 92, 'Điện thoại', 'AMD Ryzen 5 7535HS', '16GB', '512GB SSD', 'Không có', 'Không có', '15.6', 'Windows 11', 'Không có', 'Không có', '');
+
+-- Chỉ mục và khóa ngoại cho bảng `productdetails`
+ALTER TABLE `productdetails`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
+
+-- --------------------------------------------------------
+
+-- Cấu trúc bảng `users`
+
+CREATE TABLE `users` (
+  `id` int(11) AUTO_INCREMENT NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `role` tinyint(4) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `address` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dữ liệu cho bảng `users`
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`, `role`, `phone`, `address`) VALUES
+(6, 'Student', 'student@cit.ctu.edu.vn', '$2y$10$Use.MHRzGdW3IVu0dqVNT.Wnmibj0eNPr8q7RFlclQl...', '2016-10-08 08:20:51', '2016-10-08 08:20:51', 0, '', NULL),
+(10, 'Admin', 'admin@cit.ctu.edu.vn', '$2y$10$abcdefg...', '2025-01-08 13:48:54', '2025-01-08 13:48:54', 1, '', NULL),
+(12, 'User Example', 'example@cit.ctu.edu.vn', '$2y$10$hackedpassword...', '2025-01-08 15:15:22', '2025-01-08 15:15:22', 0, '', NULL);
+
+-- Chỉ mục và khóa ngoại cho bảng `users`
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+
+
+CREATE INDEX idx_product_id ON product(id);
+
+CREATE TABLE IF NOT EXISTS `orders` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,  -- Khóa chính
+    `user_id` INT NOT NULL,               -- Khóa ngoại liên kết với bảng `users`
+    `address` VARCHAR(255) NOT NULL,      -- Địa chỉ giao hàng
+    `total_amount` DECIMAL(10, 2) NOT NULL,  -- Tổng tiền đơn hàng
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Thời gian tạo đơn hàng
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- Thời gian cập nhật đơn hàng
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE  -- Khóa ngoại với bảng `users`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `orders`
+ADD COLUMN `cmt` TEXT DEFAULT NULL;  -- Cột mới lưu bình luận
+
+ALTER TABLE `orders`
+MODIFY `total_amount` DECIMAL(15, 2) NOT NULL;
+
+
+CREATE TABLE IF NOT EXISTS `order_details` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,  -- Khóa chính
+    `order_id` INT NOT NULL,              -- Khóa ngoại liên kết với bảng `orders`
+    `product_id` INT NOT NULL,            -- Khóa ngoại liên kết với bảng `product`
+    `quantity` INT NOT NULL,              -- Số lượng sản phẩm
+    `price` DECIMAL(10, 2) NOT NULL,      -- Giá của mỗi sản phẩm
+    `total_price` DECIMAL(10, 2) NOT NULL,  -- Tổng giá của sản phẩm (quantity * price)
+    FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`) ON DELETE CASCADE,  -- Khóa ngoại với bảng `orders`
+    FOREIGN KEY (`product_id`) REFERENCES `product`(`id`) ON DELETE CASCADE  -- Khóa ngoại với bảng `product`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE IF NOT EXISTS `order_items` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `order_id` INT NOT NULL,  -- Liên kết với bảng `orders`
+    `product_id` INT NOT NULL,  -- ID của sản phẩm
+    `quantity` INT NOT NULL,    -- Số lượng sản phẩm
+    `price` DECIMAL(10, 2) NOT NULL,  -- Giá sản phẩm
+    `total_price` DECIMAL(15, 2) NOT NULL,  -- Tổng giá trị sản phẩm
+    FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`product_id`) REFERENCES `product`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE IF NOT EXISTS `inventory` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,  -- Khóa chính
+    `product_id` INT NOT NULL,            -- Khóa ngoại liên kết với bảng `product`
+    `quantity_in_stock` INT NOT NULL,     -- Số lượng sản phẩm trong kho
+    `img` VARCHAR(255) DEFAULT NULL,      -- Thêm trường img lưu đường dẫn ảnh
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Thời gian thêm vào kho
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- Thời gian cập nhật kho
+    FOREIGN KEY (`product_id`) REFERENCES `product`(`id`) ON DELETE CASCADE  -- Khóa ngoại với bảng `product`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+INSERT INTO `inventory` (`product_id`, `quantity_in_stock`, `img`, `created_at`, `updated_at`)
+VALUES
+(90, 10, 'img/Laptop2.jpg', '2024-11-04 23:56:24', '2024-11-04 23:56:24'),
+
+(92, 10, 'img/Laptop4.jpg', '2024-11-05 00:03:07', '2024-11-05 00:03:07'),
+(93, 10, 'img/Laptop1.jpg', '2024-11-05 00:20:07', '2024-11-05 00:20:07'),
+
+-- Phones
+(94, 10, 'img/Dienthoai1.png', '2024-11-05 00:07:53', '2024-11-05 00:07:53'),
+(95, 10, 'img/Dienthoai2.jpg', '2024-11-05 00:11:30', '2024-11-05 00:11:30'),
+(96, 10, 'img/Dienthoai4.jpg', '2024-11-05 00:13:16', '2024-11-05 00:13:16'),
+(97, 10, 'img/google-pixel-8-pro-5g-xanh.jpg', '2024-11-05 00:21:00', '2024-11-05 00:21:00'),
+
+-- Tablets
+(100, 10, 'img/Tablet1.jpg', '2024-11-05 00:22:07', '2024-11-05 00:22:07'),
+(101, 10, 'img/Tablet2.jpg', '2024-11-05 00:23:14', '2024-11-05 00:23:14'),
+(102, 10, 'img/Tablet3.jpg', '2024-11-05 00:24:20', '2024-11-05 00:24:20'),
+(103, 10, 'img/Tablet4.jpg', '2024-11-05 00:25:33', '2024-11-05 00:25:33'),
+
+-- Watches
+(104, 10, 'img/casio-ae-1200whd-1avdf-bac-thumb-600x600.jpg', '2024-11-05 00:37:42', '2024-11-05 00:38:08'),
+(105, 10, 'img/Dongho2.jpg', '2024-11-05 00:39:54', '2024-11-05 00:39:54'),
+(106, 10, 'img/Dongho3.jpg', '2024-11-05 00:41:05', '2024-11-05 00:41:05'),
+(107, 10, 'img/Dongho4.jpg', '2024-11-05 00:42:10', '2024-11-05 00:42:10');
+
+
+ALTER TABLE `orders`
+    ADD COLUMN `status` VARCHAR(50) NOT NULL DEFAULT 'Processing' AFTER `total_amount`;  -- Thêm trường `status` với giá trị mặc định là 'Processing'
+
+
+CREATE TABLE IF NOT EXISTS `inventory1` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,  -- Khóa chính
+    `product_id` INT NOT NULL,            -- Khóa ngoại liên kết với bảng `product`
+    `quantity_in_stock` INT NOT NULL,     -- Số lượng sản phẩm trong kho
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- Thời gian cập nhật kho
+    FOREIGN KEY (`product_id`) REFERENCES `product`(`id`) ON DELETE CASCADE  -- Khóa ngoại với bảng `product`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- Tringer lkhi thêm sản phẩm sẽ lưu vào bảng inventory
+
+DELIMITER //
+
+CREATE TRIGGER after_insert_product
+AFTER INSERT ON `product`
+FOR EACH ROW
+BEGIN
+    -- Thêm bản ghi vào bảng inventory khi sản phẩm mới được thêm vào bảng product
+    INSERT INTO `inventory` (product_id, quantity_in_stock, img, created_at, updated_at)
+    VALUES (NEW.id, 0, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+END //
+
+DELIMITER ;
+
+-- Tringer thêm đơn hàng khi có sản phẩm trong giỏ
+
+DELIMITER //
+
+CREATE TRIGGER after_add_to_cart
+AFTER INSERT ON cart
+FOR EACH ROW
+BEGIN
+    DECLARE totalAmount DECIMAL(15, 2);
+    DECLARE userAddress VARCHAR(255);
+
+    -- Tính tổng tiền đơn hàng (tổng tiền của tất cả các sản phẩm trong giỏ)
+    SELECT SUM(total_price) INTO totalAmount
+    FROM cart
+    WHERE user_id = NEW.user_id;
+
+    -- Lấy địa chỉ giao hàng của người dùng (giả sử có bảng `users` chứa thông tin này)
+    SELECT address INTO userAddress
+    FROM users
+    WHERE id = NEW.user_id;
+
+    -- Thêm đơn hàng vào bảng `orders`
+    INSERT INTO orders (user_id, address, total_amount)
+    VALUES (NEW.user_id, userAddress, totalAmount);
+END //
+
+DELIMITER ;
+
+
+
+-- Tạo bảng `comment` mới với kết nối tới đơn hàng
+CREATE TABLE `comment` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,                 -- Khóa ngoại liên kết với bảng `users`
+  `content` TEXT NOT NULL,                    -- Nội dung bình luận
+  `image_link` TEXT DEFAULT NULL,             -- Liên kết ảnh nếu có
+  `rate` INT(11) DEFAULT NULL CHECK (`rate` BETWEEN 1 AND 5), -- Đánh giá từ 1 đến 5
+  `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,         -- Thời gian tạo bình luận
+  `order_id` INT(11) DEFAULT NULL,            -- Khóa ngoại liên kết với bảng `orders`
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE SET NULL -- Liên kết với bảng `orders`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Thêm dữ liệu mẫu vào bảng `comment`
+INSERT INTO `comment` (`user_id`, `content`, `image_link`, `rate`, `date`, `order_id`)
+VALUES
+(11, 'Sản phẩm này rất tuyệt vời, tôi rất hài lòng!', 'https://example.com/image1.jpg', 5, '2025-04-14 09:30:00', 366),
+(11, 'Chất lượng sản phẩm tốt nhưng giao hàng hơi chậm.', 'https://example.com/image2.jpg', 3, '2025-04-14 10:15:00', 366);
+
+ALTER TABLE `your_table_name` MODIFY `price` DECIMAL(15,2);
+
+
+
+composer require paypal/rest-api-sdk-php

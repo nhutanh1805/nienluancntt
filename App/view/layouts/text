@@ -1,0 +1,27 @@
+<!-- Right Side Of Navbar -->
+<ul class="navbar-nav ms-auto">
+    <!-- Authentication Links -->
+    <?php if (!AUTHGUARD()->isUserLoggedIn()) : ?>
+      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+      <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+    <?php else : ?>
+      <li class="nav-item dropstart">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          <?= $this->e(AUTHGUARD()->user()->name) ?> <span class="caret"></span>
+        </a>
+
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
+          </a>
+          <form id="logout-form" class="d-none" action="/logout" method="POST">
+          </form>
+        </div>
+      </li>
+    <?php endif ?>
+  </ul>
+</div>
+</nav>
+</header>
+
+<?= $this->section("page") ?>

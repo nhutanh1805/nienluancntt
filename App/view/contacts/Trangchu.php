@@ -299,24 +299,31 @@
     </h5>
     <div id="categoryList" class="category-list collapse position-absolute bg-white w-100 shadow p-2 rounded" style="z-index: 1000;">
       <div class="list-group">
-         <a href="#apple" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-brands fa-apple me-2"></i> Apple
+        <a href="#apple" class="list-group-item list-group-item-action d-flex align-items-center">
+          <img src="img/LogoMac.jpg" alt="Apple" style="width:20px; height:20px; margin-right:8px;">
+          Apple
         </a>
         <a href="#dell" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-solid fa-laptop me-2"></i> Dell
+          <img src="img/LogoDell.jpg" alt="Dell" style="width:20px; height:20px; margin-right:8px;">
+          Dell
         </a>
         <a href="#hp" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-solid fa-laptop me-2"></i> HP
+          <img src="img/LogoHP.png" alt="HP" style="width:20px; height:20px; margin-right:8px;">
+          HP
         </a>
         <a href="#asus" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-solid fa-laptop me-2"></i> Asus
+          <img src="img/LogoASUS.jpg" alt="Asus" style="width:20px; height:20px; margin-right:8px;">
+          Asus
         </a>
         <a href="#lenovo" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-solid fa-laptop me-2"></i> Lenovo
+          <img src="img/LogoLEVONO.jpg" alt="Lenovo" style="width:20px; height:20px; margin-right:8px;">
+          Lenovo
         </a>
         <a href="#msi" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fa-solid fa-laptop me-2"></i> MSI
+          <img src="img/LogoMSI.jpg" alt="MSI" style="width:20px; height:20px; margin-right:8px;">
+          MSI
         </a>
+
       </div>
     </div>
   </div>

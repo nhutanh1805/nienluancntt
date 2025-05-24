@@ -139,46 +139,49 @@
   </video>
 </div>
 
-    <!-- Phần carousel -->
-    <div id="customCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <!-- Phần carousel 6 hãng laptop -->
+<div id="customCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
   <!-- Indicators -->
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="0" class="active" aria-label="Apple"></button>
+    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="1" aria-label="Dell"></button>
+    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="2" aria-label="HP"></button>
+    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="3" aria-label="Asus"></button>
+    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="4" aria-label="Lenovo"></button>
+    <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="5" aria-label="MSI"></button>
   </div>
 
   <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="2000"> <!-- Mỗi hình chuyển động 2 giây -->
-      <img src="img/Carousel1.png" class="d-block w-100" alt="iPhone 16 Pro">
+    <div class="carousel-item active" data-bs-interval="2000">
+      <img src="img/Banner1.jpg" class="d-block w-100" alt="Apple">
       <div class="carousel-caption">
-        <h5>MSI Gaming</h5>
-        <p>Siêu phẩm với công nghệ AI và camera nâng cấp.</p>
+        <h5>Apple</h5>
+        <p>MacBook sang trọng, hiệu năng mạnh mẽ với chip M-series.</p>
+      </div>
+    </div>
+    
+    
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="img/Banner2.jpg" class="d-block w-100" alt="Asus">
+      <div class="carousel-caption">
+        <h5>Asus</h5>
+        <p>Đa dạng dòng sản phẩm từ gaming đến ultrabook.</p>
       </div>
     </div>
     
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="img/Carousel2.jpg" class="d-block w-100" alt="Asus Zenbook Pro">
+      <img src="img/CarouselLEVONO.jpg" class="d-block w-100" alt="Lenovo">
       <div class="carousel-caption">
-        <h5>Iphone thế hệ mới</h5>
-        <p>Mỏng nhẹ, hiệu năng mạnh mẽ dành cho sáng tạo.</p>
+        <h5>Lenovo</h5>
+        <p>Đáng tin cậy với các dòng ThinkPad và Yoga nổi tiếng.</p>
       </div>
     </div>
     
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="img/Carousel3.jpg" class="d-block w-100" alt="Galaxy Watch">
+      <img src="img/CarouselMSI.png" class="d-block w-100" alt="MSI">
       <div class="carousel-caption">
-        <h5>Tablet</h5>
-        <p></p>
-      </div>
-    </div>
-    
-    <div class="carousel-item" data-bs-interval="2000">
-      <img src="img/Carousel4.jpg" class="d-block w-100" alt="Khuyến mãi mùa hè">
-      <div class="carousel-caption">
-        <h5>Watch</h5>
-        <p></p>
+        <h5>MSI</h5>
+        <p>Siêu phẩm gaming với công nghệ tiên tiến và thiết kế hầm hố.</p>
       </div>
     </div>
   </div>

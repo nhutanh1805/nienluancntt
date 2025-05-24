@@ -51,7 +51,7 @@
           <!-- Phần thanh tìm kiếm -->
           <div class="col-md-6 d-flex justify-content-center align-items-center mb-3 mb-md-0">
   <form action="/search" method="GET" class="d-flex w-100">
-    <input type="text" class="form-control rounded-start border-0 shadow-sm px-3 py-2" name="query" placeholder="Tìm kiếm sản phẩm..." required>
+    <input type="text" class="form-control rounded-start border-0 shadow-sm px-3 py-2" name="query" placeholder="Tìm kiếm laptop..." required>
     <button type="submit" class="btn btn-primary ms-2 d-lg-flex px-4 py-2 rounded-end shadow-lg transition-all">
       <i class="fas fa-search"></i>
     </button>

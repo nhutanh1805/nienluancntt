@@ -80,24 +80,27 @@
                 <?php endif ?>
             </div>
 
-            <!-- Loại sản phẩm -->
-            <div class="col-md-12 col-sm-12">
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-cogs"></i></span>
-                    <select name="product_type" class="form-control<?= isset($errors['product_type']) ? ' is-invalid' : '' ?>" id="product_type" required>
-                        <option value="Điện thoại" <?= isset($old['product_type']) && $old['product_type'] == 'Điện thoại' ? 'selected' : '' ?>>Điện thoại</option>
-                        <option value="Laptop" <?= isset($old['product_type']) && $old['product_type'] == 'Laptop' ? 'selected' : '' ?>>Laptop</option>
-                        <option value="Máy tính bảng" <?= isset($old['product_type']) && $old['product_type'] == 'Máy tính bảng' ? 'selected' : '' ?>>Máy tính bảng</option>
-                        <option value="Đồng hồ" <?= isset($old['product_type']) && $old['product_type'] == 'Đồng hồ' ? 'selected' : '' ?>>Đồng hồ</option>
-                    </select>
-                </div>
-                <?php if (isset($errors['product_type'])) : ?>
-                    <span class="invalid-feedback">
-                        <strong><?= $this->e($errors['product_type']) ?></strong>
-                    </span>
-                <?php endif ?>
-            </div>
-        </div>
+            
+            <!-- Chọn hãng laptop -->
+<div class="col-md-12 col-sm-12">
+    <div class="input-group">
+        <span class="input-group-text"><i class="fas fa-building"></i></span>
+        <select name="brand" class="form-control<?= isset($errors['brand']) ? ' is-invalid' : '' ?>" id="brand" required>
+            <option value="Apple" <?= isset($old['brand']) && $old['brand'] == 'Apple' ? 'selected' : '' ?>>Apple</option>
+            <option value="Dell" <?= isset($old['brand']) && $old['brand'] == 'Dell' ? 'selected' : '' ?>>Dell</option>
+            <option value="HP" <?= isset($old['brand']) && $old['brand'] == 'HP' ? 'selected' : '' ?>>HP</option>
+            <option value="Asus" <?= isset($old['brand']) && $old['brand'] == 'Asus' ? 'selected' : '' ?>>Asus</option>
+            <option value="Lenovo" <?= isset($old['brand']) && $old['brand'] == 'Lenovo' ? 'selected' : '' ?>>Lenovo</option>
+            <option value="MSI" <?= isset($old['brand']) && $old['brand'] == 'MSI' ? 'selected' : '' ?>>MSI</option>
+        </select>
+    </div>
+    <?php if (isset($errors['brand'])) : ?>
+        <span class="invalid-feedback">
+            <strong><?= $this->e($errors['brand']) ?></strong>
+        </span>
+    <?php endif ?>
+</div>
+
 
         <!-- Gạch ngang phân tách -->
         <div class="separator"></div>
@@ -145,7 +148,7 @@
                     <?php endif ?>
                 </div>
 
-                <!-- Dung lượng pin -->
+                <!-- PIN -->
                 <div class="col-md-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-battery-half"></i></span>
@@ -213,11 +216,11 @@
                     <?php endif ?>
                 </div>
 
-                <!-- Băng tần -->
+                <!-- Card mạng -->
                 <div class="col-md-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-signal"></i></span>
-                        <input type="text" name="band" class="form-control<?= isset($errors['band']) ? ' is-invalid' : '' ?>" id="band" placeholder="Băng tần" value="<?= isset($old['band']) ? $this->e($old['band']) : '' ?>" />
+                        <input type="text" name="band" class="form-control<?= isset($errors['band']) ? ' is-invalid' : '' ?>" id="band" placeholder="Card mạng" value="<?= isset($old['band']) ? $this->e($old['band']) : '' ?>" />
                     </div>
                     <?php if (isset($errors['band'])) : ?>
                         <span class="invalid-feedback">

@@ -220,7 +220,7 @@
             </h6>
             <p>
             <p>
-              Khám phá vũ trụ công nghệ đầy sức sống, nơi mỗi sản phẩm là một tác phẩm nghệ thuật và là chìa khóa mở ra những trải nghiệm đỉnh cao. Hãy để chúng tôi đồng hành cùng bạn trên hành trình chinh phục tương lai – nơi không có giới hạn cho sự sáng tạo!
+             Khám phá thế giới laptop đa dạng và đột phá, nơi mỗi chiếc máy là một tác phẩm công nghệ và là chìa khóa mở ra trải nghiệm số đỉnh cao. Hãy để chúng tôi đồng hành cùng bạn trên hành trình lựa chọn công cụ hoàn hảo – mở rộng giới hạn sáng tạo và hiệu suất làm việc!
             </p>
           </div>
 

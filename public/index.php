@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../bootstrap.php';
 
-define('CONGNGHE', 'Electronics Shop');
+define('CONGNGHE', 'LapStore - Cửa hàng Laptop');
 
 session_start();
 

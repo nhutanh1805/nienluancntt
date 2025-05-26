@@ -306,3 +306,27 @@ ALTER TABLE `your_table_name` MODIFY `price` DECIMAL(15,2);
 
 
 composer require paypal/rest-api-sdk-php
+
+
+-- Tạo bảng brand
+CREATE TABLE `brand` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL UNIQUE,
+  `description` TEXT DEFAULT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Thêm 6 hãng laptop
+INSERT INTO `brand` (`name`, `description`) VALUES
+('Apple', 'Hãng laptop nổi tiếng với MacBook'),
+('Dell', 'Hãng laptop đa dạng phân khúc'),
+('HP', 'Hãng laptop phổ biến doanh nghiệp và cá nhân'),
+('Asus', 'Hãng laptop nổi tiếng với dòng TUF Gaming'),
+('Lenovo', 'Hãng laptop chuyên dòng ThinkPad và IdeaPad'),
+('MSI', 'Hãng laptop chuyên game và hiệu năng cao');
+
+-- Thêm cột brand_id vào bảng product và tạo khóa ngoại
+ALTER TABLE `product`
+ADD COLUMN `brand_id` INT DEFAULT NULL AFTER `user_id`,
+ADD CONSTRAINT `fk_product_brand` FOREIGN KEY (`brand_id`) REFERENCES `brand`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

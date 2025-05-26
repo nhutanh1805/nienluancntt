@@ -164,7 +164,7 @@
                   <li class="list-group-item"><strong>Camera:</strong> <?= htmlspecialchars($contact->camera_resolution) ?></li>
                   <li class="list-group-item"><strong>Màn hình:</strong> <?= htmlspecialchars($contact->screen_size) ?> inch</li>
                   <li class="list-group-item"><strong>Hệ điều hành:</strong> <?= htmlspecialchars($contact->os) ?></li>
-                  <li class="list-group-item"><strong>Băng tần:</strong> <?= htmlspecialchars($contact->band) ?></li>
+                  <li class="list-group-item"><strong>Card mạng:</strong> <?= htmlspecialchars($contact->band) ?></li>
                   <li class="list-group-item"><strong>Chất liệu/ Khả năng:</strong> <?= htmlspecialchars($contact->strap_material) ?></li>
                   <!-- <li class="list-group-item"><strong>Chống nước, bụi:</strong> <?= htmlspecialchars($contact->water_resistance) ?></li> -->
                 </ul>

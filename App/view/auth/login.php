@@ -30,6 +30,8 @@
         <div class="input-group">
           <div class="input-group-text"><i class="bi bi-lock"></i></div>
           <input placeholder="Mật khẩu" id="password" type="password" class="form-control <?= isset($errors['password']) ? 'is-invalid' : '' ?>" name="password" required>
+          <!-- Thêm biểu tượng con mắt -->
+          <button type="button" id="togglePassword" class="input-group-text"><i class="bi bi-eye"></i></button>
         </div>
         <?php if (isset($errors['password'])) : ?>
           <span class="invalid-feedback">
@@ -49,6 +51,23 @@
   </div>
 </main>
 
+<!-- Thêm script để chuyển đổi giữa password và text -->
+<script>
+  document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordField = document.getElementById('password');
+    const passwordType = passwordField.type === 'password' ? 'text' : 'password';
+    passwordField.type = passwordType;
+    
+    // Thay đổi biểu tượng con mắt
+    const icon = this.querySelector('i');
+    if (passwordType === 'password') {
+      icon.classList.remove('bi-eye-slash');
+      icon.classList.add('bi-eye');
+    } else {
+      icon.classList.remove('bi-eye');
+      icon.classList.add('bi-eye-slash');
+    }
+  });
+</script>
+
 <?php $this->stop() ?>
-
-

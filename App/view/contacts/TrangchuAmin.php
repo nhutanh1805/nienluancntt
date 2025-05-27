@@ -37,7 +37,12 @@
     <li class="nav-item">
         <a class="nav-link" href="/orders">Quản Lý Đơn hàng</a>
     </li>
+    <!-- Thêm liên kết Quản lý người dùng -->
+    <li class="nav-item">
+        <a class="nav-link" href="/members">Quản Lý Người dùng</a>
+    </li>
 </ul>
+
 
         <div class="col-12">
             <div id="laptops" class="brand row m-1">

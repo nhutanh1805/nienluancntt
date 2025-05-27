@@ -211,6 +211,50 @@ $router->post('/inventory/addStock/{productId}', function($productId) {
     $inventoryController->addStock($productId);  // Thêm số lượng vào kho
 });
 
+// Member routes
+use App\Controllers\MemberController;
+
+// Hiển thị danh sách tất cả thành viên
+$router->get('/members', function() {
+    $memberController = new MemberController();
+    $memberController->index();  // Hiển thị danh sách thành viên
+});
+
+// Hiển thị chi tiết thành viên
+$router->get('/member/view/{id}', function($id) {
+    $memberController = new MemberController();
+    $memberController->view($id);  // Hiển thị chi tiết thành viên
+});
+
+// Xóa thành viên
+$router->get('/member/delete/{id}', function($id) {
+    $memberController = new MemberController();
+    $memberController->delete($id);  // Xóa thành viên
+});
+
+// // Tạo mới thành viên (form)
+// $router->get('/member/create', function() {
+//     $memberController = new MemberController();
+//     $memberController->createForm();  // Hiển thị form tạo thành viên
+// });
+
+// // Xử lý tạo mới thành viên (submit form)
+// $router->post('/member/create', function() {
+//     $memberController = new MemberController();
+//     $memberController->create();  // Tạo mới thành viên
+// });
+
+// // Cập nhật thông tin thành viên (form)
+// $router->get('/member/edit/{id}', function($id) {
+//     $memberController = new MemberController();
+//     $memberController->editForm($id);  // Hiển thị form chỉnh sửa thành viên
+// });
+
+// // Xử lý cập nhật thành viên (submit form)
+// $router->post('/member/edit/{id}', function($id) {
+//     $memberController = new MemberController();
+//     $memberController->update($id);  // Cập nhật thành viên
+// });
 
 
 

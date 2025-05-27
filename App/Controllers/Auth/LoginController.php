@@ -4,7 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Models\User;
 use App\Controllers\Controller;
-
+use App\Models\Member;
 class LoginController extends Controller
 {
   public function create()
@@ -38,28 +38,42 @@ class LoginController extends Controller
   }
 
   public function store()
-  {
+{
     $user_credentials = $this->filterUserCredentials($_POST);
 
     $errors = [];
+    
+    // Truy vấn người dùng từ email
     $user = (new User(PDO()))->where('email', $user_credentials['email']);
+    
     if (!$user) {
-      // Người dùng không tồn tại...
-      $errors['email'] = 'Invalid email or password.';
-    } else if (AUTHGUARD()->login($user, $user_credentials)) {
-      // Đăng nhập thành công...
-      $_SESSION['success_message'] = 'Đăng nhập thành công';
-      redirect('/home');
+        // Người dùng không tồn tại...
+        $errors['email'] = 'Email hoặc mật khẩu không hợp lệ.';
     } else {
-      // Sai mật khẩu...
-      $_SESSION['error_message'] = 'Mật khẩu hoặc Email không đúng.';
-      $errors['password'] = 'Invalid email or password.';
+        // Kiểm tra xem người dùng có bị ban không
+        if (Member::isBanned($user->id)) {  // Sử dụng thuộc tính id của đối tượng User
+            // Nếu người dùng bị ban, không cho phép đăng nhập
+            $_SESSION['error_message'] = 'Tài khoản của bạn đã bị cấm. Vui lòng liên hệ với quản trị viên.';
+            redirect('/login', ['errors' => $errors]);
+            return; // Dừng lại nếu người dùng bị ban
+        }
+
+        // Nếu không bị ban, tiếp tục kiểm tra đăng nhập
+        if (AUTHGUARD()->login($user, $user_credentials)) {
+            // Đăng nhập thành công...
+            $_SESSION['success_message'] = 'Đăng nhập thành công';
+            redirect('/home');
+        } else {
+            // Sai mật khẩu...
+            $_SESSION['error_message'] = 'Mật khẩu hoặc Email không đúng.';
+            $errors['password'] = 'Email hoặc mật khẩu không hợp lệ.';
+        }
     }
 
     // Đăng nhập không thành công: lưu giá trị trong form, trừ password
     $this->saveFormValues($_POST, ['password']);
     redirect('/login', ['errors' => $errors]);
-  }
+}
 
   public function storeFP()
   {

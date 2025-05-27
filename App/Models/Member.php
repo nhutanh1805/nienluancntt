@@ -63,5 +63,28 @@ class Member
     return $stmt->execute([':id' => $userId]);
 }
 
+// Kiểm tra xem người dùng có bị ban hay không
+    public static function isBanned(int $userId): bool
+    {
+        self::initDb();
+        $stmt = self::$db->prepare("SELECT is_banned, banned_until FROM users WHERE id = :id");
+        $stmt->execute([':id' => $userId]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && $user['is_banned']) {
+            // Kiểm tra xem thời gian bị ban có hết hạn hay không
+            $bannedUntil = strtotime($user['banned_until']);
+            if ($bannedUntil > time()) {
+                return true; // Người dùng vẫn bị ban
+            } else {
+                // Nếu thời gian bị ban đã hết, bỏ ban
+                self::unbanUser($userId);
+                return false;
+            }
+        }
+
+        return false; // Người dùng không bị ban
+    }
+
 }
 ?>

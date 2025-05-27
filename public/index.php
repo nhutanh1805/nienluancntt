@@ -258,5 +258,26 @@ $router->get('/member/delete/{id}', function($id) {
 
 
 
+// Route hiển thị danh sách thành viên
+$router->get('/member/index', function() {
+    $controller = new MemberController();
+    $controller->index();
+});
+
+// Route xử lý ban thành viên (POST)
+$router->post('/member/ban/{memberId}', function($memberId) {
+    $controller = new MemberController();
+    $controller->ban((int)$memberId);
+});
+
+// Route POST xử lý bỏ ban thành viên
+$router->post('/member/unban/(\d+)', function($memberId) {
+    // Khởi tạo controller và gọi method unban
+    $controller = new \App\Controllers\MemberController();
+    $controller->unban((int)$memberId);
+});
+
+
+
 // Run the router
 $router->run();

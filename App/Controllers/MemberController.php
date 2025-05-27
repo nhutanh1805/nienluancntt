@@ -56,5 +56,57 @@ class MemberController extends Controller
             $this->sendPage('member/index', ['error' => $e->getMessage()]);
         }
     }
+
+    // Ban thành viên theo ID trong khoảng thời gian (phút)
+    public function ban(int $memberId): void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $banMinutes = $_POST['ban_minutes'] ?? 0;
+        $banMinutes = (int)$banMinutes;
+
+        if ($banMinutes <= 0) {
+            $_SESSION['error_message'] = "Thời gian cấm phải lớn hơn 0 phút.";
+            header("Location: /member/index");
+            exit;
+        }
+
+        try {
+            $result = Member::banUser($memberId, $banMinutes);
+
+            if ($result) {
+                $_SESSION['success_message'] = "Đã cấm thành viên #$memberId trong $banMinutes phút.";
+            } else {
+                $_SESSION['error_message'] = "Cấm thành viên thất bại.";
+            }
+
+            header("Location: /member/index");
+            exit;
+        } catch (Exception $e) {
+            $this->sendPage('member/index', ['error' => $e->getMessage()]);
+        }
+    }
+    public function unban(int $memberId): void
+{
+    session_start();
+
+    try {
+        $result = Member::unbanUser($memberId);
+
+        if ($result) {
+            $_SESSION['success_message'] = "Đã bỏ ban thành viên #$memberId.";
+        } else {
+            $_SESSION['error_message'] = "Bỏ ban thành viên thất bại.";
+        }
+
+        header("Location: /member/index");
+        exit;
+    } catch (Exception $e) {
+        $this->sendPage('member/index', ['error' => $e->getMessage()]);
+    }
+}
+
 }
 ?>

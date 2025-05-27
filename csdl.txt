@@ -330,3 +330,8 @@ INSERT INTO `brand` (`name`, `description`) VALUES
 ALTER TABLE `product`
 ADD COLUMN `brand_id` INT DEFAULT NULL AFTER `user_id`,
 ADD CONSTRAINT `fk_product_brand` FOREIGN KEY (`brand_id`) REFERENCES `brand`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+
+ALTER TABLE users 
+ADD COLUMN is_banned TINYINT(1) DEFAULT 0,
+ADD COLUMN banned_until DATETIME DEFAULT NULL;

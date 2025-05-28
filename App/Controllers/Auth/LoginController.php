@@ -51,9 +51,11 @@ class LoginController extends Controller
         $errors['email'] = 'Email hoặc mật khẩu không hợp lệ.';
     } else {
         // Kiểm tra xem người dùng có bị ban không
-        if (Member::isBanned($user->id)) {  // Sử dụng thuộc tính id của đối tượng User
-            // Nếu người dùng bị ban, không cho phép đăng nhập
-            $_SESSION['error_message'] = 'Tài khoản của bạn đã bị cấm. Vui lòng liên hệ với quản trị viên.';
+        if (Member::isBanned($user->id)) {
+            // Nếu người dùng bị ban, không cho phép đăng nhập, không cần hiển thị thời gian
+            $errors['email'] = 'Tài khoản của bạn đã bị cấm. Vui lòng liên hệ với quản trị viên.';
+            // Lưu giá trị form trừ password để giữ lại input email
+            $this->saveFormValues($_POST, ['password']);
             redirect('/login', ['errors' => $errors]);
             return; // Dừng lại nếu người dùng bị ban
         }
@@ -63,10 +65,10 @@ class LoginController extends Controller
             // Đăng nhập thành công...
             $_SESSION['success_message'] = 'Đăng nhập thành công';
             redirect('/home');
+            return;
         } else {
             // Sai mật khẩu...
-            $_SESSION['error_message'] = 'Mật khẩu hoặc Email không đúng.';
-            $errors['password'] = 'Email hoặc mật khẩu không hợp lệ.';
+            $errors['email'] = 'Email hoặc mật khẩu không hợp lệ.';
         }
     }
 
@@ -74,6 +76,7 @@ class LoginController extends Controller
     $this->saveFormValues($_POST, ['password']);
     redirect('/login', ['errors' => $errors]);
 }
+
 
   public function storeFP()
   {

@@ -335,3 +335,9 @@ ADD CONSTRAINT `fk_product_brand` FOREIGN KEY (`brand_id`) REFERENCES `brand`(`i
 ALTER TABLE users 
 ADD COLUMN is_banned TINYINT(1) DEFAULT 0,
 ADD COLUMN banned_until DATETIME DEFAULT NULL;
+
+
+// Chuyển quyền người dùng thành Admin
+UPDATE users
+SET role = 1
+WHERE id = 6; // id là mã của người muốn chuyển

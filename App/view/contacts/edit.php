@@ -271,7 +271,7 @@
                 <!-- Độ phân giải camera -->
                 <div class="col-md-12 col-sm-12">
                     <div class="d-flex ms-3">
-                        <label for="camera_resolution" class="form-label">Độ phân giải camera</label>
+                        <label for="camera_resolution" class="form-label">Camera</label>
                     </div>
                     <input type="text" name="camera_resolution" class="form-control<?= isset($errors['camera_resolution']) ? ' is-invalid' : '' ?>" id="camera_resolution" placeholder="Độ phân giải camera" value="<?= $this->e($contact['camera_resolution']) ?>" />
                     <?php if (isset($errors['camera_resolution'])) : ?>
@@ -310,7 +310,7 @@
                 <!-- Băng tần -->
                 <div class="col-md-12 col-sm-12">
                     <div class="d-flex ms-3">
-                        <label for="band" class="form-label">Băng tần</label>
+                        <label for="band" class="form-label">Card mạng</label>
                     </div>
                     <input type="text" name="band" class="form-control<?= isset($errors['band']) ? ' is-invalid' : '' ?>" id="band" placeholder="Băng tần" value="<?= $this->e($contact['band']) ?>" />
                     <?php if (isset($errors['band'])) : ?>

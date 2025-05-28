@@ -229,7 +229,7 @@
                     <?php endif ?>
                 </div>
 
-                <!-- Chất liệu dây đeo (Chỉ cho đồng hồ) -->
+                <!-- Chất liệu -->
                 <div class="col-md-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-wrench"></i></span>

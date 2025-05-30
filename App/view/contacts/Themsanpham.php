@@ -177,7 +177,7 @@
 
             <!-- Cột 2 -->
             <div>
-                <!-- Độ phân giải camera -->
+                <!-- Camera -->
                 <div class="col-md-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-camera"></i></span>
@@ -190,7 +190,7 @@
                     <?php endif ?>
                 </div>
 
-                <!-- Kích thước màn hình -->
+                <!-- Màn hình -->
                 <div class="col-md-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-tv"></i></span>
@@ -229,7 +229,7 @@
                     <?php endif ?>
                 </div>
 
-                <!-- Chất liệu -->
+                <!-- Chất liệu/ Khả năng -->
                 <div class="col-md-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-text"><i class="fas fa-wrench"></i></span>

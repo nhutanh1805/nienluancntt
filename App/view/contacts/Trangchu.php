@@ -209,7 +209,7 @@
     <div class="promo-content">
       <h4 class="alert-heading">🎁 Ưu Đãi Đặc Biệt!</h4>
       <p>
-        Cơ hội siêu tiết kiệm! Nhận ngay ưu đãi lên đến <strong>99%</strong> cho tất cả sản phẩm!  
+        Cơ hội siêu tiết kiệm! Nhận ngay ưu đãi lên đến <strong>10%</strong> cho tất cả sản phẩm!  
         <br> Mua sắm ngay kẻo lỡ! 🚀🔥
       </p>
       <a href="/product" class="btn btn-outline-light">Tận Hưởng Ngay</a>
@@ -270,15 +270,15 @@
               </div>
               <div class="modal-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><strong>CPU:</strong> <?= htmlspecialchars($contact->cpu) ?></li>
+                  <li class="list-group-item"><strong>CPU/Chipser:</strong> <?= htmlspecialchars($contact->cpu) ?></li>
                   <li class="list-group-item"><strong>RAM:</strong> <?= htmlspecialchars($contact->ram) ?></li>
                   <li class="list-group-item"><strong>Bộ nhớ:</strong> <?= htmlspecialchars($contact->storage) ?></li>
-                  <li class="list-group-item"><strong>Dung lượng PIN:</strong> <?= htmlspecialchars($contact->battery_capacity) ?></li>
+                  <li class="list-group-item"><strong>Dung lượng PIN/Sạc:</strong> <?= htmlspecialchars($contact->battery_capacity) ?></li>
                   <li class="list-group-item"><strong>CAMERA:</strong> <?= htmlspecialchars($contact->camera_resolution) ?></li>
                   <li class="list-group-item"><strong>Màn hình:</strong> <?= htmlspecialchars($contact->screen_size) ?> inch</li>
                   <li class="list-group-item"><strong>Hệ điều hành:</strong> <?= htmlspecialchars($contact->os) ?></li>
-                  <li class="list-group-item"><strong>Chất liệu dây đeo:</strong> <?= htmlspecialchars($contact->strap_material) ?></li>
-                  <li class="list-group-item"><strong>Chống nước:</strong> <?= htmlspecialchars($contact->water_resistance) ?></li>
+                  <li class="list-group-item"><strong>Chất liệu/Khả năng:</strong> <?= htmlspecialchars($contact->strap_material) ?></li>
+                  <!-- <li class="list-group-item"><strong>Chống nước:</strong> <?= htmlspecialchars($contact->water_resistance) ?></li> -->
                 </ul>
               </div>
               <div class="modal-footer">

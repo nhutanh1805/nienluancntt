@@ -6,9 +6,8 @@ use PDO;
 
 class User
 {
-    private PDO $db; // Biến này sẽ lưu trữ kết nối PDO đến cơ sở dữ liệu
+    private PDO $db; 
 
-    // Các thuộc tính của đối tượng User
     public int $id = -1;       // ID của người dùng
     public string $email;      // Email của người dùng
     public string $name;       // Tên của người dùng
@@ -98,8 +97,7 @@ class User
                 'address' => $this->address  // Thêm địa chỉ vào câu lệnh cập nhật
             ]);
         } else {
-            // Nếu chưa có ID (tạo mới người dùng)
-           // Cập nhật phương thức save() để bao gồm trường role
+          
 $statement = $this->db->prepare(
     'INSERT INTO users (email, name, password, created_at, updated_at, phone, address, role)
     VALUES (:email, :name, :password, NOW(), NOW(), :phone, :address, :role)'
@@ -111,16 +109,16 @@ $result = $statement->execute([
     'password' => $this->password,
     'phone' => $this->phone,
     'address' => $this->address,
-    'role' => $this->role ?? 'user'  // Đảm bảo có giá trị cho role, mặc định là 'user'
+    'role' => $this->role ?? 'user'  
 ]);
 
             
             if ($result) {
-                $this->id = $this->db->lastInsertId();  // Lưu lại ID của người dùng mới tạo
+                $this->id = $this->db->lastInsertId();  
             }
         }
 
-        return $result;  // Trả về kết quả thao tác lưu (true/false)
+        return $result;  
     }
 
     /**
@@ -134,8 +132,8 @@ $result = $statement->execute([
         $this->email = $data['email'];
         $this->name = $data['name'];
         $this->password = password_hash($data['password'], PASSWORD_DEFAULT);  // Mã hóa mật khẩu
-        $this->phone = $data['phone'];  // Không mã hóa số điện thoại
-        $this->address = $data['address'];  // Điền địa chỉ
+        $this->phone = $data['phone'];  
+        $this->address = $data['address'];  
         return $this;
     }
 
@@ -151,7 +149,7 @@ $result = $statement->execute([
         $this->name = $row['name'];
         $this->password = $row['password'];
         $this->phone = $row['phone'];
-        $this->address = $row['address'];  // Điền địa chỉ từ cơ sở dữ liệu
+        $this->address = $row['address'];  
         $this->role = $row['role'];
     }
 
@@ -165,7 +163,7 @@ $result = $statement->execute([
     {
         $statement = $this->db->prepare('SELECT count(*) FROM users WHERE email = :email');
         $statement->execute(['email' => $email]);
-        return $statement->fetchColumn() > 0;  // Nếu có ít nhất 1 bản ghi, trả về true
+        return $statement->fetchColumn() > 0;  
     }
 
     /**
@@ -178,7 +176,7 @@ $result = $statement->execute([
     {
         $statement = $this->db->prepare('SELECT count(*) FROM users WHERE phone = :phone');
         $statement->execute(['phone' => $phone]);
-        return $statement->fetchColumn() > 0;  // Nếu có ít nhất 1 bản ghi, trả về true
+        return $statement->fetchColumn() > 0;  
     }
 
     /**
@@ -218,6 +216,6 @@ $result = $statement->execute([
             $errors['address'] = 'Địa chỉ không được để trống.';
         }
 
-        return $errors;  // Trả về mảng các lỗi
+        return $errors;  
     }
 }

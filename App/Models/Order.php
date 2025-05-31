@@ -146,5 +146,22 @@ public static function updateOrderComment(int $orderId, string $comment): void
     $stmt->execute([$comment, $orderId]);
 }
 
+public static function getAllComments(): array
+{
+    self::initDb();
+    $stmt = self::$db->prepare("
+        SELECT o.id, o.user_id, u.name AS user_name, o.cmt, o.total_amount
+        FROM orders o
+        INNER JOIN users u ON o.user_id = u.id
+        WHERE o.cmt IS NOT NULL AND TRIM(o.cmt) != ''
+    ");
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+}
+
+
+
+
 }
 ?>

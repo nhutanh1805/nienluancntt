@@ -41,6 +41,9 @@
     <li class="nav-item">
         <a class="nav-link" href="/members">Quản Lý Người dùng</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/orders/comments">Quản Lý Bình Luận</a>
+    </li>
 </ul>
 
 

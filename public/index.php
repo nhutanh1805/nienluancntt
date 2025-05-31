@@ -162,6 +162,13 @@ $router->get('/order/index', function() {
     $orderController->index();  
 });
 
+// Hiển thị tất cả comment của đơn hàng (admin hoặc người có quyền)
+$router->get('/orders/comments', function() {
+    $orderController = new OrderController();
+    $orderController->showAllComments();
+});
+
+
 
 use App\Controllers\InventoryController;
 

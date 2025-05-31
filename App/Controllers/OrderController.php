@@ -213,6 +213,21 @@ public function updateComment($orderId): void
     }
 }
 
+// Lấy tất cả comment của đơn hàng (admin hoặc người dùng có quyền)
+public function showAllComments(): void
+{
+    try {
+        // Lấy danh sách các đơn hàng có bình luận
+        $comments = Order::getAllComments();
+
+        // Gửi dữ liệu sang view order/commentsList.php để hiển thị
+        $this->sendPage('order/commentsList', ['comments' => $comments]);
+    } catch (Exception $e) {
+        // Nếu lỗi thì gửi lỗi lên view
+        $this->sendPage('order/commentsList', ['error' => $e->getMessage()]);
+    }
+}
+
 
 
 }

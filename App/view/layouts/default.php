@@ -209,100 +209,106 @@
 
   <?= $this->section("page") ?>
 
-  <!-- END CHANGEABLE CONTENT. -->
-  <footer class="text-center text-lg-start text-white mt-4" style="background-color: #45526e">
-    <div class="container p-4 pb-0">
-      <section class="">
-        <div class="row">
-          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">
-              Slogan
-            </h6>
-            <p>
-            <p>
-             Khám phá thế giới laptop đa dạng và đột phá, nơi mỗi chiếc máy là một tác phẩm công nghệ và là chìa khóa mở ra trải nghiệm số đỉnh cao. Hãy để chúng tôi đồng hành cùng bạn trên hành trình lựa chọn công cụ hoàn hảo – mở rộng giới hạn sáng tạo và hiệu suất làm việc!
-            </p>
-          </div>
+  <footer class="text-center text-lg-start text-light mt-4" style="background-color: #1a1a2e; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+  <div class="container p-4 pb-0">
+    <section>
+      <div class="row">
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">
+            Slogan
+          </h6>
+          <p>
+            Khám phá thế giới laptop đa dạng và đột phá, nơi mỗi chiếc máy là một tác phẩm công nghệ và là chìa khóa mở ra trải nghiệm số đỉnh cao. Hãy để chúng tôi đồng hành cùng bạn trên hành trình lựa chọn công cụ hoàn hảo – mở rộng giới hạn sáng tạo và hiệu suất làm việc!
+          </p>
+        </div>
 
-          <hr class="w-100 clearfix d-md-none" />
+        <hr class="w-100 clearfix d-md-none" />
 
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">Brand</h6>
+          <p>
+            <a class="text-light" href="#laptops" style="text-decoration:none;">LapTop Apple</a>
+          </p>
+          <p>
+            <a class="text-light" href="#phones" style="text-decoration:none;">Laptop Dell</a>
+          </p>
+          <p>
+            <a class="text-light" style="text-decoration:none;">Laptop Asus</a>
+          </p>
+          <p>
+            <a class="text-light" style="text-decoration:none;">Laptop MSI</a>
+          </p>
+        </div>
 
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
-            <p>
-              <a class="text-white " href="#laptops">LapTop</a>
-            </p>
-            <p>
-              <a class="text-white" href="#phones">Phone</a>
-            </p>
-            <p>
-              <a class="text-white">Tables</a>
-            </p>
-            <p>
-              <a class="text-white">Watchs</a>
-            </p>
-          </div>
+        <hr class="w-100 clearfix d-md-none" />
 
-          <hr class="w-100 clearfix d-md-none" />
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">
+            Useful links
+          </h6>
+          <p>
+            <a class="text-light" style="text-decoration:none;">Your Account</a>
+          </p>
+          <p>
+            <a class="text-light" style="text-decoration:none;">Become an Affiliate</a>
+          </p>
+          <p>
+            <a class="text-light" style="text-decoration:none;">Shipping Rates</a>
+          </p>
+          <p>
+            <a class="text-light" style="text-decoration:none;">Help</a>
+          </p>
+        </div>
 
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">
-              Useful links
-            </h6>
-            <p>
-              <a class="text-white">Your Account</a>
-            </p>
-            <p>
-              <a class="text-white">Become an Affiliate</a>
-            </p>
-            <p>
-              <a class="text-white">Shipping Rates</a>
-            </p>
-            <p>
-              <a class="text-white">Help</a>
-            </p>
-          </div>
+        <hr class="w-100 clearfix d-md-none" />
 
-          <hr class="w-100 clearfix d-md-none" />
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">Contact</h6>
+          <p><i class="fas fa-home mr-3"></i> VietNam</p>
+          <p><i class="fas fa-envelope mr-3"></i> nhutanh1805vlog@gmail.com</p>
+          <p><i class="fas fa-phone mr-3"></i> + 08 237 372 58</p>
+          <p><i class="fas fa-print mr-3"></i> + 08 237 372 58</p>
+        </div>
+      </div>
+    </section>
 
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-            <p><i class="fas fa-home mr-3"></i> VietNam</p>
-            <p><i class="fas fa-envelope mr-3"></i> nhutanh1805vlog@gmail.com</p>
-            <p><i class="fas fa-phone mr-3"></i> + 08 237 372 58</p>
-            <p><i class="fas fa-print mr-3"></i> + 08 237 372 58</p>
+    <hr class="my-3" style="border-color:#555;" />
+
+    <section class="p-3 pt-0">
+      <div class="row d-flex align-items-center">
+        <div class="col-md-7 col-lg-8 text-center text-md-start">
+          <div class="p-3" style="color:#ccc;">
+            © 2025 Copyright:
+            <a class="text-light" href="http://nienluannganh.localhost/" style="text-decoration:none; font-weight:bold;">LapStore.com</a>
           </div>
         </div>
-      </section>
 
-      <hr class="my-3">
+        <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+          <a class="btn btn-outline-light btn-floating m-1 social-icon" role="button" style="border-color:#e94560; color:#e94560;"><i
+              class="fab fa-facebook-f"></i></a>
 
-      <section class="p-3 pt-0">
-        <div class="row d-flex align-items-center">
-          <div class="col-md-7 col-lg-8 text-center text-md-start">
-            <div class="p-3">
-              © 2025 Copyright:
-              <a class="text-white" href="http://nienluannganh.localhost/">LapStore.com</a>
-            </div>
-          </div>
+          <a class="btn btn-outline-light btn-floating m-1 social-icon" role="button" style="border-color:#e94560; color:#e94560;"><i
+              class="fab fa-twitter"></i></a>
 
-          <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
-            <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
-                class="fab fa-facebook-f"></i></a>
+          <a class="btn btn-outline-light btn-floating m-1 social-icon" role="button" style="border-color:#e94560; color:#e94560;"><i
+              class="fab fa-google"></i></a>
 
-            <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
-                class="fab fa-twitter"></i></a>
-
-            <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
-                class="fab fa-google"></i></a>
-
-            <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
-                class="fab fa-instagram"></i></a>
-          </div>
+          <a class="btn btn-outline-light btn-floating m-1 social-icon" role="button" style="border-color:#e94560; color:#e94560;"><i
+              class="fab fa-instagram"></i></a>
         </div>
-      </section>
-    </div>
-  </footer>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .social-icon:hover {
+      background-color: #e94560 !important;
+      color: #fff !important;
+      transition: 0.3s ease-in-out;
+    }
+  </style>
+</footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>

@@ -40,7 +40,6 @@
     color: #6c757d;
   }
 
-
   .promo-ai {
     background: linear-gradient(90deg, #b3e5fc, #81d4fa); 
     color: #01579b; 
@@ -159,8 +158,7 @@
         <p>MacBook sang trọng, hiệu năng mạnh mẽ với chip M-series.</p>
       </div>
     </div>
-    
-    
+  
     <div class="carousel-item" data-bs-interval="2000">
       <img src="img/Banner2.jpg" class="d-block w-100" alt="Asus">
       <div class="carousel-caption">
@@ -197,10 +195,9 @@
   </button>
 </div>
 
-
     <div class="row">
 
-      <!-- Phần khuyến mãi cao cấp -->
+      <!-- Phần khuyến mãi -->
 <div class="container mt-4">
   <div class="alert alert-success alert-dismissible fade show d-flex align-items-center promo-ai" role="alert">
     <div class="promo-icon">
@@ -217,7 +214,6 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 </div>
-
 
       <!-- Thanh danh mục -->
 <div class="col-lg-9 col-12">
@@ -291,7 +287,6 @@
     </div>
   </div>
 </div>
-
 
       <!-- Thanh danh mục chuyển sang bên phải và có thể toggle -->
 <div class="col-lg-3 col-12 position-relative">
@@ -368,8 +363,6 @@
 </div>
 </div>
 
-
-       
 </main>
 
 <a class="backtop position-fixed text-center rounded-circle text-muted active" href="#"> <i class="bi bi-house-door"></i></a>
@@ -391,6 +384,5 @@
     icon.classList.toggle('fa-caret-down');
   });
 
-  
 </script>
 <?php $this->stop() ?>

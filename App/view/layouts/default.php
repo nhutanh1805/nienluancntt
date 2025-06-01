@@ -66,11 +66,6 @@
   </a>
 </div>
 
-
-
-       
-          
-          
           <!-- Phần thanh tìm kiếm -->
           <div class="col-md-6 d-flex justify-content-center align-items-center mb-3 mb-md-0">
   <form action="/search" method="GET" class="d-flex w-100">
@@ -80,8 +75,6 @@
     </button>
   </form>
 </div>
-
-
 
          <!-- Phần các biểu tượng và menu dropdown -->
 <div class="col-md-3 d-flex justify-content-center justify-content-md-end align-items-center">
@@ -95,8 +88,6 @@
  <a class="text-reset ms-3" href="/orders/index" title="Đơn hàng">
   <i class="fas fa-box fa-lg"></i>
 </a>
-
-
 
     <!-- Biểu tượng ngôn ngữ -->
     <div class="dropdown ms-3" title="Ngôn ngữ">
@@ -115,6 +106,7 @@
         <li><a class="dropdown-item" href="#">Português</a></li>
       </ul>
     </div>
+
 <!-- Biểu tượng thông báo -->
 <div class="dropdown ms-3" title="Thông báo mới">
   <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -126,16 +118,11 @@
     <li><a class="dropdown-item" href="#">Những điều thú vị</a></li>
   </ul>
 </div>
-
-
   </div>
 </div>
 
-
-
-
    <!-- Câu giới thiệu về cửa hàng -->
-  <marquee class="mt-2 text-muted fs-4" behavior="scroll" direction="left" scrollamount="5">
+  <marquee class="mt-2 text-muted fs-4" behavior="scroll" direction="left" scrollamount="20">
   💎 <strong>LapStore</strong> – đỉnh cao thời thượng,  
   🖥️ Công nghệ hội tụ, dẫn đường tương lai.  
   💻 <strong>Laptop</strong> bền bỉ, dáng hình sang,  
@@ -146,9 +133,7 @@
   🧑‍💻 Học hành, công việc, chẳng thừa phút giây.  
 </marquee>
 
-
     <!-- Phần menu điều hướng -->
-    
     <nav class="navbar navbar-expand-lg navbar-light bg-white mb-2">
   <div class="container-fluid mt-2">
     <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse"
@@ -173,6 +158,7 @@
             <i class="fa-solid fa-house me-2"></i> QUẢN TRỊ
           </a>
         </li>
+
       <!-- Tài khoản -->
 <li class="nav-item ms-1 dropdown">
   <a class="btn btn-info text-white shadow-sm px-3 py-2 d-flex align-items-center dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -184,6 +170,7 @@
       <li><a class="dropdown-item" href="/register">Đăng Ký</a></li>
     <?php else : ?>
       <li><a class="dropdown-item" href="/account">Quản lý tài khoản</a></li>
+
       <!-- Thêm liên kết quản lý đơn hàng -->
       <li><a class="dropdown-item" href="/orders/index">Đơn hàng</a></li> <!-- Liên kết đến trang quản lý đơn hàng -->
       <li><a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng Xuất</a></li>
@@ -192,13 +179,8 @@
   </ul>
 </li>
 
-
-
-
-      
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
-      
         <!-- Left Side Of Navbar -->
         <div class="navbar-nav">
           &nbsp;

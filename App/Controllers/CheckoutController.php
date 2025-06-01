@@ -11,7 +11,7 @@ class CheckoutController extends Controller
     // Hiển thị trang thanh toán
     public function index()
     {
-        // Lấy userId từ session
+
         $userId = $_SESSION['user_id'] ?? null;
 
         if (!$userId) {
@@ -58,7 +58,6 @@ class CheckoutController extends Controller
             return;
         }
 
-        // Quá trình thanh toán xong, chuyển hướng đến trang cảm ơn
         redirect('/thank-you');
     }
 
@@ -66,28 +65,28 @@ class CheckoutController extends Controller
     private function processCOD($name, $address)
     {
         // Lấy thông tin giỏ hàng
-        $userId = $_SESSION['user_id']; // Lấy userId từ session
-        $cart = Cart::getCart($userId); // Lấy giỏ hàng của người dùng
-        $totalAmount = Cart::getTotal($userId); // Tính tổng tiền đơn hàng
+        $userId = $_SESSION['user_id']; 
+        $cart = Cart::getCart($userId); 
+        $totalAmount = Cart::getTotal($userId);
     
         try {
             // Tạo đơn hàng trong cơ sở dữ liệu
-            $orderId = Order::createOrder($userId, $address, $totalAmount); // Lưu đơn hàng vào database
+            $orderId = Order::createOrder($userId, $address, $totalAmount); 
     
             // Lặp qua giỏ hàng và cập nhật số lượng kho cho từng sản phẩm
             foreach ($cart as $item) {
-                $productId = $item['id']; // Lấy ID sản phẩm
-                $quantity = $item['quantity']; // Lấy số lượng sản phẩm trong giỏ
+                $productId = $item['id']; 
+                $quantity = $item['quantity']; 
     
                 // Debugging: Kiểm tra số lượng sản phẩm trong giỏ
                 echo "Sản phẩm ID: $productId, Số lượng trong giỏ: $quantity";
     
                 // Cập nhật số lượng kho sau khi mua hàng
-                $this->updateInventory($productId, $quantity); // Giảm số lượng kho cho sản phẩm
+                $this->updateInventory($productId, $quantity); 
             }
     
             // Nếu đơn hàng được tạo thành công, xóa giỏ hàng khỏi session
-            Cart::clearCart($userId); // Xóa giỏ hàng trong database sau khi thanh toán thành công
+            Cart::clearCart($userId); 
     
             // Chuyển hướng đến trang cảm ơn
             redirect('/thank-you');

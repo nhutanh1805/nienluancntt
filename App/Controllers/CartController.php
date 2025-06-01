@@ -8,7 +8,7 @@ class CartController extends Controller
     // Thêm sản phẩm vào giỏ hàng
     public function add($productId): void
 {
-    $userId = $_SESSION['user_id']; // Lấy ID người dùng từ session
+    $userId = $_SESSION['user_id']; 
     $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
 
     // Kiểm tra số lượng sản phẩm trong kho
@@ -17,7 +17,6 @@ class CartController extends Controller
     $inventory = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$inventory || $inventory['quantity_in_stock'] < $quantity) {
-        // Nếu không đủ số lượng trong kho, thông báo lỗi và không thêm vào giỏ hàng
         echo "Số lượng sản phẩm trong kho không đủ.";
         return;
     }
@@ -27,7 +26,6 @@ class CartController extends Controller
 
     redirect('/cart');
 }
-
 
     // Xóa sản phẩm khỏi giỏ hàng
     public function remove($productId): void
@@ -62,13 +60,12 @@ class CartController extends Controller
     $inventory = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$inventory || $inventory['quantity_in_stock'] < $quantity) {
-        // Nếu số lượng yêu cầu lớn hơn số lượng trong kho, thông báo lỗi
         echo "Số lượng sản phẩm trong kho không đủ.";
         return;
     }
 
     if ($quantity < 1) {
-        $quantity = 1; // Đảm bảo số lượng ít nhất là 1
+        $quantity = 1; 
     }
 
     Cart::updateQuantity($userId, (int)$productId, $quantity);

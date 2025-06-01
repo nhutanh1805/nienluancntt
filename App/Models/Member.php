@@ -28,7 +28,7 @@ class Member
         }
     }
 
-    // Lấy tất cả thành viên đã đăng ký, thêm trường role, is_banned, banned_until
+    // Lấy tất cả thành viên đã đăng ký
     public static function getAllMembers(): array
     {
         self::initDb();
@@ -54,7 +54,7 @@ class Member
         return $stmt->execute([':banned_until' => $bannedUntil, ':id' => $userId]);
     }
 
-    // Bạn có thể thêm hàm bỏ ban
+    // Hàm bỏ cấm 
     public static function unbanUser(int $userId): bool
 {
     self::initDb();
@@ -75,7 +75,7 @@ class Member
             // Kiểm tra xem thời gian bị ban có hết hạn hay không
             $bannedUntil = strtotime($user['banned_until']);
             if ($bannedUntil > time()) {
-                return true; // Người dùng vẫn bị ban
+                return true; 
             } else {
                 // Nếu thời gian bị ban đã hết, bỏ ban
                 self::unbanUser($userId);
@@ -83,7 +83,7 @@ class Member
             }
         }
 
-        return false; // Người dùng không bị ban
+        return false; 
     }
 
 public static function getMemberById(int $id): ?array
@@ -99,7 +99,7 @@ public static function getMemberById(int $id): ?array
             return $member;
         }
 
-        return null; // Không tìm thấy user
+        return null;
     }
 
 }

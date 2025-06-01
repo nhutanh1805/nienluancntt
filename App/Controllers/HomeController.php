@@ -22,11 +22,10 @@ class HomeController extends Controller
     // Phương thức tìm kiếm liên hệ (contacts) từ query string
     public function indexsearch()
     {
-        $search = $_GET['search'] ?? ''; // Lấy từ query string
+        $search = $_GET['search'] ?? ''; 
         // Tìm kiếm liên hệ của người dùng
         $contacts = AUTHGUARD()->user()?->contacts($search) ?? [];
 
-        // Gửi dữ liệu sang view Trangchu
         $this->sendPage('contacts/Trangchu', [
             'contacts' => $contacts,
             'search' => $search,
@@ -36,7 +35,7 @@ class HomeController extends Controller
     // Tìm kiếm sản phẩm
     public function sanphamsearch()
     {
-        $search = $_GET['search'] ?? ''; // Lấy từ query string
+        $search = $_GET['search'] ?? ''; 
         // Tìm kiếm sản phẩm của người dùng
         $contacts = AUTHGUARD()->user()?->contacts($search) ?? [];
 
@@ -68,7 +67,7 @@ class HomeController extends Controller
         } else {
             // Nếu không phải admin, hiển thị thông báo lỗi và chuyển hướng về trang chính
             $_SESSION['error_message'] = 'Không đủ thẩm quyền. Chuyển lại trang chủ.';
-            redirect('/home');  // Chuyển hướng về trang chính
+            redirect('/home');  
         }
     }
 
@@ -88,7 +87,7 @@ class HomeController extends Controller
             error_log("Create contact page is being called.");
             $this->sendPage('contacts/Themsanpham', [
                 'errors' => session_get_once('errors'),
-                'old' => $this->getSavedFormValues()  // Lấy dữ liệu form đã lưu
+                'old' => $this->getSavedFormValues() 
             ]);
         } else {
             // Nếu không phải admin, chuyển hướng về trang chính và hiển thị thông báo lỗi
@@ -100,9 +99,9 @@ class HomeController extends Controller
     // Lưu thông tin sản phẩm mới
     public function store()
     {
-        $data = $this->filterContactData($_POST);  // Lọc dữ liệu từ form
-        $newContact = new Contact(PDO()); // Tạo đối tượng Contact mới
-        $model_errors = $newContact->validate($data);  // Validate dữ liệu
+        $data = $this->filterContactData($_POST);  
+        $newContact = new Contact(PDO()); 
+        $model_errors = $newContact->validate($data); 
 
         if (empty($model_errors)) {
             // Nếu không có lỗi validate, tiếp tục upload ảnh và lưu sản phẩm
@@ -152,16 +151,16 @@ class HomeController extends Controller
         // Lấy thông tin sản phẩm từ ID
         $contact = AUTHGUARD()->user()->findContact($contactId);
         if (!$contact) {
-            $this->sendNotFound();  // Nếu không tìm thấy sản phẩm, trả về trang lỗi 404
+            $this->sendNotFound();  
         }
-        $form_values = $this->getSavedFormValues();  // Lấy dữ liệu form đã lưu
+        $form_values = $this->getSavedFormValues();  
         $data = [
             'errors' => session_get_once('errors'),
             'contact' => (!empty($form_values)) ? 
                 array_merge($form_values, ['id' => $contact->id]) : 
                 (array) $contact
         ];
-        $this->sendPage('contacts/edit', $data);  // Gửi dữ liệu sang view chỉnh sửa
+        $this->sendPage('contacts/edit', $data);  
     }
 
     // Cập nhật thông tin sản phẩm

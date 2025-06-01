@@ -13,9 +13,8 @@ class CommentController
             // Lấy danh sách bình luận của người dùng từ Model
             $comments = Comment::getCommentsByUser($userId);
             // Hiển thị giao diện với dữ liệu bình luận
-            require_once 'app/views/comments/index.php'; // View hiển thị bình luận
+            require_once 'app/views/comments/index.php'; 
         } catch (Exception $e) {
-            // Nếu có lỗi, hiển thị thông báo lỗi
             echo "Lỗi: " . $e->getMessage();
         }
     }
@@ -45,7 +44,6 @@ class CommentController
             require_once 'app/views/comments/add.php'; // Form thêm bình luận
 
         } catch (Exception $e) {
-            // Nếu có lỗi, hiển thị thông báo lỗi
             echo "Lỗi: " . $e->getMessage();
         }
     }
@@ -56,7 +54,6 @@ class CommentController
         try {
             // Kiểm tra nếu yêu cầu là POST (gửi từ form cập nhật)
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Lấy dữ liệu từ form (POST)
                 $content = $_POST['content'];
                 $imageLink = $_POST['image_link'] ?? null;
                 $rate = $_POST['rate'] ?? null;
@@ -76,7 +73,7 @@ class CommentController
             }
 
             // Hiển thị form cập nhật bình luận
-            require_once 'app/views/comments/edit.php'; // Form cập nhật bình luận
+            require_once 'app/views/comments/edit.php'; 
 
         } catch (Exception $e) {
             // Nếu có lỗi, hiển thị thông báo lỗi

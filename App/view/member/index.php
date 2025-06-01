@@ -48,7 +48,8 @@
                         <td><?= htmlspecialchars($member['created_at'] ?? '') ?></td>
                         <td><?= htmlspecialchars($member['role_name'] ?? '') ?></td>
                         <td>
-                            <a href="/member/view/<?= urlencode($member['id'] ?? '') ?>" class="btn btn-sm btn-info">Xem</a>
+                           <a href="/members/view/<?= urlencode($member['id'] ?? '') ?>" class="btn btn-sm btn-info">Xem</a>
+
                             <a href="/member/delete/<?= urlencode($member['id'] ?? '') ?>" 
                                class="btn btn-sm btn-danger" 
                                onclick="return confirm('Bạn có chắc chắn muốn xóa thành viên này?');">
@@ -57,8 +58,8 @@
 
                             <!-- Form Ban -->
                             <form action="/member/ban/<?= htmlspecialchars($member['id']) ?>" method="POST" class="d-inline-block ms-2" style="vertical-align: middle;">
-                                <input type="number" name="ban_minutes" min="1" placeholder="Phút cấm" required style="width: 80px;" class="form-control form-control-sm d-inline-block" />
-                                <button type="submit" class="btn btn-sm btn-warning" onclick="return confirm('Bạn có chắc chắn muốn cấm người dùng này?')">Ban</button>
+                                <input type="number" name="ban_minutes" min="1" placeholder="Số phút" required style="width: 80px;" class="form-control form-control-sm d-inline-block" />
+                                <button type="submit" class="btn btn-sm btn-warning" onclick="return confirm('Bạn có chắc chắn muốn cấm người dùng này?')">Cấm</button>
                             </form>
 
                             <?php

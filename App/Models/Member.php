@@ -86,5 +86,21 @@ class Member
         return false; // Người dùng không bị ban
     }
 
+public static function getMemberById(int $id): ?array
+    {
+        self::initDb();
+        $stmt = self::$db->prepare("SELECT id, name, email, phone, address, role, is_banned, banned_until, created_at FROM users WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+
+        $member = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($member) {
+            $member['role_name'] = ($member['role'] == 1) ? 'Quản trị' : 'Người dùng';
+            return $member;
+        }
+
+        return null; // Không tìm thấy user
+    }
+
 }
 ?>

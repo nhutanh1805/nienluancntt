@@ -217,12 +217,11 @@ $router->get('/members', function() {
     $memberController->index();  
 });
 
-// Hiển thị chi tiết thành viên
-$router->get('/member/view/{id}', function($id) {
+// Hiển thị chi tiết thành viên theo ID
+$router->get('/members/view/(\d+)', function($id) {
     $memberController = new MemberController();
-    $memberController->view($id);  
+    $memberController->view((int)$id);
 });
-
 // Xóa thành viên
 $router->get('/member/delete/{id}', function($id) {
     $memberController = new MemberController();

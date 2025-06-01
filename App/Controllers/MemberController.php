@@ -21,14 +21,7 @@ class MemberController extends Controller
     public function view(int $memberId): void
     {
         try {
-            $members = Member::getAllMembers(); // Tạm: model chưa có getById, nên lấy tất cả rồi lọc
-            $member = null;
-            foreach ($members as $m) {
-                if ($m['id'] == $memberId) {
-                    $member = $m;
-                    break;
-                }
-            }
+            $member = Member::getMemberById($memberId);  // Hàm model lấy 1 thành viên theo ID
 
             if (!$member) {
                 $this->sendPage('member/view', ['error' => 'Không tìm thấy thành viên']);
@@ -41,16 +34,17 @@ class MemberController extends Controller
         }
     }
 
-    // Xóa thành viên theo ID
+    // Xóa thành viên theo ID (chưa có hàm thực hiện, chỉ demo redirect)
     public function delete(int $memberId): void
     {
         try {
-            // Thêm hàm delete vào model Member nếu muốn
-            // Member::deleteMember($memberId);
+            // Member::deleteMember($memberId); // Có thể thêm hàm xóa trong model
 
-            // Hiện tại chưa có hàm xóa, chỉ demo redirect
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
             $_SESSION['message'] = "Thành viên với ID $memberId đã được xóa (giả lập).";
-            header('Location: /member/index');
+            header('Location: /members');
             exit;
         } catch (Exception $e) {
             $this->sendPage('member/index', ['error' => $e->getMessage()]);
@@ -69,7 +63,7 @@ class MemberController extends Controller
 
         if ($banMinutes <= 0) {
             $_SESSION['error_message'] = "Thời gian cấm phải lớn hơn 0 phút.";
-            header("Location: /member/index");
+            header("Location: /members");
             exit;
         }
 
@@ -82,31 +76,34 @@ class MemberController extends Controller
                 $_SESSION['error_message'] = "Cấm thành viên thất bại.";
             }
 
-            header("Location: /member/index");
+            header("Location: /members");
             exit;
         } catch (Exception $e) {
             $this->sendPage('member/index', ['error' => $e->getMessage()]);
         }
     }
+
+    // Bỏ ban thành viên theo ID
     public function unban(int $memberId): void
-{
-    session_start();
-
-    try {
-        $result = Member::unbanUser($memberId);
-
-        if ($result) {
-            $_SESSION['success_message'] = "Đã bỏ ban thành viên #$memberId.";
-        } else {
-            $_SESSION['error_message'] = "Bỏ ban thành viên thất bại.";
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
 
-        header("Location: /member/index");
-        exit;
-    } catch (Exception $e) {
-        $this->sendPage('member/index', ['error' => $e->getMessage()]);
-    }
-}
+        try {
+            $result = Member::unbanUser($memberId);
 
+            if ($result) {
+                $_SESSION['success_message'] = "Đã bỏ ban thành viên #$memberId.";
+            } else {
+                $_SESSION['error_message'] = "Bỏ ban thành viên thất bại.";
+            }
+
+            header("Location: /members");
+            exit;
+        } catch (Exception $e) {
+            $this->sendPage('member/index', ['error' => $e->getMessage()]);
+        }
+    }
 }
 ?>

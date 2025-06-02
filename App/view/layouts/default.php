@@ -65,8 +65,7 @@
     </h1>
   </a>
 </div>
-
-          <!-- Phần thanh tìm kiếm -->
+<!-- Phần thanh tìm kiếm -->
           <div class="col-md-6 d-flex justify-content-center align-items-center mb-3 mb-md-0">
   <form action="/search" method="GET" class="d-flex w-100">
     <input type="text" class="form-control rounded-start border-0 shadow-sm px-3 py-2" name="query" placeholder="Tìm kiếm laptop..." required>
@@ -75,6 +74,7 @@
     </button>
   </form>
 </div>
+
 
          <!-- Phần các biểu tượng và menu dropdown -->
 <div class="col-md-3 d-flex justify-content-center justify-content-md-end align-items-center">
@@ -133,8 +133,8 @@
   🧑‍💻 Học hành, công việc, chẳng thừa phút giây.  
 </marquee>
 
-    <!-- Phần menu điều hướng -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white mb-2">
+   <!-- Phần menu điều hướng -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white mb-2">
   <div class="container-fluid mt-2">
     <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -159,25 +159,31 @@
           </a>
         </li>
 
-      <!-- Tài khoản -->
-<li class="nav-item ms-1 dropdown">
-  <a class="btn btn-info text-white shadow-sm px-3 py-2 d-flex align-items-center dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="fa-solid fa-user me-2"></i> TÀI KHOẢN
-  </a>
-  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <?php if (!AUTHGUARD()->isUserLoggedIn()) : ?>
-      <li><a class="dropdown-item" href="/login">Đăng Nhập</a></li>
-      <li><a class="dropdown-item" href="/register">Đăng Ký</a></li>
-    <?php else : ?>
-      <li><a class="dropdown-item" href="/account">Quản lý tài khoản</a></li>
+        <!-- Tài khoản -->
+        <li class="nav-item ms-1 dropdown">
+          <a class="btn btn-info text-white shadow-sm px-3 py-2 d-flex align-items-center"
+             href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user me-2"></i> TÀI KHOẢN
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <?php if (!AUTHGUARD()->isUserLoggedIn()) : ?>
+              <li><a class="dropdown-item" href="/login">Đăng Nhập</a></li>
+              <li><a class="dropdown-item" href="/register">Đăng Ký</a></li>
+            <?php else : ?>
+              <li><a class="dropdown-item" href="/account">Quản lý tài khoản</a></li>
+              <li><a class="dropdown-item" href="/orders/index">Đơn hàng</a></li>
+              <li>
+                <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng Xuất</a>
+              </li>
+              <form id="logout-form" class="d-none" action="/logout" method="POST"></form>
+            <?php endif ?>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-      <!-- Thêm liên kết quản lý đơn hàng -->
-      <li><a class="dropdown-item" href="/orders/index">Đơn hàng</a></li> <!-- Liên kết đến trang quản lý đơn hàng -->
-      <li><a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng Xuất</a></li>
-      <form id="logout-form" class="d-none" action="/logout" method="POST"></form>
-    <?php endif ?>
-  </ul>
-</li>
 
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
 

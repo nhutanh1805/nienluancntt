@@ -133,7 +133,7 @@
                                             <textarea name="comment" id="comment_<?= $order['id'] ?>" class="form-control" rows="3" placeholder="Nhập bình luận về đơn hàng của bạn..."></textarea>
                                         </div>
 
-                                        <!-- Gợi ý bình luận -->
+                                        <!-- Gợi ý bình luận
                                         <div class="comment-suggestions">
                                             <h6>Gợi ý bình luận:</h6>
                                             <ul class="list-unstyled">
@@ -142,7 +142,7 @@
                                                 <li><button type="button" class="btn btn-link suggestion-btn" onclick="insertSuggestion('Sản phẩm bị lỗi, tôi muốn đổi trả.')">Sản phẩm bị lỗi, tôi muốn đổi trả.</button></li>
                                                 <li><button type="button" class="btn btn-link suggestion-btn" onclick="insertSuggestion('Cảm ơn shop, lần sau tôi sẽ tiếp tục mua hàng!')">Cảm ơn shop, lần sau tôi sẽ tiếp tục mua hàng!</button></li>
                                             </ul>
-                                        </div>
+                                        </div> -->
 
                                         <!-- Nút gửi bình luận -->
                                         <button type="submit" class="btn btn-primary">Gửi bình luận</button>

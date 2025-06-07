@@ -281,25 +281,6 @@ DELIMITER ;
 
 
 
--- Tạo bảng `comment` mới với kết nối tới đơn hàng
-CREATE TABLE `comment` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `user_id` INT(11) NOT NULL,                 -- Khóa ngoại liên kết với bảng `users`
-  `content` TEXT NOT NULL,                    -- Nội dung bình luận
-  `image_link` TEXT DEFAULT NULL,             -- Liên kết ảnh nếu có
-  `rate` INT(11) DEFAULT NULL CHECK (`rate` BETWEEN 1 AND 5), -- Đánh giá từ 1 đến 5
-  `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,         -- Thời gian tạo bình luận
-  `order_id` INT(11) DEFAULT NULL,            -- Khóa ngoại liên kết với bảng `orders`
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE SET NULL -- Liên kết với bảng `orders`
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Thêm dữ liệu mẫu vào bảng `comment`
-INSERT INTO `comment` (`user_id`, `content`, `image_link`, `rate`, `date`, `order_id`)
-VALUES
-(11, 'Sản phẩm này rất tuyệt vời, tôi rất hài lòng!', 'https://example.com/image1.jpg', 5, '2025-04-14 09:30:00', 366),
-(11, 'Chất lượng sản phẩm tốt nhưng giao hàng hơi chậm.', 'https://example.com/image2.jpg', 3, '2025-04-14 10:15:00', 366);
 
 ALTER TABLE `your_table_name` MODIFY `price` DECIMAL(15,2);
 
@@ -341,3 +322,17 @@ ADD COLUMN banned_until DATETIME DEFAULT NULL;
 UPDATE users
 SET role = 1
 WHERE id = 6; // id là mã của người muốn chuyển
+
+
+
+CREATE TABLE comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    order_id INT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_comment_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT fk_comment_order FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+

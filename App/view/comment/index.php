@@ -1,49 +1,55 @@
-<!-- app/views/comment/index.php -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh sách Bình luận</title>
-    <link rel="stylesheet" href="path/to/your/css/styles.css"> <!-- Thêm link CSS nếu cần -->
+    <title>Danh sách bình luận</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Danh sách Bình luận của Bạn</h1>
+<body class="container py-4">
 
-    <!-- Link thêm bình luận mới -->
-    <a href="/comments/add" class="btn btn-primary">Thêm Bình luận</a>
+    <h1>Bình luận của bạn</h1>
 
-    <table border="1" cellpadding="10" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Nội dung</th>
-                <th>Ảnh</th>
-                <th>Đánh giá</th>
-                <th>Ngày tạo</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($comments)): ?>
-                <?php foreach ($comments as $comment): ?>
+    <a href="/comments/add" class="btn btn-primary mb-3">Thêm bình luận mới</a>
+
+    <?php if (empty($comments)): ?>
+        <p>Chưa có bình luận nào.</p>
+    <?php else: ?>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Địa chỉ</th>
+                    <th>Nội dung</th>
+                    <th>Ảnh</th>
+                    <th>Đánh giá</th>
+                    <th>Ngày tạo</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($comments as $c): ?>
                     <tr>
-                        <td><?= htmlspecialchars($comment['content']) ?></td>
-                        <td><img src="<?= htmlspecialchars($comment['image_link']) ?>" alt="image" width="100" height="auto"></td>
-                        <td><?= $comment['rate'] ?></td>
-                        <td><?= date('d-m-Y H:i', strtotime($comment['date'])) ?></td>
+                        <td><?= htmlspecialchars($c['order_id']) ?></td>
+                        <td><?= htmlspecialchars($c['address']) ?></td>
+                        <td><?= nl2br(htmlspecialchars($c['content'])) ?></td>
                         <td>
-                            <!-- Cập nhật và xóa bình luận -->
-                            <a href="/comments/edit/<?= $comment['id'] ?>">Cập nhật</a> |
-                            <a href="/comments/delete/<?= $comment['id'] ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa bình luận này?')">Xóa</a>
+                            <?php if (!empty($c['image_link'])): ?>
+                                <img src="<?= htmlspecialchars($c['image_link']) ?>" alt="Ảnh bình luận" style="max-width:100px; max-height:80px;">
+                            <?php else: ?>
+                                Không có
+                            <?php endif; ?>
+                        </td>
+                        <td><?= $c['rate'] !== null ? htmlspecialchars($c['rate']) . '/5' : 'Chưa đánh giá' ?></td>
+                        <td><?= htmlspecialchars($c['created_at']) ?></td>
+                        <td>
+                            <a href="/comments/edit/<?= $c['id'] ?>" class="btn btn-sm btn-warning">Sửa</a>
+                            <a href="/comments/delete/<?= $c['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa bình luận này?')">Xóa</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="5">Không có bình luận nào.</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    <?php endif; ?>
+
 </body>
 </html>

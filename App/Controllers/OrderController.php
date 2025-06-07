@@ -182,36 +182,26 @@ public function indexAll(): void
      }
  }
 // Cập nhật bình luận cho đơn hàng
-// Cập nhật bình luận cho đơn hàng
 public function updateComment($orderId): void
 {
-    $userId = $_SESSION['user_id'];  // Lấy ID người dùng từ session
-    $comment = isset($_POST['comment']) ? $_POST['comment'] : '';  // Lấy bình luận từ POST
+    $comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
 
     if (empty($comment)) {
-        // Nếu bình luận trống, thông báo lỗi
         $this->sendPage('order/view', ['error' => 'Bình luận không được để trống', 'orderId' => $orderId]);
         return;
     }
 
-    // Kiểm tra xem người dùng có quyền cập nhật bình luận này không
-    $order = Order::getAllOrders($orderId);
-    if (empty($order) || $order[0]['user_id'] != $userId) {
-        $this->sendPage('order/view', ['error' => 'Bạn không có quyền cập nhật bình luận cho đơn hàng này', 'orderId' => $orderId]);
-        return;
-    }
-
     try {
-        // Cập nhật bình luận cho đơn hàng
+        // Cập nhật bình luận trực tiếp, ai cũng có thể bình luận mà không cần kiểm tra quyền
         Order::updateOrderComment($orderId, $comment);
-        
-        // Sau khi cập nhật thành công, chuyển hướng đến trang index của đơn hàng
-        redirect("/order/index");  // Chuyển hướng về danh sách đơn hàng thay vì chi tiết
+
+        // Sau khi cập nhật, chuyển hướng về trang chi tiết đơn hàng
+        redirect("/order/view/{$orderId}");
     } catch (Exception $e) {
-        // Nếu có lỗi khi cập nhật bình luận, hiển thị thông báo lỗi
         $this->sendPage('order/view', ['error' => $e->getMessage(), 'orderId' => $orderId]);
     }
 }
+
 
 // Lấy tất cả comment của đơn hàng (admin hoặc người dùng có quyền)
 public function showAllComments(): void

@@ -271,5 +271,11 @@ $router->post('/member/unban/(\d+)', function($memberId) {
     $controller->unban((int)$memberId);
 });
 
+$router->get('/members/delete/(\d+)', function($id) {
+    $controller = new MemberController();
+    $controller->deleteMember((int)$id);
+});
+
+
 // Run the router
 $router->run();

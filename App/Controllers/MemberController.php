@@ -105,5 +105,33 @@ class MemberController extends Controller
             $this->sendPage('member/index', ['error' => $e->getMessage()]);
         }
     }
+
+// Xóa thành viên theo ID và kiểm tra đơn hàng đang có hay không
+public function deleteMember(int $memberId): void
+{
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    try {
+        $deleted = Member::deleteMember($memberId);
+
+        if ($deleted) {
+            $_SESSION['success_message'] = "Đã xóa thành viên với ID $memberId.";
+        } else {
+            $_SESSION['error_message'] = "Không thể xóa thành viên vì đang có đơn hàng.";
+        }
+
+        header('Location: /members');
+        exit;
+    } catch (Exception $e) {
+        $_SESSION['error_message'] = "Lỗi khi xóa thành viên: " . $e->getMessage();
+        header('Location: /members');
+        exit;
+    }
+}
+
+
+
 }
 ?>

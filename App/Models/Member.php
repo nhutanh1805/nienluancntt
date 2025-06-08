@@ -102,5 +102,27 @@ public static function getMemberById(int $id): ?array
         return null;
     }
 
+// Xóa người dùng theo ID kiểm tra xem họ có đơn hya không
+public static function deleteMember(int $id): bool
+{
+    self::initDb();
+
+    // Kiểm tra xem user có đơn hàng không
+    $stmt = self::$db->prepare("SELECT COUNT(*) FROM orders WHERE user_id = :id");
+    $stmt->execute([':id' => $id]);
+    $orderCount = $stmt->fetchColumn();
+
+    if ($orderCount > 0) {
+      
+        return false;
+    }
+
+   
+    $stmt = self::$db->prepare("DELETE FROM users WHERE id = :id");
+    return $stmt->execute([':id' => $id]);
+}
+
+
+
 }
 ?>

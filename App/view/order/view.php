@@ -6,51 +6,62 @@
 
 <?php $this->start("page") ?>
 <main>
-    <div class="container">
-        <h2 class="text-center">Đơn hàng #<?= htmlspecialchars($order[0]['id'] ?? 'Chưa có ID', ENT_QUOTES, 'UTF-8') ?></h2>
+    <div class="container py-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white text-center">
+                <h4 class="mb-0"><i class="bi bi-receipt-cutoff"></i> Chi tiết Đơn hàng #<?= htmlspecialchars($order[0]['id'] ?? 'Chưa có ID') ?></h4>
+            </div>
+            <div class="card-body">
+                <div class="mb-3 text-center">
+                    <p><strong>Địa chỉ giao hàng:</strong> <?= htmlspecialchars($order[0]['address'] ?? 'Chưa có địa chỉ') ?></p>
+                    <!-- <p><strong>Trạng thái:</strong> <?= htmlspecialchars($order[0]['status'] ?? 'Chưa có trạng thái') ?></p> -->
+                </div>
 
-        <p class="text-center">Địa chỉ giao hàng: <?= htmlspecialchars($order[0]['address'] ?? 'Chưa có địa chỉ', ENT_QUOTES, 'UTF-8') ?></p>
-        <!-- <p class="text-center">Trạng thái: <?= htmlspecialchars($order[0]['status'] ?? 'Chưa có trạng thái', ENT_QUOTES, 'UTF-8') ?></p> -->
+                <h5 class="mb-3"><i class="bi bi-box-seam"></i> Sản phẩm trong đơn hàng</h5>
 
-        <h3>Chi tiết sản phẩm:</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Tên sản phẩm</th>
-                    <th>Số lượng</th>
-                    <th>Giá</th>
-                    <th>Tổng tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                    $totalAmount = 0; // Khởi tạo biến để tính tổng tiền
-                ?>
-                <?php if (isset($orderItems) && !empty($orderItems)): ?>
-                    <?php foreach ($orderItems as $item): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($item['product_name'] ?? 'Không có tên sản phẩm', ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars($item['quantity'] ?? 0, ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= number_format($item['price'] ?? 0, 0, ',', '.') ?> VND</td>
-                            <td><?= number_format(($item['quantity'] ?? 0) * ($item['price'] ?? 0), 0, ',', '.') ?> VND</td>
-                        </tr>
-                        <?php 
-                            // Cộng tổng tiền của từng sản phẩm vào tổng đơn hàng
-                            $totalAmount += ($item['quantity'] ?? 0) * ($item['price'] ?? 0); 
-                        ?>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="4" class="text-center">Không có sản phẩm nào trong đơn hàng này.</td>
-                    </tr>
-                <?php endif; ?>
-                <tr>
-                    <td colspan="3" class="text-right"><strong>Tổng tiền:</strong></td>
-                    <td><strong><?= number_format($totalAmount, 0, ',', '.') ?> VND</strong></td>
-                </tr>
-            </tbody>
-        </table>
-
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead class="table-light text-center">
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                                <th>Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $totalAmount = 0; ?>
+                            <?php if (!empty($orderItems)): ?>
+                                <?php foreach ($orderItems as $item): ?>
+                                    <?php 
+                                        $qty = $item['quantity'] ?? 0;
+                                        $price = $item['price'] ?? 0;
+                                        $subtotal = $qty * $price;
+                                        $totalAmount += $subtotal;
+                                    ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($item['product_name'] ?? 'Không có tên sản phẩm') ?></td>
+                                        <td class="text-center"><?= $qty ?></td>
+                                        <td class="text-end"><?= number_format($price, 0, ',', '.') ?> VND</td>
+                                        <td class="text-end"><?= number_format($subtotal, 0, ',', '.') ?> VND</td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted">Không có sản phẩm nào trong đơn hàng này.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-info">
+                                <td colspan="3" class="text-end"><strong>Tổng cộng:</strong></td>
+                                <td class="text-end"><strong><?= number_format($totalAmount, 0, ',', '.') ?> VND</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 <?php $this->stop() ?>

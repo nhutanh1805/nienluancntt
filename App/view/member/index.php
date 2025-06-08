@@ -57,11 +57,12 @@
                                             <i class="bi bi-eye"></i> Xem
                                         </a>
 
-                                        <a href="/member/delete/<?= urlencode($member['id']) ?>" 
-                                           class="btn btn-sm btn-danger mb-1"
-                                           onclick="return confirm('Bạn có chắc chắn muốn xóa thành viên này?');">
-                                           <i class="bi bi-trash"></i> Xóa
-                                        </a>
+                                        <a href="/members/delete/<?= urlencode($member['id']) ?>" 
+   class="btn btn-sm btn-danger mb-1"
+   onclick="return confirm('Bạn có chắc chắn muốn xóa thành viên này?');">
+   <i class="bi bi-trash"></i> Xóa
+</a>
+
 
                                         <!-- Form Ban -->
                                         <form action="/member/ban/<?= htmlspecialchars($member['id']) ?>" method="POST" class="d-inline-block mb-1 mt-1">

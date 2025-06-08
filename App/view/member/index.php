@@ -87,7 +87,7 @@
 
                                             <form action="/member/unban/<?= htmlspecialchars($member['id']) ?>" method="POST" class="d-inline-block mt-2">
                                                 <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Bỏ cấm người dùng này?')">
-                                                    <i class="bi bi-unlock-fill"></i> Bỏ Ban
+                                                    <i class="bi bi-unlock-fill"></i> Bỏ Cấm
                                                 </button>
                                             </form>
                                         <?php endif; endif; ?>

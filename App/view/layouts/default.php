@@ -76,22 +76,72 @@
 </div>
 
 
-         <!-- Phần các biểu tượng và menu dropdown -->
+        <!-- Phần các biểu tượng và menu dropdown -->
 <div class="col-md-3 d-flex justify-content-center justify-content-md-end align-items-center">
-  <div class="d-flex">
-    <!-- Biểu tượng giỏ hàng -->
+  <div class="d-flex align-items-center">
+
+    <!-- Giỏ hàng -->
     <a class="text-reset ms-3 position-relative" href="/cart" title="Giỏ hàng">
       <i class="fas fa-shopping-cart fa-lg"></i>
       <span class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle p-1">1</span>
     </a>
- <!-- Biểu tượng đơn hàng -->
- <a class="text-reset ms-3" href="/orders/index" title="Đơn hàng">
-  <i class="fas fa-box fa-lg"></i>
-</a>
 
-    <!-- Biểu tượng ngôn ngữ -->
+    <!-- Đơn hàng -->
+    <a class="text-reset ms-3" href="/orders/index" title="Đơn hàng">
+      <i class="fas fa-box fa-lg"></i>
+    </a>
+
+    <!-- Hướng dẫn mua hàng -->
+<div class="dropdown ms-3" title="Hướng dẫn mua hàng">
+  <a
+    class="nav-link dropdown-toggle text-dark p-0"
+    href="#"
+    role="button"
+    id="guideDropdown"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    style="font-size: 1.25rem;"
+  >
+    <i class="fas fa-book"></i>
+  </a>
+  <div
+    class="dropdown-menu dropdown-menu-end shadow-lg rounded-4 p-4"
+    aria-labelledby="guideDropdown"
+    style="min-width: 350px; background: #fff; border: 1px solid #ddd;"
+  >
+    <h6 class="dropdown-header fw-bold mb-3 text-primary border-bottom pb-2">
+      Hướng Dẫn Mua Hàng
+    </h6>
+    <table class="table table-sm table-borderless mb-0">
+      <tbody>
+        <tr>
+          <td class="fw-bold text-secondary" style="width: 40px;">1</td>
+          <td>Chọn sản phẩm bạn muốn mua.</td>
+        </tr>
+        <tr>
+          <td class="fw-bold text-secondary">2</td>
+          <td>Thêm sản phẩm vào giỏ hàng.</td>
+        </tr>
+        <tr>
+          <td class="fw-bold text-secondary">3</td>
+          <td>Kiểm tra giỏ hàng cập nhật số lượng và tiến hành thanh toán.</td>
+        </tr>
+        <tr>
+          <td class="fw-bold text-secondary">4</td>
+          <td>Truy cập đơn hàng để xem trạng thái đơn hàng.</td>
+        </tr>
+        <tr>
+          <td class="fw-bold text-secondary">5</td>
+          <td>Chờ nhận hàng và thanh toán nếu cần.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+    <!-- Ngôn ngữ -->
     <div class="dropdown ms-3" title="Ngôn ngữ">
-      <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <a class="nav-link dropdown-toggle text-dark p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa-solid fa-language fa-lg"></i>
       </a>
       <ul class="dropdown-menu shadow-lg rounded-3">
@@ -99,7 +149,7 @@
         <li><a class="dropdown-item" href="#">Polski</a></li>
         <li><a class="dropdown-item" href="#">中文</a></li>
         <li><a class="dropdown-item" href="#">日本語</a></li>
-        <li><a class="dropdown-item" href="#">iDeutsch</a></li>
+        <li><a class="dropdown-item" href="#">Deutsch</a></li>
         <li><a class="dropdown-item" href="#">Français</a></li>
         <li><a class="dropdown-item" href="#">Español</a></li>
         <li><a class="dropdown-item" href="#">Русский</a></li>
@@ -107,19 +157,21 @@
       </ul>
     </div>
 
-<!-- Biểu tượng thông báo -->
-<div class="dropdown ms-3" title="Thông báo mới">
-  <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="fas fa-bell fa-lg"></i>
-  </a>
-  <ul class="dropdown-menu shadow-lg rounded-3">
-    <li><a class="dropdown-item" href="#">Tin tức mới nhất</a></li>
-    <li><a class="dropdown-item" href="#">Cập nhật quan trọng</a></li>
-    <li><a class="dropdown-item" href="#">Những điều thú vị</a></li>
-  </ul>
-</div>
+    <!-- Thông báo -->
+    <div class="dropdown ms-3" title="Thông báo mới">
+      <a class="nav-link dropdown-toggle text-dark p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-bell fa-lg"></i>
+      </a>
+      <ul class="dropdown-menu shadow-lg rounded-3">
+        <li><a class="dropdown-item" href="#">Tin tức mới nhất</a></li>
+        <li><a class="dropdown-item" href="#">Cập nhật quan trọng</a></li>
+        <li><a class="dropdown-item" href="#">Những điều thú vị</a></li>
+      </ul>
+    </div>
+
   </div>
 </div>
+
 
    <!-- Câu giới thiệu về cửa hàng -->
   <marquee class="mt-2 text-muted fs-4" behavior="scroll" direction="left" scrollamount="20">
@@ -207,7 +259,7 @@
         <hr class="w-100 clearfix d-md-none" />
 
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-          <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">Brand</h6>
+          <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">THƯƠNG HIỆU</h6>
           <p>
             <a class="text-light" href="#laptops" style="text-decoration:none;">LapTop Apple</a>
           </p>
@@ -226,26 +278,35 @@
 
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">
-            Useful links
-          </h6>
-          <p>
-            <a class="text-light" style="text-decoration:none;">Your Account</a>
-          </p>
-          <p>
-            <a class="text-light" style="text-decoration:none;">Become an Affiliate</a>
-          </p>
-          <p>
-            <a class="text-light" style="text-decoration:none;">Shipping Rates</a>
-          </p>
-          <p>
-            <a class="text-light" style="text-decoration:none;">Help</a>
-          </p>
+  Khám Phá Thêm
+</h6>
+<ul class="list-unstyled small">
+  <li class="mb-2 mx-auto mt-3">
+    <a href="/blog" class="text-light text-decoration-none d-flex align-items-center">
+      <i class="fas fa-newspaper me-2"></i> Tin Tức Công Nghệ Mới
+    </a>
+  </li>
+  <li class="mb-2 mx-auto mt-3">
+    <a href="/reviews" class="text-light text-decoration-none d-flex align-items-center">
+      <i class="fas fa-star me-2"></i> Đánh Giá Chuyên Gia
+    </a>
+  </li>
+
+
+  </li>
+  <li class="mb-2 mx-auto mt-3">
+    <a href="/deals" class="text-light text-decoration-none d-flex align-items-center">
+      <i class="fas fa-tags me-2"></i> Khuyến Mãi & Ưu Đãi
+    </a>
+  </li>
+</ul>
+
         </div>
 
         <hr class="w-100 clearfix d-md-none" />
 
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-          <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">Contact</h6>
+          <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">LIÊN HỆ</h6>
           <p><i class="fas fa-home mr-3"></i> VietNam</p>
           <p><i class="fas fa-envelope mr-3"></i> nhutanh1805vlog@gmail.com</p>
           <p><i class="fas fa-phone mr-3"></i> + 08 237 372 58</p>
@@ -331,6 +392,17 @@
     }
   }
 </script>
+<script>
+  document.getElementById('toggle-guide').addEventListener('click', function() {
+    const guideTable = document.getElementById('guide-table');
+    if (guideTable.style.display === 'none' || guideTable.style.display === '') {
+      guideTable.style.display = 'block';
+    } else {
+      guideTable.style.display = 'none';
+    }
+  });
+</script>
+
   </body>
 
 </html>

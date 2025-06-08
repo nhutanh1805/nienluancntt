@@ -37,7 +37,6 @@ class Member
 
         $members = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Thêm trường mô tả role để dễ hiển thị (0 = Người dùng, 1 = Quản trị)
         foreach ($members as &$member) {
             $member['role_name'] = ($member['role'] == 1) ? 'Quản trị' : 'Người dùng';
         }

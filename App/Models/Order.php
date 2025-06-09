@@ -48,7 +48,7 @@ class Order
         $orderId = self::$db->lastInsertId();
     
         // Lấy giỏ hàng của người dùng
-        $cartItems = Cart::getCart($userId);  // Sử dụng phương thức getCart() của Cart model
+        $cartItems = Cart::getCart($userId);  
     
         foreach ($cartItems as $item) {
             // Thêm chi tiết vào bảng order_details
@@ -56,10 +56,10 @@ class Order
                                         VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([ 
                 $orderId, 
-                $item['id'],  // product_id
-                $item['quantity'],  // quantity
-                $item['price'],  // price
-                $item['total_price']  // total_price
+                $item['id'],  
+                $item['quantity'],  
+                $item['price'], 
+                $item['total_price']  
             ]);
         }
     
@@ -69,7 +69,6 @@ class Order
         return $orderId;
     }
 
-    // Lấy thông tin đơn hàng
 
 
  // Lấy tất cả đơn hàng
@@ -81,7 +80,7 @@ class Order
      $stmt = self::$db->prepare("SELECT * FROM orders");
      $stmt->execute();
 
-     return $stmt->fetchAll(PDO::FETCH_ASSOC);  // Trả về tất cả các đơn hàng
+     return $stmt->fetchAll(PDO::FETCH_ASSOC);  
  }
  
     // Lấy tất cả đơn hàng của người dùng

@@ -29,7 +29,7 @@ class Cart
         }
     }
 
-    // Phương thức để lấy đối tượng PDO
+    // Lấy đối tượng PDO
     public static function getDb(): PDO
     {
         self::initDb();

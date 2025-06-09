@@ -11,26 +11,26 @@ class Contact
 
     // Các thuộc tính của sản phẩm
     public int $id = -1; // ID của sản phẩm (mặc định là -1)
-    public int $user_id; // ID người dùng sở hữu sản phẩm
-    public string $name; // Tên sản phẩm
-    public string $img; // Đường dẫn đến ảnh sản phẩm
-    public ?string $description; // Mô tả sản phẩm (có thể null)
-    public string $price; // Giá bán của sản phẩm
-    public string $priceGoc; // Giá gốc của sản phẩm
-    public string $created_at; // Thời gian tạo sản phẩm
-    public string $updated_at; // Thời gian cập nhật sản phẩm
+    public int $user_id; 
+    public string $name; 
+    public string $img; 
+    public ?string $description; 
+    public string $price; 
+    public string $priceGoc; 
+    public string $created_at; 
+    public string $updated_at; 
     public int $product_id = -1; // ID sản phẩm (mặc định là -1)
-    public string $product_type = ''; // Loại sản phẩm
-    public string $cpu = ''; // Thông tin về CPU của sản phẩm
-    public string $ram = ''; // Thông tin về RAM của sản phẩm
-    public string $storage = ''; // Thông tin về dung lượng lưu trữ
-    public string $battery_capacity = ''; // Thông tin về dung lượng pin
-    public string $camera_resolution = ''; // Thông tin về độ phân giải camera
-    public string $screen_size = ''; // Kích thước màn hình
-    public string $os = ''; // Hệ điều hành của sản phẩm
-    public string $band = ''; // Dải tần của sản phẩm
-    public string $strap_material = ''; // Chất liệu dây đeo
-    public string $water_resistance = ''; // Khả năng chống nước của sản phẩm
+    public string $product_type = ''; 
+    public string $cpu = ''; 
+    public string $ram = ''; 
+    public string $storage = ''; 
+    public string $battery_capacity = ''; 
+    public string $camera_resolution = ''; 
+    public string $screen_size = ''; 
+    public string $os = ''; 
+    public string $band = ''; 
+    public string $strap_material = ''; 
+    public string $water_resistance = '';
 
     // Khởi tạo đối tượng với kết nối CSDL PDO
     public function __construct(PDO $pdo)
@@ -50,7 +50,7 @@ public function getStockQuantity(): int
         return (int) $row['quantity_in_stock'];  // Trả về số lượng tồn kho, mặc định là 0 nếu không tìm thấy
     }
 
-    return 0;  // Nếu không tìm thấy, trả về 0
+    return 0; 
 }
 
     // Đặt người dùng sở hữu sản phẩm
@@ -259,7 +259,7 @@ public function getStockQuantity(): int
         $errors = [];
         $name = trim($data['name'] ?? '');
         if (!$name) {
-            $errors['name'] = 'Invalid name.'; // Tên không hợp lệ
+            $errors['name'] = 'Invalid name.'; 
         }
 
         $description = trim($data['description'] ?? '');
@@ -317,10 +317,10 @@ public function getStockQuantity(): int
     public function uploadImg($file): array
     {
         $errors = [];
-        $uploadDir = __DIR__ . '/../../public/img/'; // Đường dẫn đến thư mục lưu
+        $uploadDir = __DIR__ . '/../../public/img/'; 
 
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true); // Tạo thư mục nếu chưa tồn tại
+            mkdir($uploadDir, 0755, true); 
         }
 
         if (isset($file) && $file['error'] == 0) {

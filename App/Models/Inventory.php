@@ -30,7 +30,7 @@ class Inventory
         }
     }
 
-    // Lấy tất cả sản phẩm kết hợp với số lượng tồn kho từ bảng product và inventory
+    // Lấy tất cả sản phẩm
     public static function getAllProducts(): array
     {
         self::initDb();
@@ -103,8 +103,7 @@ class Inventory
         }
     }
 
-    // Cập nhật số lượng tồn kho cho sản phẩm
-    // Thêm phương thức cập nhật số lượng vào InventoryController
+
 // Cập nhật số lượng tồn kho cho sản phẩm
 public static function updateStock(int $productId, int $quantity): void
 {

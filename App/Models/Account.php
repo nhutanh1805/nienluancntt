@@ -39,7 +39,7 @@ class Account
 
         // Kiểm tra nếu các trường này không rỗng
         if (empty($name) || empty($email) || empty($phone) || empty($address)) {
-            return false;  // Nếu bất kỳ trường nào rỗng thì không hợp lệ
+            return false;  
         }
 
         // Kiểm tra email hợp lệ
@@ -83,11 +83,11 @@ class Account
         $stmt->bindParam(':phone', $validatedData['phone'], \PDO::PARAM_STR);
         $stmt->bindParam(':address', $validatedData['address'], \PDO::PARAM_STR);
 
-        // Thực thi câu lệnh và kiểm tra kết quả
+    
         if ($stmt->execute()) {
-            return true;  // Cập nhật thành công
+            return true;  
         } else {
-            return false;  // Lỗi trong quá trình cập nhật
+            return false; 
         }
     }
 

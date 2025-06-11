@@ -160,6 +160,7 @@
 </div>
 
 
+
         <!-- Phần các biểu tượng và menu dropdown -->
 <div class="col-md-3 d-flex justify-content-center justify-content-md-end align-items-center">
   <div class="d-flex align-items-center">
@@ -666,6 +667,11 @@
 }
 
 
+</script>
+<script src="https://app.tudongchat.com/js/chatbox.js"></script>
+<script>
+  const tudong_chatbox = new TuDongChat('uFIWR2wnXDR_wxghp4t_l')
+  tudong_chatbox.initial()
 </script>
 
   </body>

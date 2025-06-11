@@ -33,6 +33,90 @@
 </style>
 </head>
 
+//Demo chatbot
+<style>
+  #chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #0d6efd;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  #chatbot-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  #chatbot-header {
+    background: #0d6efd;
+    color: white;
+    padding: 10px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  #chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+
+  #chatbot-input-area {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 5px;
+  }
+
+  #chatbot-input {
+    flex: 1;
+    padding: 5px;
+  }
+
+  .chatbot-message {
+    margin-bottom: 8px;
+  }
+
+  .chatbot-message.user {
+    text-align: right;
+    color: #0d6efd;
+  }
+
+  .chatbot-message.bot {
+    text-align: left;
+    color: #333;
+  }
+</style>
+
+<button id="chatbot-toggle">💬</button>
+
+<div id="chatbot-box">
+  <div id="chatbot-header">🤖 Chat với bot</div>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input-area">
+    <input type="text" id="chatbot-input" placeholder="Nhập tin nhắn..." />
+    <button id="chatbot-send">Gửi</button>
+  </div>
+</div>
+
 <body">
   <header>
     <!-- Phần tiêu đề -->
@@ -392,6 +476,10 @@
     }
   }
 </script>
+
+
+ // Demo chatbot
+
 <script>
   document.getElementById('toggle-guide').addEventListener('click', function() {
     const guideTable = document.getElementById('guide-table');
@@ -401,6 +489,183 @@
       guideTable.style.display = 'none';
     }
   });
+</script>
+<script>
+  const toggleBtn = document.getElementById('chatbot-toggle');
+  const chatbotBox = document.getElementById('chatbot-box');
+  const sendBtn = document.getElementById('chatbot-send');
+  const input = document.getElementById('chatbot-input');
+  const messages = document.getElementById('chatbot-messages');
+
+  toggleBtn.addEventListener('click', () => {
+    chatbotBox.style.display = chatbotBox.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+
+  function sendMessage() {
+    const text = input.value.trim();
+    if (text === '') return;
+
+    addMessage(text, 'user');
+    input.value = '';
+
+    // Giả lập bot trả lời
+    setTimeout(() => {
+      const response = getBotResponse(text);
+      addMessage(response, 'bot');
+    }, 500);
+  }
+
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = 'chatbot-message ' + sender;
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function getBotResponse(input) {
+  input = input.toLowerCase();
+
+  const contains = (keywords) => keywords.some(keyword => input.includes(keyword));
+
+  if (contains(['mở cửa', 'giờ mở', 'giờ làm việc'])) {
+    return 'Shop mở cửa từ 8h sáng đến 9h tối mỗi ngày nha!';
+  }
+
+  if (contains(['giao hàng', 'ship', 'vận chuyển', 'chuyển hàng'])) {
+    return 'Bọn mình giao hàng toàn quốc, nhận trong 1-3 ngày á!';
+  }
+
+  if (contains(['bảo hành', 'lỗi', 'hỏng', 'bị hư'])) {
+    return 'Sản phẩm được bảo hành chính hãng 12 tháng nhen bạn!';
+  }
+
+  if (contains(['đổi', 'trả', 'hoàn hàng', 'đổi sản phẩm'])) {
+    return 'Bạn được đổi trả trong vòng 7 ngày nếu sản phẩm lỗi do nhà sản xuất nha!';
+  }
+
+  if (contains(['thanh toán', 'trả tiền', 'chuyển khoản', 'vnpay', 'momo'])) {
+    return 'Bạn có thể thanh toán qua VNPAY, Momo, thẻ ngân hàng hoặc khi nhận hàng nha!';
+  }
+
+  if (contains(['liên hệ', 'số điện thoại', 'hotline', 'gọi điện'])) {
+    return 'Bạn gọi hotline 0909 123 456 hoặc inbox fanpage để được hỗ trợ liền tay nha!';
+  }
+
+  if (contains(['khuyến mãi', 'giảm giá', 'sale', 'ưu đãi', 'mã giảm'])) {
+    return 'Hiện đang có chương trình giảm 10% cho đơn trên 10 triệu nha, nhanh tay kẻo lỡ!';
+  }
+
+  if (contains(['alo', 'hi', 'chào', 'hello', 'yo', 'ê'])) {
+    return 'Chào bạn 👋 Có gì cần tụi mình hỗ trợ hông nè?';
+  }
+
+  if (contains(['sản phẩm', 'laptop', 'máy tính', 'máy', 'thiết bị'])) {
+    return 'Bọn mình có nhiều mẫu laptop từ Dell, Asus, Lenovo, Macbook... bạn tìm dòng nào nè?';
+  }
+
+  if (contains(['bao lâu', 'mất bao lâu', 'khi nào nhận', 'thời gian giao'])) {
+    return 'Thường bạn sẽ nhận hàng trong 1-3 ngày tuỳ khu vực đó nha!';
+  }
+
+  if (contains(['còn hàng', 'có sẵn', 'hết hàng'])) {
+    return 'Bạn ơi, mẫu đó còn hàng nha, bạn đặt luôn kẻo hết á!';
+  }
+
+  if (contains(['trả góp', 'mua góp', 'trả dần'])) {
+    return 'Shop hỗ trợ trả góp qua thẻ tín dụng, thủ tục đơn giản cực luôn!';
+  }
+
+  if (contains(['pin', 'dung lượng pin', 'thời lượng pin'])) {
+    return 'Laptop tụi mình bán đều có pin dùng từ 5-8 tiếng tuỳ dòng nha!';
+  }
+
+  if (contains(['cấu hình', 'cpu', 'ram', 'ổ cứng'])) {
+    return 'Bạn cần laptop làm việc hay chơi game? Tụi mình có cấu hình từ i3 đến i9 luôn!';
+  }
+
+  if (contains(['giá', 'bao nhiêu tiền', 'mắc không', 'đắt'])) {
+    return 'Tụi mình có giá từ 5 triệu tới 70 triệu, tuỳ dòng, bạn muốn dòng nào mình tư vấn nha!';
+  }
+
+  if (contains(['cài win', 'cài phần mềm', 'office'])) {
+    return 'Tụi mình có hỗ trợ cài đặt Win bản quyền và phần mềm cơ bản nha!';
+  }
+
+  if (contains(['bán phụ kiện', 'chuột', 'tai nghe', 'balo'])) {
+    return 'Tụi mình có bán phụ kiện luôn như chuột, tai nghe, balo chính hãng xịn sò nha!';
+  }
+
+  if (contains(['shop ở đâu', 'địa chỉ', 'cửa hàng'])) {
+    return 'Bọn mình ở 123 Nguyễn Văn ABC, Q.1, TP.HCM, bạn ghé chơi nha!';
+  }
+
+  if (contains(['thời gian làm việc', 'giờ làm việc', 'làm việc mấy giờ'])) {
+    return 'Shop mở cửa từ 8h sáng đến 9h tối mỗi ngày nha!';
+  }
+
+  if (contains(['hàng chính hãng', 'auth', 'chính hãng'])) {
+    return 'Tất cả sản phẩm bên mình đều là hàng chính hãng, có hoá đơn và bảo hành đầy đủ nha!';
+  }
+
+  if (contains(['laptop gaming', 'chơi game', 'game'])) {
+    return 'Tụi mình có các dòng gaming như Asus TUF, Dell G15, Acer Nitro cực chiến luôn!';
+  }
+
+  if (contains(['laptop văn phòng', 'học tập', 'làm việc'])) {
+    return 'Mấy dòng nhẹ như Dell Vostro, Asus Vivobook, Lenovo Ideapad xài học tập là siêu ổn nha!';
+  }
+
+  if (contains(['macbook', 'apple'])) {
+    return 'Tụi mình có đủ loại Macbook từ Air đến Pro nha, bạn cần chip M1, M2 hay M3 nè?';
+  }
+
+  if (contains(['sinh viên', 'ưu đãi sinh viên'])) {
+    return 'Sinh viên được giảm thêm 5% và tặng combo phụ kiện nha bạn!';
+  }
+
+  if (contains(['trễ', 'chậm', 'chưa nhận', 'không thấy hàng'])) {
+    return 'Bạn ơi, để mình kiểm tra đơn của bạn nha! Inbox page hoặc gọi hotline giúp mình nhen.';
+  }
+
+  if (contains(['hướng dẫn đặt hàng', 'đặt như thế nào', 'mua hàng'])) {
+    return 'Bạn chỉ cần chọn sản phẩm, bấm “Thêm vào giỏ” và điền thông tin là tụi mình giao tận nhà!';
+  }
+
+  if (contains(['giỏ hàng', 'thanh toán giỏ'])) {
+    return 'Bạn vào giỏ hàng ở góc phải màn hình để kiểm tra và thanh toán nha!';
+  }
+
+  if (contains(['lỗi web', 'không vào được'])) {
+    return 'Bạn thử load lại trang hoặc chuyển sang trình duyệt khác giùm mình nhen!';
+  }
+
+  if (contains(['đắt nhất', 'mắc nhất'])) {
+    return 'Hiện tại shop có MSI Creator Z16P B12UGST i7 (050VN) là đắt nhất với 72 củ khoai ạ!';
+  }
+
+  // Nếu không khớp câu nào phía trên
+  const responses = [
+    "Bot chưa thông minh lắm, hỏi lại thử nhen!",
+    "Mình chưa hiểu câu đó 😅",
+    "Bạn thử hỏi về sản phẩm, giao hàng, giờ mở cửa nha!",
+    "Hí hí, bạn dễ thương quá 🥹",
+    "Câu này lạ ghê, bạn nói rõ hơn giúp mình nhen!",
+    "Ủa, hỏi gì kỳ vậy trời 😆 bạn hỏi lại rõ hơn nha!",
+    "Bạn muốn hỏi về đơn hàng, sản phẩm hay hỗ trợ kỹ thuật ạ?",
+    "Shop mình luôn sẵn sàng hỗ trợ nè, bạn gõ lại rõ hơn nha!",
+    "Bạn cần hỗ trợ gì cụ thể hơn không ạ?",
+    "Mình là chatbot dễ thương mà còn hơi ngố, nói lại giúp mình nhen 🥺"
+  ];
+  return responses[Math.floor(Math.random() * responses.length)];
+}
+
+
 </script>
 
   </body>

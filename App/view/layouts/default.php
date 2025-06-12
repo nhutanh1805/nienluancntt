@@ -33,7 +33,7 @@
 </style>
 </head>
 
-//Demo chatbot
+ <!-- Demo chatbot -->
 <style>
   #chatbot-toggle {
     position: fixed;
@@ -479,7 +479,7 @@
 </script>
 
 
- // Demo chatbot
+ <!-- Demo chatbot -->
 
 <script>
   document.getElementById('toggle-guide').addEventListener('click', function() {
@@ -650,6 +650,22 @@
     return 'Hiện tại shop có MSI Creator Z16P B12UGST i7 (050VN) là đắt nhất với 72 củ khoai ạ!';
   }
 
+  if (contains(['hóa đơn', 'xuất hóa đơn', 'hóa đơn đỏ'])) {
+  return 'Có nhen! Tụi mình hỗ trợ xuất hóa đơn VAT cho công ty luôn!';
+}
+
+ if (contains(['MSI', 'msi', 'em ét ai'])) {
+  return 'Bạn muốn hỏi gì về dòng máy MSI hiện đang có trên shop dạ!';
+}
+
+if (contains(['DELL', 'dell', 'đeo'])) {
+  return 'Shop mình có dòng máy DELL nè hỏi gì!';
+}
+
+if (contains(['chi nhánh', 'ở đâu', 'chi nhánh shop ở đâu'])) {
+  return 'Hiện tại shop chưa có chi nhánh chính thức mà chỉ có hoạt động trên website thôi nha!';
+}
+
   // Nếu không khớp câu nào phía trên
   const responses = [
     "Bot chưa thông minh lắm, hỏi lại thử nhen!",
@@ -662,6 +678,7 @@
     "Shop mình luôn sẵn sàng hỗ trợ nè, bạn gõ lại rõ hơn nha!",
     "Bạn cần hỗ trợ gì cụ thể hơn không ạ?",
     "Mình là chatbot dễ thương mà còn hơi ngố, nói lại giúp mình nhen 🥺"
+
   ];
   return responses[Math.floor(Math.random() * responses.length)];
 }

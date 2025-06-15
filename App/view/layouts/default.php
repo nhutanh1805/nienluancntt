@@ -555,7 +555,7 @@
   }
 
   if (contains(['liên hệ', 'số điện thoại', 'hotline', 'gọi điện'])) {
-    return 'Bạn gọi hotline 0909 123 456 hoặc inbox fanpage để được hỗ trợ liền tay nha!';
+    return 'Bạn gọi hotline 0823737258 hoặc inbox fanpage để được hỗ trợ liền tay nha!';
   }
 
   if (contains(['khuyến mãi', 'giảm giá', 'sale', 'ưu đãi', 'mã giảm'])) {
@@ -666,17 +666,170 @@ if (contains(['chi nhánh', 'ở đâu', 'chi nhánh shop ở đâu'])) {
   return 'Hiện tại shop chưa có chi nhánh chính thức mà chỉ có hoạt động trên website thôi nha!';
 }
 
+if (contains(['macbook air m1'])) {
+  return 'Macbook Air M1 bên mình có giá từ 18tr, pin trâu, học tập văn phòng siêu mượt nha!';
+}
+
+if (contains(['macbook air m2'])) {
+  return 'Macbook Air M2 là dòng mới, mỏng nhẹ và mạnh hơn M1. Bạn muốn bản 8GB hay 16GB RAM nè?';
+}
+
+if (contains(['macbook pro m3'])) {
+  return 'Macbook Pro M3 là dòng cao cấp cho dân đồ hoạ, cấu hình cực mạnh luôn đó bạn!';
+}
+
+if (contains(['dell inspiron'])) {
+  return 'Dell Inspiron phù hợp làm việc, học tập và độ bền tốt. Bên mình đang sale 15% nhen!';
+}
+
+if (contains(['dell g15', 'dell gaming'])) {
+  return 'Dell G15 là laptop gaming mạnh mẽ, card rời RTX chạy game mượt khỏi chê nha!';
+}
+
+if (contains(['asus tuf'])) {
+  return 'Asus TUF Gaming có thiết kế chiến, card rời mạnh, phù hợp game thủ bạn nha!';
+}
+
+if (contains(['asus vivobook'])) {
+  return 'Asus Vivobook bên mình có dòng chạy chip i5 Gen 13, thiết kế đẹp, nhẹ và pin trâu!';
+}
+
+if (contains(['lenovo ideapad'])) {
+  return 'Lenovo IdeaPad là dòng quốc dân cho sinh viên học online, giá chỉ từ 9 triệu nha!';
+}
+
+if (contains(['lenovo legion'])) {
+  return 'Legion là dòng cao cấp chơi game cực đỉnh của Lenovo, cấu hình i7 + RTX siêu mượt luôn!';
+}
+
+if (contains(['hp pavilion'])) {
+  return 'HP Pavilion có thiết kế đẹp, màn hình Full HD sắc nét và gõ phím siêu thích nha!';
+}
+
+if (contains(['msi modern'])) {
+  return 'MSI Modern dòng nhẹ mỏng, pin tốt cho dân văn phòng. Giá từ 12 triệu bạn nhé!';
+}
+
+if (contains(['có hỗ trợ kỹ thuật', 'bị lỗi cần sửa', 'sửa laptop'])) {
+  return 'Bên mình có đội kỹ thuật hỗ trợ kiểm tra máy miễn phí tại cửa hàng nha!';
+}
+
+if (contains(['thay pin', 'sửa màn hình', 'nâng cấp ổ cứng', 'nâng ram'])) {
+  return 'Tụi mình có dịch vụ thay pin, nâng RAM, SSD chính hãng luôn nha!';
+}
+
+if (contains(['dán màn hình', 'dán bảo vệ'])) {
+  return 'Có nha! Dán màn hình chống trầy chỉ từ 100k, bạn mang máy tới shop nha!';
+}
+
+if (contains(['giảm thêm không', 'còn giảm nữa không', 'mặc cả'])) {
+  return 'Tụi mình đang có giá tốt nhất thị trường rồi á, có mã giảm thêm 5% cho đơn đầu tiên nha!';
+}
+
+if (contains(['giao COD không', 'trả tiền khi nhận'])) {
+  return 'Có nha! Bạn có thể kiểm tra hàng rồi mới thanh toán tại nhà, gọi COD siêu tiện!';
+}
+
+if (contains(['ship ngoại tỉnh', 'vận chuyển tỉnh'])) {
+  return 'Bên mình ship toàn quốc qua GHN, GHTK, J&T tùy khu vực nha!';
+}
+
+if (contains(['giá sinh viên', 'học sinh', 'giảm cho sinh viên'])) {
+  return 'Sinh viên được giảm 5% và tặng kèm chuột + balo nha, nhớ chụp thẻ sinh viên gửi tụi mình!';
+}
+
+if (contains(['giá doanh nghiệp', 'mua số lượng'])) {
+  return 'Mua số lượng 3 máy trở lên sẽ được báo giá ưu đãi riêng và xuất hoá đơn VAT luôn nha!';
+}
+
+if (contains(['chạy được autocad không', 'dùng để design', 'render'])) {
+  return 'Bạn nên chọn máy chip i7/i9, RAM 16GB, card rời để dùng AutoCAD, Adobe, render cho mượt nha!';
+}
+
+if (contains(['bảo hành ở đâu', 'trung tâm bảo hành'])) {
+  return 'Tụi mình bảo hành tại các TTBH chính hãng như Apple, Dell, Asus... có địa chỉ cụ thể nha!';
+}
+
+if (contains(['làm sao kiểm tra bảo hành'])) {
+  return 'Bạn chỉ cần cung cấp số seri máy hoặc gọi hotline tụi mình check giúp bạn nha!';
+}
+
+if (contains(['bị rơi vỡ', 'nước vào', 'bị cháy'])) {
+  return 'Rơi vỡ hay nước vào không nằm trong bảo hành ạ, nhưng tụi mình hỗ trợ sửa giá ưu đãi nha!';
+}
+
+if (contains(['cổng hdmi', 'cổng usb', 'cổng kết nối'])) {
+  return 'Đa số laptop hiện nay đều có USB 3.0, HDMI, jack tai nghe. Nếu bạn cần loại đặc biệt như Thunderbolt thì tụi mình sẽ check kỹ giúp nha!';
+}
+
+if (contains(['kết nối wifi', 'wifi yếu', 'mạng chậm'])) {
+  return 'Bạn thử khởi động lại modem, nếu vẫn yếu thì có thể do driver. Mang máy đến shop tụi mình hỗ trợ kiểm tra nha!';
+}
+
+if (contains(['webcam', 'camera', 'camera laptop'])) {
+  return 'Các dòng văn phòng, học online đều có webcam HD. Một số dòng gaming sẽ không có sẵn, cần camera rời nha!';
+}
+
+if (contains(['sạc bao lâu đầy', 'sạc pin', 'pin sạc'])) {
+  return 'Laptop sạc đầy trong khoảng 1.5-2 tiếng, có hỗ trợ sạc nhanh tùy dòng nha!';
+}
+
+if (contains(['sạc có bị chai', 'chai pin', 'bảo vệ pin'])) {
+  return 'Bạn nên rút sạc khi pin đầy và không dùng máy khi sạc lâu ngày để bảo vệ pin nha!';
+}
+
+if (contains(['dùng không cắm sạc được không'])) {
+  return 'Được nha, pin laptop hiện đại dùng ổn tầm 5-8 tiếng không cần sạc luôn!';
+}
+
+if (contains(['laptop cho kế toán', 'chạy phần mềm kế toán'])) {
+  return 'Bạn nên dùng máy chip i5, RAM 8GB là chạy mượt MISA, FAST, Excel rồi nhen!';
+}
+
+if (contains(['laptop học lập trình', 'lập trình viên', 'code'])) {
+  return 'Lập trình nên chọn i5/i7, RAM từ 8GB trở lên và màn hình Full HD chống chói để đỡ mỏi mắt nha!';
+}
+
+if (contains(['laptop chạy đồ hoạ', 'photoshop', 'illustrator', 'premiere'])) {
+  return 'Bạn cần chọn máy có card rời, RAM từ 16GB, ổ SSD để render nhanh, ví dụ Macbook Pro M2 hoặc Asus Vivobook Pro nha!';
+}
+
+if (contains(['màn hình', 'kích thước màn', 'full hd', '4k'])) {
+  return 'Shop có các dòng 14", 15.6" và cả 16", độ phân giải Full HD, một số mẫu đồ hoạ có 2K/4K luôn nha!';
+}
+
+if (contains(['màn hình cảm ứng', 'touchscreen'])) {
+  return 'Một số mẫu như HP Envy hoặc Dell XPS có màn hình cảm ứng, giá từ 22tr trở lên nha!';
+}
+
+if (contains(['màn hình đẹp', 'màu chuẩn', 'màn hình đồ hoạ'])) {
+  return 'Bạn nên chọn màn IPS, độ phủ màu cao như 100% sRGB, có trên dòng Macbook hoặc Dell XPS nha!';
+}
+
+if (contains(['intel core i3'])) {
+  return 'Core i3 phù hợp làm việc nhẹ nhàng, học tập online, giá mềm từ 6 triệu nha!';
+}
+
+if (contains(['core i5 gen 12', 'i5 12th'])) {
+  return 'Core i5 Gen 12 hiệu năng mạnh, phù hợp cả học lẫn làm, bên mình đang có nhiều mẫu hot sale nè!';
+}
+
+
+
+if (contains(['ram 8gb', 'ram 16gb', 'ram nâng được không'])) {
+  return 'Phần lớn máy RAM 8GB dùng ổn, bạn có thể nâng lên 16GB tùy dòng – tụi mình hỗ trợ nâng luôn!';
+}
+
+if (contains(['ssd 256', 'ssd 512', 'hdd'])) {
+  return 'SSD 256GB đủ dùng cơ bản, 512GB thoải mái lưu trữ. Nếu bạn thích máy chạy mượt thì ưu tiên SSD nha!';
+}
+
+if (contains(['ok', 'oke' , 'cảm ơn', 'thanks'])) {
+  return 'Nếu còn bất kỳ câu hỏi gì cứ hỏi mình nha!';
+}
   // Nếu không khớp câu nào phía trên
   const responses = [
-    "Bot chưa thông minh lắm, hỏi lại thử nhen!",
-    "Mình chưa hiểu câu đó 😅",
-    "Bạn thử hỏi về sản phẩm, giao hàng, giờ mở cửa nha!",
-    "Hí hí, bạn dễ thương quá 🥹",
-    "Câu này lạ ghê, bạn nói rõ hơn giúp mình nhen!",
-    "Ủa, hỏi gì kỳ vậy trời 😆 bạn hỏi lại rõ hơn nha!",
-    "Bạn muốn hỏi về đơn hàng, sản phẩm hay hỗ trợ kỹ thuật ạ?",
-    "Shop mình luôn sẵn sàng hỗ trợ nè, bạn gõ lại rõ hơn nha!",
-    "Bạn cần hỗ trợ gì cụ thể hơn không ạ?",
+
     "Mình là chatbot dễ thương mà còn hơi ngố, nói lại giúp mình nhen 🥺"
 
   ];

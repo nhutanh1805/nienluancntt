@@ -86,6 +86,11 @@ $router->get('/thank-you', function() {
     $checkoutController->thankYou();  
 });
 
+$router->get('/vnpay_return', function () {
+    $controller = new CheckoutController();
+    $controller->vnpayReturn();
+});
+
 // Search routes
 $router->get('/search', '\App\Controllers\SearchController@index');
 
@@ -275,6 +280,7 @@ $router->get('/members/delete/(\d+)', function($id) {
     $controller = new MemberController();
     $controller->deleteMember((int)$id);
 });
+
 
 
 // Run the router

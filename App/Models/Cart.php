@@ -17,7 +17,7 @@ class Cart
     private static function initDb(): void
     {
         if (self::$db === null) {
-            $dsn = "mysql:host=localhost;dbname=nienluancoso;charset=utf8";
+            $dsn = "mysql:host=localhost;dbname=lapstore;charset=utf8";
             $username = "root";
             $password = "123456";
             try {
@@ -63,7 +63,7 @@ class Cart
         }
 
         // Cập nhật số lượng sản phẩm trong kho
-        $newQuantityInStock = $inventory['quantity_in_stock'] - 0.5;   // Mô phỏng tạo 1 đơn vì code lỗi tạo ra 2 đơn, 1 cho hệ thống, 1 cho người nhập
+        $newQuantityInStock = $inventory['quantity_in_stock'] - 1;   // Mô phỏng tạo 1 đơn vì code lỗi tạo ra 2 đơn, 1 cho hệ thống, 1 cho người nhập
         $stmt = self::$db->prepare("UPDATE inventory SET quantity_in_stock = ? WHERE product_id = ?");
         $stmt->execute([$newQuantityInStock, $productId]);
 

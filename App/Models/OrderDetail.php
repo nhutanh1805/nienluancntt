@@ -16,7 +16,7 @@ class OrderDetail
     private static function initDb(): void
     {
         if (self::$db === null) {
-            $dsn = "mysql:host=localhost;dbname=nienluancoso;charset=utf8";
+            $dsn = "mysql:host=localhost;dbname=lapstore;charset=utf8";
             $username = "root";
             $password = "123456";
             try {

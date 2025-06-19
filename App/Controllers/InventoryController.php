@@ -51,7 +51,7 @@ class InventoryController extends Controller
             Inventory::updateProduct($productId, $name, $img, $description, $price, $priceGoc);
         }
 
-        // Điều hướng lại đến trang danh sách sản phẩm
+
         redirect('/inventory');
     }
 
@@ -93,7 +93,6 @@ class InventoryController extends Controller
             Inventory::addToInventory((int)$productId, $quantity);
         }
 
-        // Điều hướng lại đến trang danh sách sản phẩm
         redirect('/inventory');
     }
 }

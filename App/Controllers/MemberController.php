@@ -38,7 +38,7 @@ class MemberController extends Controller
     public function delete(int $memberId): void
     {
         try {
-            // Member::deleteMember($memberId); // Có thể thêm hàm xóa trong model
+           
 
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();

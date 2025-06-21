@@ -281,6 +281,13 @@ $router->get('/members/delete/(\d+)', function($id) {
     $controller->deleteMember((int)$id);
 });
 
+use App\Controllers\ThongKeController;
+
+$router->get('/thongke', function() {
+    $controller = new ThongKeController();
+    $controller->index();  
+});
+
 
 
 

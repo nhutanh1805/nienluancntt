@@ -195,32 +195,50 @@
     style="min-width: 350px; background: #fff; border: 1px solid #ddd;"
   >
     <h6 class="dropdown-header fw-bold mb-3 text-primary border-bottom pb-2">
-      Hướng Dẫn Mua Hàng
-    </h6>
-    <table class="table table-sm table-borderless mb-0">
-      <tbody>
-        <tr>
-          <td class="fw-bold text-secondary" style="width: 40px;">1</td>
-          <td>Chọn sản phẩm bạn muốn mua.</td>
-        </tr>
-        <tr>
-          <td class="fw-bold text-secondary">2</td>
-          <td>Thêm sản phẩm vào giỏ hàng.</td>
-        </tr>
-        <tr>
-          <td class="fw-bold text-secondary">3</td>
-          <td>Kiểm tra giỏ hàng cập nhật số lượng và tiến hành thanh toán.</td>
-        </tr>
-        <tr>
-          <td class="fw-bold text-secondary">4</td>
-          <td>Truy cập đơn hàng để xem trạng thái đơn hàng.</td>
-        </tr>
-        <tr>
-          <td class="fw-bold text-secondary">5</td>
-          <td>Chờ nhận hàng và thanh toán nếu cần.</td>
-        </tr>
-      </tbody>
-    </table>
+  Hướng Dẫn Mua Hàng
+</h6>
+<table class="table table-sm table-borderless mb-0">
+  <tbody>
+    <tr>
+      <td class="fw-bold text-secondary" style="width: 40px;">1</td>
+      <td>
+        Chọn sản phẩm bạn muốn mua từ trang 
+        <a href="/product" class="text-decoration-none fw-bold text-dark">Sản phẩm</a>.
+      </td>
+    </tr>
+    <tr>
+      <td class="fw-bold text-secondary">2</td>
+      <td>
+        Nhấn nút <span class="fw-bold">Thêm vào giỏ hàng</span> để thêm vào 
+        <a href="/cart" class="text-decoration-none fw-bold text-dark">Giỏ hàng</a>.
+      </td>
+    </tr>
+    <tr>
+      <td class="fw-bold text-secondary">3</td>
+      <td>
+        Vào trang 
+        <a href="/cart" class="text-decoration-none fw-bold text-dark">Giỏ hàng</a> để kiểm tra sản phẩm, cập nhật số lượng và nhấn 
+        <span>"Thanh toán</span> để tiến hành mua hàng.
+      </td>
+    </tr>
+    <tr>
+      <td class="fw-bold text-secondary">4</td>
+      <td>
+        Sau khi thanh toán, truy cập 
+        <a href="/orders/index" class="text-decoration-none fw-bold text-dark">Đơn hàng</a> trong tài khoản để theo dõi trạng thái giao hàng.
+      </td>
+    </tr>
+    <tr>
+      <td class="fw-bold text-secondary">5</td>
+      <td>
+        Nhận hàng tại địa chỉ bạn cung cấp nếu bạn đã thanh toán online. Với đơn 
+        <span>thanh toán khi nhận hàng</span>, hãy chuẩn bị tiền mặt.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
   </div>
 </div>
 
@@ -334,7 +352,7 @@
       <div class="row">
         <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
           <h6 class="text-uppercase mb-4 font-weight-bold" style="color:#e94560;">
-            Slogan
+            LAPSTORE
           </h6>
           <p>
             Khám phá thế giới laptop đa dạng và đột phá, nơi mỗi chiếc máy là một tác phẩm công nghệ và là chìa khóa mở ra trải nghiệm số đỉnh cao. Hãy để chúng tôi đồng hành cùng bạn trên hành trình lựa chọn công cụ hoàn hảo – mở rộng giới hạn sáng tạo và hiệu suất làm việc!

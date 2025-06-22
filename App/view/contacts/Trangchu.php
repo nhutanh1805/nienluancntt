@@ -335,31 +335,56 @@
   <div id="newsList" class="category-list category-collapse">
     <ul class="list-group">
       <li class="list-group-item d-flex">
-        <i class="fa-solid fa-microchip text-primary me-2"></i>
+        <i class="fa-solid fa-laptop text-primary me-2"></i>
         <div>
-          <h6><a href="https://vnexpress.net/microsoft-cong-bo-dot-pha-moi-ve-chip-luong-tu-4851705.html" class="text-decoration-none">Microsoft công bố đột phá mới về chip lượng tử</a></h6>
-          <p class="text-muted">Microsoft giới thiệu Majorana 1, mẫu chip mới giúp máy tính lượng tử tiến gần hơn đến thực tiễn.</p>
+          <h6><a href="https://vnexpress.net/macbook-air-m4-ra-mat-mong-nhe-hieu-nang-cao-4848302.html" class="text-decoration-none">MacBook Air M4 ra mắt: Mỏng nhẹ, hiệu năng vượt trội</a></h6>
+          <p class="text-muted">Apple trình làng MacBook Air M4 với chip M4 mới, pin 18 giờ, cải tiến hiệu suất đa nhiệm.</p>
         </div>
       </li>
       <li class="list-group-item d-flex">
-        <i class="fa-solid fa-robot text-success me-2"></i>
+        <i class="fa-solid fa-bolt text-warning me-2"></i>
         <div>
-          <h6><a href="https://vnexpress.net/ung-dung-thay-quan-ao-bang-ai-gay-sot-tai-viet-nam-4851675.html" class="text-decoration-none">Ứng dụng thay quần áo bằng AI gây sốt tại Việt Nam</a></h6>
-          <p class="text-muted">Beautycam sử dụng AI ghép trang phục, tạo ra ảnh độc đáo nhưng cũng tiềm ẩn nguy cơ về tin giả.</p>
+          <h6><a href="https://vnexpress.net/dell-xps-moi-voi-man-hinh-oled-ra-mat-4845292.html" class="text-decoration-none">Dell XPS mới với màn hình OLED 3K</a></h6>
+          <p class="text-muted">Dell XPS 2025 trang bị màn hình OLED, viền siêu mỏng và chip Intel Core Ultra mới nhất.</p>
         </div>
       </li>
       <li class="list-group-item d-flex">
-        <i class="fa-solid fa-mobile-screen text-danger me-2"></i>
+        <i class="fa-solid fa-microchip text-success me-2"></i>
         <div>
-          <h6><a href="https://vnexpress.net/iphone-16e-trinh-lang-gia-tu-17-trieu-dong-4851660.html" class="text-decoration-none">iPhone 16e trình làng, giá từ 17 triệu đồng</a></h6>
-          <p class="text-muted">Apple ra mắt iPhone 16e với giá cả phải chăng, trang bị modem di động tự thiết kế.</p>
+          <h6><a href="https://vnexpress.net/laptop-cho-game-thu-2025-trang-bi-ai-cao-cap-4851123.html" class="text-decoration-none">Laptop gaming 2025 tích hợp AI cao cấp</a></h6>
+          <p class="text-muted">Nhiều mẫu laptop chơi game tích hợp AI giúp tăng hiệu năng và tối ưu hoá đồ hoạ trong thời gian thực.</p>
+        </div>
+      </li>
+      <li class="list-group-item d-flex">
+        <i class="fa-solid fa-feather-pointed text-danger me-2"></i>
+        <div>
+          <h6><a href="https://vnexpress.net/asus-ra-mat-laptop-sieu-nhe-zenbook-s16-4851450.html" class="text-decoration-none">Asus giới thiệu Zenbook S16: Mỏng nhẹ chỉ 1,1 kg</a></h6>
+          <p class="text-muted">Asus Zenbook S16 sở hữu khung magie siêu nhẹ, vi xử lý AMD Ryzen AI, pin 14 giờ.</p>
+        </div>
+      </li>
+      <li class="list-group-item d-flex">
+        <i class="fa-solid fa-network-wired text-info me-2"></i>
+        <div>
+          <h6><a href="https://vnexpress.net/hp-trinh-lang-dong-elitebook-moi-nhieu-tinh-nang-bao-mat-4850950.html" class="text-decoration-none">HP EliteBook mới ra mắt với tính năng bảo mật cao</a></h6>
+          <p class="text-muted">HP công bố dòng EliteBook 2025 với camera AI, nhận diện gương mặt và mã hoá bảo mật doanh nghiệp.</p>
+        </div>
+      </li>
+      <li class="list-group-item d-flex">
+        <i class="fa-solid fa-fire text-danger me-2"></i>
+        <div>
+          <h6><a href="https://vnexpress.net/msi-ra-mat-laptop-gaming-dong-gt77-titan-4849338.html" class="text-decoration-none">MSI GT77 Titan – Laptop gaming mạnh mẽ nhất</a></h6>
+          <p class="text-muted">MSI GT77 trang bị card RTX 4090, RAM 64GB, tản nhiệt kép và màn hình 4K mini LED.</p>
         </div>
       </li>
     </ul>
     <div class="text-end mt-2">
-      <a href="https://vnexpress.net/cong-nghe" class="text-decoration-none fw-bold"><i class="fa-solid fa-arrow-right"></i> Xem thêm tin tức</a>
+      <a href="https://vnexpress.net/so-hoa/san-pham" class="text-decoration-none fw-bold">
+        <i class="fa-solid fa-arrow-right"></i> Xem thêm tin tức laptop
+      </a>
     </div>
   </div>
+</div>
+
 </div>
 </div>
 

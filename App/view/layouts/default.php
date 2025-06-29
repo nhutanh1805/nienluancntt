@@ -261,16 +261,61 @@
     </div>
 
     <!-- Thông báo -->
-    <div class="dropdown ms-3" title="Thông báo mới">
-      <a class="nav-link dropdown-toggle text-dark p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-bell fa-lg"></i>
-      </a>
-      <ul class="dropdown-menu shadow-lg rounded-3">
-        <li><a class="dropdown-item" href="#">Tin tức mới nhất</a></li>
-        <li><a class="dropdown-item" href="#">Cập nhật quan trọng</a></li>
-        <li><a class="dropdown-item" href="#">Những điều thú vị</a></li>
-      </ul>
-    </div>
+   <!-- Thông báo -->
+<div class="dropdown ms-3" title="Thông báo mới">
+  <a class="nav-link dropdown-toggle text-dark p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fas fa-bell fa-lg"></i>
+  </a>
+  <ul class="dropdown-menu shadow-lg rounded-3" style="width: 350px; max-height: 450px; overflow-y: auto;">
+    <li class="px-3 py-3" style="background-color: #e7f3ff; border-bottom: 1px solid #cce0ff;">
+      <strong>Bạn có đơn hàng vừa thanh toán xong</strong><br>
+      <small class="text-muted">29/06/2025</small>
+      <p style="margin: 0.5rem 0 0;">
+        Cảm ơn bạn đã đặt hàng! Đơn hàng #123456 của bạn đang được xử lý và sẽ sớm giao đến tay bạn. Bạn có thể theo dõi trạng thái đơn hàng trong phần “Đơn hàng của tôi”.
+      </p>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li class="px-3 py-2">
+      <strong>Tin tức mới nhất</strong><br>
+      <small class="text-muted">27/06/2025</small>
+      <p>
+        Hệ thống vừa cập nhật phiên bản 2.5 với nhiều tính năng mới hấp dẫn, bao gồm cải thiện tốc độ xử lý và giao diện thân thiện hơn với người dùng. Bạn sẽ trải nghiệm những thay đổi đáng giá trong lần cập nhật này.
+      </p>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li class="px-3 py-2">
+      <strong>Cập nhật quan trọng</strong><br>
+      <small class="text-muted">25/06/2025</small>
+      <p>
+        Thông báo bảo trì hệ thống sẽ diễn ra vào 02:00 sáng ngày 30/06 để nâng cấp cơ sở dữ liệu và khắc phục một số lỗi nhỏ. Trong thời gian bảo trì, dịch vụ có thể gián đoạn, mong quý khách thông cảm và sắp xếp công việc hợp lý.
+      </p>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li class="px-3 py-2">
+      <strong>Những điều thú vị</strong><br>
+      <small class="text-muted">20/06/2025</small>
+      <p>
+        Tham gia sự kiện tháng 7 để nhận quà tặng hấp dẫn và voucher giảm giá đặc biệt cho các đơn hàng trên 2 triệu đồng. Sự kiện kéo dài từ 01/07 đến 31/07 với nhiều chương trình thú vị đang chờ bạn khám phá.
+      </p>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li class="px-3 py-2">
+      <strong>Khuyến mãi đặc biệt</strong><br>
+      <small class="text-muted">18/06/2025</small>
+      <p>
+        Chào mừng mùa hè, chúng tôi giảm giá đến 30% cho toàn bộ sản phẩm laptop các thương hiệu lớn như Dell, HP, Asus và Lenovo. Cơ hội không thể bỏ lỡ để sở hữu thiết bị chất lượng với giá cực tốt.
+      </p>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li class="px-3 py-2">
+      <strong>Hướng dẫn sử dụng mới</strong><br>
+      <small class="text-muted">15/06/2025</small>
+      <p>
+        Cập nhật bộ tài liệu hướng dẫn sử dụng website và các dịch vụ kèm theo, giúp bạn dễ dàng thao tác và tận dụng tối đa các tính năng mới nhất trên nền tảng.
+      </p>
+    </li>
+  </ul>
+</div>
 
   </div>
 </div>

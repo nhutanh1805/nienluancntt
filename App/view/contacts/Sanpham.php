@@ -147,34 +147,68 @@
           </div>
         </div>
 
-        <!-- Modal thông tin chi tiết sản phẩm -->
-        <div class="modal fade" id="productModal-<?= $contact->id ?>" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header bg-light border-bottom">
-                <h5 class="modal-title" id="productModalLabel">Thông Tin Sản Phẩm: <?= htmlspecialchars($contact->name) ?></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><strong>CPU/Chipset:</strong> <?= htmlspecialchars($contact->cpu) ?></li>
-                  <li class="list-group-item"><strong>RAM:</strong> <?= htmlspecialchars($contact->ram) ?></li>
-                  <li class="list-group-item"><strong>ROM:</strong> <?= htmlspecialchars($contact->storage) ?></li>
-                  <li class="list-group-item"><strong>Dung lượng PIN / Sạc:</strong> <?= htmlspecialchars($contact->battery_capacity) ?></li>
-                  <li class="list-group-item"><strong>Camera:</strong> <?= htmlspecialchars($contact->camera_resolution) ?></li>
-                  <li class="list-group-item"><strong>Màn hình:</strong> <?= htmlspecialchars($contact->screen_size) ?> inch</li>
-                  <li class="list-group-item"><strong>Hệ điều hành:</strong> <?= htmlspecialchars($contact->os) ?></li>
-                  <li class="list-group-item"><strong>Card mạng:</strong> <?= htmlspecialchars($contact->band) ?></li>
-                  <li class="list-group-item"><strong>Chất liệu/ Khả năng:</strong> <?= htmlspecialchars($contact->strap_material) ?></li>
-                  <!-- <li class="list-group-item"><strong>Chống nước, bụi:</strong> <?= htmlspecialchars($contact->water_resistance) ?></li> -->
-                </ul>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-              </div>
+       <!-- Modal thông tin chi tiết sản phẩm -->
+<div class="modal fade" id="productModal-<?= $contact->id ?>" tabindex="-1" aria-labelledby="productModalLabel-<?= $contact->id ?>" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-lg overflow-hidden">
+
+      <!-- Header -->
+      <div class="modal-header bg-dark text-white border-0">
+        <h5 class="modal-title" id="productModalLabel-<?= $contact->id ?>">
+          <i class="fa-solid fa-circle-info me-2"></i>Thông Tin Sản Phẩm
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body p-4 bg-light">
+        <div class="row">
+          <!-- Hình ảnh -->
+          <div class="col-md-5 text-center mb-3 mb-md-0">
+            <img src="<?= htmlspecialchars($contact->img) ?>" alt="<?= htmlspecialchars($contact->name) ?>" class="img-fluid rounded-4 shadow-sm">
+          </div>
+
+          <!-- Thông tin chi tiết -->
+          <div class="col-md-7">
+            <h4 class="fw-bold mb-3"><?= htmlspecialchars($contact->name) ?></h4>
+
+            <div class="mb-3">
+              <span class="text-muted text-decoration-line-through me-2">
+                <?= number_format($contact->priceGoc, 0, ',', '.') ?>₫
+              </span>
+              <span class="text-danger fw-bold fs-4">
+                <?= number_format($contact->price, 0, ',', '.') ?>₫
+              </span>
+            </div>
+
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item bg-light"><strong>CPU/Chipset:</strong> <?= htmlspecialchars($contact->cpu) ?></li>
+              <li class="list-group-item bg-light"><strong>RAM:</strong> <?= htmlspecialchars($contact->ram) ?></li>
+              <li class="list-group-item bg-light"><strong>Bộ nhớ:</strong> <?= htmlspecialchars($contact->storage) ?></li>
+              <li class="list-group-item bg-light"><strong>PIN/Sạc:</strong> <?= htmlspecialchars($contact->battery_capacity) ?></li>
+              <li class="list-group-item bg-light"><strong>Camera:</strong> <?= htmlspecialchars($contact->camera_resolution) ?></li>
+              <li class="list-group-item bg-light"><strong>Màn hình:</strong> <?= htmlspecialchars($contact->screen_size) ?> inch</li>
+              <li class="list-group-item bg-light"><strong>Hệ điều hành:</strong> <?= htmlspecialchars($contact->os) ?></li>
+              <li class="list-group-item bg-light"><strong>Chất liệu:</strong> <?= htmlspecialchars($contact->strap_material) ?></li>
+            </ul>
+
+            <!-- Nút hành động -->
+            <div class="d-flex gap-2">
+              <a href="/cart/add/<?= $contact->id ?>/<?= urlencode($contact->name) ?>" class="btn btn-primary rounded-pill px-4">
+                <i class="fa-solid fa-cart-plus me-1"></i> Thêm vào giỏ
+              </a>
+              <button class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                <i class="fa-solid fa-xmark me-1"></i> Đóng
+              </button>
             </div>
           </div>
         </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
       <?php endforeach; ?>
     </div>
   </div>

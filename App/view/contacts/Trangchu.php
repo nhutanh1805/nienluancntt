@@ -230,59 +230,116 @@
     </div>
     <div class="row ms-1">
       <?php foreach ($contacts as $contact): ?>
-        <div class="col-lg-4 col-sm-6 mb-3">
-          <div class="card border shadow-sm">
-            <img src="<?= htmlspecialchars($contact->img) ?>" class="card-img-top p-2" alt="<?= htmlspecialchars($contact->name) ?>">
-            <div class="card-body text-center">
-              <div class="d-flex justify-content-center gap-2 mb-2">
-                <span class="badge bg-secondary text-decoration-line-through">
-                  <?= number_format(htmlspecialchars($contact->priceGoc), 0, ',', '.') ?> VNĐ
-                </span>
-                <span class="badge bg-danger">
-                  <?= number_format(htmlspecialchars($contact->price), 0, ',', '.') ?> VNĐ
-                </span>
-              </div>
-              <h5 class="card-title"> <?= htmlspecialchars($contact->name) ?> </h5>
-              <p class="card-text"> <?= htmlspecialchars($contact->description) ?> </p>
-            </div>
-            <div class="card-footer text-center">
-              <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#productModal-<?= $contact->id ?>">
-                <i class="fa-solid fa-circle-info"></i> Chi tiết
-              </button>
-              <a href="/cart/add/<?= $contact->id ?>/<?= urlencode($contact->name) ?>" class="btn btn-primary">
-                <i class="fa-solid fa-cart-plus"></i> Mua Hàng
-              </a>
-            </div>
-          </div>
-        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+  <div class="card border-0 shadow-sm rounded-4 position-relative h-100">
+
+    <!-- Ribbon giảm giá -->
+    <?php
+      $discount = 100 - intval($contact->price / $contact->priceGoc * 100);
+    ?>
+    <?php if ($discount > 0): ?>
+      <span class="position-absolute top-0 start-0 bg-danger text-white px-3 py-1 rounded-end-bottom small fw-bold z-2">
+        -<?= $discount ?>%
+      </span>
+    <?php endif; ?>
+
+    <!-- Ảnh sản phẩm -->
+    <img src="<?= htmlspecialchars($contact->img) ?>" class="card-img-top p-3 rounded-4" alt="<?= htmlspecialchars($contact->name) ?>">
+
+    <!-- Nội dung chính -->
+    <div class="card-body text-center d-flex flex-column">
+      <!-- Tên sản phẩm -->
+      <h5 class="fw-semibold mb-2 text-dark"><?= htmlspecialchars($contact->name) ?></h5>
+
+      <!-- Mô tả -->
+      <p class="text-muted small mb-3"><?= htmlspecialchars($contact->description) ?></p>
+
+      <!-- Giá -->
+      <div class="mb-3">
+        <span class="text-decoration-line-through text-muted me-2 small">
+          <?= number_format(htmlspecialchars($contact->priceGoc), 0, ',', '.') ?>₫
+        </span>
+        <span class="text-danger fw-bold fs-5">
+          <?= number_format(htmlspecialchars($contact->price), 0, ',', '.') ?>₫
+        </span>
+      </div>
+
+      <!-- Nút chức năng -->
+      <div class="mt-auto d-flex justify-content-center gap-2">
+        <button type="button" class="btn btn-outline-dark btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#productModal-<?= $contact->id ?>">
+          <i class="fa-solid fa-circle-info me-1"></i> Chi tiết
+        </button>
+        <a href="/cart/add/<?= $contact->id ?>/<?= urlencode($contact->name) ?>" class="btn btn-primary btn-sm rounded-pill px-3">
+          <i class="fa-solid fa-cart-plus me-1"></i> Mua ngay
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
         <!-- Modal thông tin chi tiết sản phẩm -->
-        <div class="modal fade" id="productModal-<?= $contact->id ?>" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header bg-light border-bottom">
-                <h5 class="modal-title" id="productModalLabel">Thông Tin Sản Phẩm: <?= htmlspecialchars($contact->name) ?></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><strong>CPU/Chipser:</strong> <?= htmlspecialchars($contact->cpu) ?></li>
-                  <li class="list-group-item"><strong>RAM:</strong> <?= htmlspecialchars($contact->ram) ?></li>
-                  <li class="list-group-item"><strong>Bộ nhớ:</strong> <?= htmlspecialchars($contact->storage) ?></li>
-                  <li class="list-group-item"><strong>Dung lượng PIN/Sạc:</strong> <?= htmlspecialchars($contact->battery_capacity) ?></li>
-                  <li class="list-group-item"><strong>CAMERA:</strong> <?= htmlspecialchars($contact->camera_resolution) ?></li>
-                  <li class="list-group-item"><strong>Màn hình:</strong> <?= htmlspecialchars($contact->screen_size) ?> inch</li>
-                  <li class="list-group-item"><strong>Hệ điều hành:</strong> <?= htmlspecialchars($contact->os) ?></li>
-                  <li class="list-group-item"><strong>Chất liệu/Khả năng:</strong> <?= htmlspecialchars($contact->strap_material) ?></li>
-                  <!-- <li class="list-group-item"><strong>Chống nước:</strong> <?= htmlspecialchars($contact->water_resistance) ?></li> -->
-                </ul>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-              </div>
+<div class="modal fade" id="productModal-<?= $contact->id ?>" tabindex="-1" aria-labelledby="productModalLabel-<?= $contact->id ?>" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-lg overflow-hidden">
+
+      <!-- Header -->
+      <div class="modal-header bg-dark text-white border-0">
+        <h5 class="modal-title" id="productModalLabel-<?= $contact->id ?>">
+          <i class="fa-solid fa-circle-info me-2"></i>Thông Tin Sản Phẩm
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body p-4 bg-light">
+        <div class="row">
+          <!-- Hình ảnh -->
+          <div class="col-md-5 text-center mb-3 mb-md-0">
+            <img src="<?= htmlspecialchars($contact->img) ?>" alt="<?= htmlspecialchars($contact->name) ?>" class="img-fluid rounded-4 shadow-sm">
+          </div>
+
+          <!-- Thông tin chi tiết -->
+          <div class="col-md-7">
+            <h4 class="fw-bold mb-3"><?= htmlspecialchars($contact->name) ?></h4>
+
+            <div class="mb-3">
+              <span class="text-muted text-decoration-line-through me-2">
+                <?= number_format($contact->priceGoc, 0, ',', '.') ?>₫
+              </span>
+              <span class="text-danger fw-bold fs-4">
+                <?= number_format($contact->price, 0, ',', '.') ?>₫
+              </span>
+            </div>
+
+            <ul class="list-group list-group-flush mb-4">
+              <li class="list-group-item bg-light"><strong>CPU/Chipset:</strong> <?= htmlspecialchars($contact->cpu) ?></li>
+              <li class="list-group-item bg-light"><strong>RAM:</strong> <?= htmlspecialchars($contact->ram) ?></li>
+              <li class="list-group-item bg-light"><strong>Bộ nhớ:</strong> <?= htmlspecialchars($contact->storage) ?></li>
+              <li class="list-group-item bg-light"><strong>PIN/Sạc:</strong> <?= htmlspecialchars($contact->battery_capacity) ?></li>
+              <li class="list-group-item bg-light"><strong>Camera:</strong> <?= htmlspecialchars($contact->camera_resolution) ?></li>
+              <li class="list-group-item bg-light"><strong>Màn hình:</strong> <?= htmlspecialchars($contact->screen_size) ?> inch</li>
+              <li class="list-group-item bg-light"><strong>Hệ điều hành:</strong> <?= htmlspecialchars($contact->os) ?></li>
+              <li class="list-group-item bg-light"><strong>Chất liệu:</strong> <?= htmlspecialchars($contact->strap_material) ?></li>
+            </ul>
+
+            <!-- Nút hành động -->
+            <div class="d-flex gap-2">
+              <a href="/cart/add/<?= $contact->id ?>/<?= urlencode($contact->name) ?>" class="btn btn-primary rounded-pill px-4">
+                <i class="fa-solid fa-cart-plus me-1"></i> Thêm vào giỏ
+              </a>
+              <button class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                <i class="fa-solid fa-xmark me-1"></i> Đóng
+              </button>
             </div>
           </div>
         </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
       <?php endforeach; ?>
     </div>
   </div>

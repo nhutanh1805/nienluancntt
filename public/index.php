@@ -289,6 +289,19 @@ $router->get('/thongke', function() {
 });
 
 
+use App\Controllers\ChatController;
+
+// Hiển thị trang chat (GET)
+$router->get('/chat', function() {
+    $chatController = new ChatController();
+    $chatController->index();
+});
+
+// Xử lý gửi tin nhắn (POST)
+$router->post('/chat/send', function() {
+    $chatController = new ChatController();
+    $chatController->send();
+});
 
 
 // Run the router

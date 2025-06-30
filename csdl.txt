@@ -315,3 +315,24 @@ CREATE TABLE comments (
     CONSTRAINT fk_comment_order FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
 );
 
+
+CREATE TABLE `messages` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  
+  -- Người gửi tin nhắn
+  `sender_id` INT NOT NULL,
+  
+  -- Người nhận tin nhắn
+  `receiver_id` INT NOT NULL,
+  
+  -- Nội dung tin nhắn
+  `message` TEXT NOT NULL,
+  
+  -- Thời điểm gửi
+  `sent_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  
+  -- Liên kết đến bảng users
+  FOREIGN KEY (`sender_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`receiver_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+

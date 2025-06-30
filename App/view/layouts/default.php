@@ -344,24 +344,29 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item ms-1">
-          <a class="btn btn-primary text-white shadow-sm px-3 py-2 d-flex align-items-center" href="/">
+          <a class="btn btn-primary text-secondary shadow-sm px-3 py-2 d-flex align-items-center" href="/">
             <i class="fa-solid fa-house me-2"></i> TRANG CHỦ
           </a>
         </li>
         <li class="nav-item ms-1">
-          <a class="btn btn-success text-white shadow-sm px-3 py-2 d-flex align-items-center" href="/product">
+          <a class="btn btn-success text-secondary shadow-sm px-3 py-2 d-flex align-items-center" href="/product">
             <i class="fa-brands fa-product-hunt me-2"></i> SẢN PHẨM
           </a>
         </li>
         <li class="nav-item ms-1">
-          <a class="btn btn-danger text-white shadow-sm px-3 py-2 d-flex align-items-center" href="/homeAmin">
+          <a class="btn btn-danger text-secondary shadow-sm px-3 py-2 d-flex align-items-center" href="/homeAmin">
             <i class="fa-solid fa-house me-2"></i> QUẢN TRỊ
+          </a>
+     <li class="nav-item ms-1">
+          <a class="btn btn-info text-secondary shadow-sm px-3 py-2 d-flex align-items-center" href="/chat">
+            <i class="fa-solid fa-comments me-2"></i> CHAT CHUNG
           </a>
         </li>
 
+
       <!-- Tài khoản -->
 <li class="nav-item ms-1 dropdown">
-  <a class="btn btn-info text-white shadow-sm px-3 py-2 d-flex align-items-center dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a class="btn btn-info text-secondary shadow-sm px-3 py-2 d-flex align-items-center dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <i class="fa-solid fa-user me-2"></i> TÀI KHOẢN
   </a>
   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -377,7 +382,13 @@
       <form id="logout-form" class="d-none" action="/logout" method="POST"></form>
     <?php endif ?>
   </ul>
+  <style>
+  #navbarDropdown.dropdown-toggle::after {
+    display: none;
+  }
+</style>
 </li>
+
 
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
 

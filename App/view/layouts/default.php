@@ -359,7 +359,7 @@
           </a>
      <li class="nav-item ms-1">
           <a class="btn btn-info text-secondary shadow-sm px-3 py-2 d-flex align-items-center" href="/chat">
-            <i class="fa-solid fa-comments me-2"></i> CHAT CHUNG
+            <i class="fa-solid fa-comments me-2"></i> CHAT 
           </a>
         </li>
 

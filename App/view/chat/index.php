@@ -1,6 +1,9 @@
 <?php $this->layout("layouts/default", ["title" => "Chat Chung"]) ?>
 
 <?php $this->start("page_specific_css") ?>
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 <style>
   #chat-container {
     max-width: 800px;
@@ -48,13 +51,11 @@
   .message-item.other {
     flex-direction: row;
     align-self: flex-start;
-    justify-content: flex-start;
   }
 
   .message-item.self {
     flex-direction: row-reverse;
     align-self: flex-end;
-    justify-content: flex-end;
   }
 
   .message-avatar {
@@ -83,6 +84,12 @@
     font-weight: 600;
     margin-bottom: 0.2rem;
     color: #333;
+    display: flex;
+    align-items: center;
+  }
+
+  .message-sender form {
+    margin-left: 0.5rem;
   }
 
   .message-content {
@@ -93,6 +100,13 @@
     word-wrap: break-word;
     position: relative;
     max-width: 100%;
+    transition: transform 0.15s ease, background-color 0.2s ease;
+  }
+
+  .message-content:hover {
+    background-color: #e2e6ea;
+    transform: scale(1.01);
+    cursor: default;
   }
 
   .message-item.self .message-content {
@@ -101,10 +115,8 @@
     border-bottom-right-radius: 0;
   }
 
-  .message-item.other .message-content {
-    background-color: #ffffff;
-    color: #000;
-    border-bottom-left-radius: 0;
+  .message-item.self .message-content:hover {
+    background-color: #0073e6;
   }
 
   .message-time {
@@ -145,12 +157,30 @@
     justify-content: center;
     margin-left: 0.75rem;
   }
+
+  /* nút thu hồi tin nhắn */
+  .revoke-btn {
+    background: transparent;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .revoke-btn:hover {
+    color: #a71d2a;
+  }
 </style>
 <?php $this->stop() ?>
 
 <?php $this->start("page") ?>
 <div id="chat-container">
-  <div id="chat-header">💬 Chat Chung</div>
+  <div id="chat-header">
+    💬 Chat Với Mọi Người
+  </div>
 
   <div id="chat-box">
     <?php if (empty($messages)): ?>
@@ -159,16 +189,34 @@
       <ul class="message-list">
         <?php foreach ($messages as $msg): ?>
           <?php 
-            $isSelf = isset($currentUser) && $currentUser === $msg['sender_name'];
+            $isSelf = isset($userId) && $userId == $msg['sender_id'];
             $name = urlencode($msg['sender_name']);
             $avatarUrl = !empty($msg['avatar_url']) ? $msg['avatar_url'] : "https://ui-avatars.com/api/?name=$name&background=random&rounded=true&size=64";
           ?>
           <li class="message-item <?= $isSelf ? 'self' : 'other' ?>">
             <div class="message-avatar" style="background-image: url('<?= htmlspecialchars($avatarUrl) ?>');"></div>
             <div class="message-content-wrapper">
-              <div class="message-sender"><?= htmlspecialchars($msg['sender_name']) ?></div>
-              <div class="message-content"><?= nl2br(htmlspecialchars($msg['message'])) ?></div>
-              <div class="message-time"><?= date("H:i d/m/Y", strtotime($msg['sent_at'])) ?></div>
+              <div class="message-sender">
+                <i class="bi bi-person-circle me-1"></i>
+                <?= htmlspecialchars($msg['sender_name']) ?>
+
+                <?php if ($isSelf): ?>
+                  <form action="/chat/revoke" method="POST" onsubmit="return confirm('Bạn có chắc muốn thu hồi tin nhắn này?');" title="Thu hồi tin nhắn" style="display:inline-block;">
+                    <input type="hidden" name="message_id" value="<?= $msg['id'] ?>">
+                    <button type="submit" class="revoke-btn" aria-label="Thu hồi tin nhắn">
+                      <i class="bi bi-x-circle-fill"></i>
+                    </button>
+                  </form>
+                <?php endif; ?>
+              </div>
+              <div class="message-content shadow-sm">
+                <i class="bi bi-chat-left-text me-2 text-primary"></i>
+                <?= nl2br(htmlspecialchars($msg['message'])) ?>
+              </div>
+              <div class="message-time">
+                <i class="bi bi-clock me-1"></i>
+                <?= date("H:i d/m/Y", strtotime($msg['sent_at'])) ?>
+              </div>
             </div>
           </li>
         <?php endforeach; ?>
@@ -179,7 +227,7 @@
   <div id="chat-footer" class="d-flex align-items-center">
     <form action="/chat/send" method="POST" class="d-flex w-100" autocomplete="off">
       <textarea id="chat-message-input" name="message" placeholder="Aa" rows="1" required oninput="autoGrow(this)"></textarea>
-      <button type="submit" id="chat-send-btn" class="btn btn-primary">
+      <button type="submit" id="chat-send-btn" class="btn btn-primary" title="Gửi tin nhắn">
         <i class="bi bi-send-fill"></i>
       </button>
     </form>

@@ -2,31 +2,28 @@
 namespace App\Controllers;
 
 use App\Models\Message;
-use PDO;
 
 class ChatController extends Controller
 {
-    // Hiển thị trang chat và lấy tất cả tin nhắn chung
     public function index(): void
     {
-        // Kiểm tra user đã đăng nhập
         $userId = $_SESSION['user_id'] ?? null;
+        $currentUserName = $_SESSION['user_name'] ?? null; // giả sử bạn lưu tên user trong session
+
         if (!$userId) {
             redirect('/login');
             return;
         }
 
-        // Lấy tất cả tin nhắn chat chung
         $messages = Message::getAllMessages();
 
-        // Gửi dữ liệu sang view chat/index.php
         $this->sendPage('chat/index', [
             'messages' => $messages,
-            'userId' => $userId
+            'userId' => $userId,
+            'currentUser' => $userId,   // truyền userId để so sánh
         ]);
     }
 
-    // Xử lý gửi tin nhắn POST
     public function send(): void
     {
         $userId = $_SESSION['user_id'] ?? null;
@@ -39,7 +36,6 @@ class ChatController extends Controller
             $messageText = trim($_POST['message']);
 
             if ($messageText === '') {
-                // Có thể lưu lỗi vào session hoặc trả về view với lỗi
                 $_SESSION['error'] = 'Nội dung tin nhắn không được để trống.';
                 redirect('/chat');
                 return;
@@ -52,6 +48,38 @@ class ChatController extends Controller
                 $_SESSION['error'] = $e->getMessage();
                 redirect('/chat');
             }
+        } else {
+            redirect('/chat');
+        }
+    }
+
+    // Xử lý thu hồi tin nhắn POST
+    public function revoke(): void
+    {
+        $userId = $_SESSION['user_id'] ?? null;
+        if (!$userId) {
+            redirect('/login');
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['message_id'])) {
+            $messageId = (int) $_POST['message_id'];
+
+            if ($messageId <= 0) {
+                $_SESSION['error'] = 'ID tin nhắn không hợp lệ.';
+                redirect('/chat');
+                return;
+            }
+
+            $success = Message::revokeMessage($messageId, $userId);
+
+            if ($success) {
+                $_SESSION['success'] = 'Thu hồi tin nhắn thành công.';
+            } else {
+                $_SESSION['error'] = 'Không thể thu hồi tin nhắn (có thể không phải tin nhắn của bạn).';
+            }
+
+            redirect('/chat');
         } else {
             redirect('/chat');
         }

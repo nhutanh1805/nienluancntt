@@ -53,5 +53,13 @@ class Message
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // Thu hồi tin nhắn theo id và sender_id (chỉ được thu hồi tin nhắn của chính mình)
+    public static function revokeMessage(int $messageId, int $senderId): bool
+    {
+        self::initDb();
+        $stmt = self::$db->prepare("DELETE FROM messages WHERE id = ? AND sender_id = ?");
+        $stmt->execute([$messageId, $senderId]);
+        return $stmt->rowCount() > 0; // true nếu xóa được, false nếu không
+    }
 }
-?>

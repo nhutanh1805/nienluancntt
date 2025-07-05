@@ -10,12 +10,12 @@
     <div class="container py-4">
         <div class="card shadow-sm">
             <div class="card-header bg-dark text-white text-center">
-                <h3 class="mb-0"><i class="bi bi-people-fill"></i> Danh sách Thành viên</h3>
+                <h3 class="mb-0"><i class="bi bi-people-fill me-2"></i>Danh sách Thành viên</h3>
             </div>
             <div class="card-body">
                 <?php if (!empty($_SESSION['success_message'])): ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <i class="bi bi-check-circle-fill"></i> <?= htmlspecialchars($_SESSION['success_message']) ?>
+                        <i class="bi bi-check-circle-fill me-1"></i> <?= htmlspecialchars($_SESSION['success_message']) ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <?php unset($_SESSION['success_message']); ?>
@@ -23,7 +23,7 @@
 
                 <?php if (!empty($_SESSION['error_message'])): ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill"></i> <?= htmlspecialchars($_SESSION['error_message']) ?>
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> <?= htmlspecialchars($_SESSION['error_message']) ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <?php unset($_SESSION['error_message']); ?>
@@ -36,12 +36,12 @@
                         <table id="memberTable" class="table table-striped table-bordered align-middle">
                             <thead class="table-light text-center">
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Tên đăng nhập</th>
-                                    <th>Email</th>
-                                    <th>Ngày đăng ký</th>
-                                    <th>Vai trò</th>
-                                    <th>Hành động</th>
+                                    <th><i class="bi bi-hash me-1"></i>ID</th>
+                                    <th><i class="bi bi-person-fill me-1"></i>Tên đăng nhập</th>
+                                    <th><i class="bi bi-envelope-fill me-1"></i>Email</th>
+                                    <th><i class="bi bi-calendar-check-fill me-1"></i>Ngày đăng ký</th>
+                                    <th><i class="bi bi-person-badge-fill me-1"></i>Vai trò</th>
+                                    <th><i class="bi bi-tools me-1"></i>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,13 +58,11 @@
                                         </a>
 
                                         <a href="/members/delete/<?= urlencode($member['id']) ?>" 
-   class="btn btn-sm btn-danger mb-1"
-   onclick="return confirm('Bạn có chắc chắn muốn xóa thành viên này?');">
-   <i class="bi bi-trash"></i> Xóa
-</a>
+                                           class="btn btn-sm btn-danger mb-1"
+                                           onclick="return confirm('Bạn có chắc chắn muốn xóa thành viên này?');">
+                                           <i class="bi bi-trash"></i> Xóa
+                                        </a>
 
-
-                                        <!-- Form Ban -->
                                         <form action="/member/ban/<?= htmlspecialchars($member['id']) ?>" method="POST" class="d-inline-block mb-1 mt-1">
                                             <div class="input-group input-group-sm">
                                                 <input type="number" name="ban_minutes" min="1" placeholder="phút" required class="form-control" style="max-width: 80px;">

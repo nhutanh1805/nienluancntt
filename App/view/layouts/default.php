@@ -354,9 +354,11 @@
           </a>
         </li>
         <li class="nav-item ms-1">
-          <a class="btn btn-danger text-secondary shadow-sm px-3 py-2 d-flex align-items-center" href="/homeAmin">
-            <i class="fa-solid fa-house me-2"></i> QUẢN TRỊ
-          </a>
+  <a class="btn btn-danger text-secondary shadow-sm px-3 py-2 d-flex align-items-center" href="/homeAmin">
+    <i class="fa-solid fa-user-shield me-2"></i> QUẢN TRỊ
+  </a>
+</li>
+
      <li class="nav-item ms-1">
           <a class="btn btn-info text-secondary shadow-sm px-3 py-2 d-flex align-items-center" href="/chat">
             <i class="fa-solid fa-comments me-2"></i> CHAT 

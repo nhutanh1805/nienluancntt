@@ -19,7 +19,7 @@
     <div class="container mt-4">
         <div class="card shadow">
             <div class="card-header bg-primary text-white text-center">
-                <h3 class="mb-0"><i class="bi bi-chat-dots-fill"></i> Danh sách bình luận đơn hàng</h3>
+                <h3 class="mb-0"><i class="bi bi-chat-dots-fill me-2"></i>Danh sách bình luận đơn hàng</h3>
             </div>
             <div class="card-body">
 
@@ -32,11 +32,11 @@
                         <table id="commentsTable" class="table table-bordered table-hover align-middle">
                             <thead class="table-light text-center">
                                 <tr>
-                                    <th>Mã Đơn hàng</th>
-                                    <th>Mã Người dùng</th>
-                                    <th>Tên người dùng</th>
-                                    <th>Tổng tiền</th>
-                                    <th>Bình luận</th>
+                                    <th><i class="bi bi-upc-scan me-1"></i>Mã Đơn hàng</th>
+                                    <th><i class="bi bi-person-badge me-1"></i>Mã Người dùng</th>
+                                    <th><i class="bi bi-person-circle me-1"></i>Tên người dùng</th>
+                                    <th><i class="bi bi-cash-stack me-1"></i>Tổng tiền</th>
+                                    <th><i class="bi bi-chat-left-text me-1"></i>Bình luận</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,7 +45,7 @@
                                         <td class="text-center text-muted"><?= htmlspecialchars($comment['id']) ?></td>
                                         <td class="text-center"><?= htmlspecialchars($comment['user_id']) ?></td>
                                         <td>
-                                            <i class="bi bi-person-circle text-primary"></i>
+                                            <i class="bi bi-person-circle text-primary me-1"></i>
                                             <?= htmlspecialchars($comment['user_name']) ?>
                                         </td>
                                         <td class="text-end fw-semibold text-success">

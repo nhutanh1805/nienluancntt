@@ -29,7 +29,9 @@
 
                 <form class="filter-form row g-3 align-items-end" method="GET" action="/thongke" novalidate>
                     <div class="col-12 col-md-5">
-                        <label for="filterType" class="form-label fw-semibold">Lọc theo</label>
+                        <label for="filterType" class="form-label fw-semibold">
+                            <i class="bi bi-filter-circle me-1 text-primary"></i>Lọc theo
+                        </label>
                         <select name="filterType" id="filterType" class="form-select" required>
                             <option value="all" <?= ($filterType === 'all') ? 'selected' : '' ?>>Tất cả</option>
                             <option value="day" <?= ($filterType === 'day') ? 'selected' : '' ?>>Ngày</option>
@@ -71,7 +73,10 @@
                         <h5 class="text-success fw-bold mb-2">
                             <i class="bi bi-currency-dollar me-2"></i>Tổng doanh thu
                         </h5>
-                        <p class="fs-3 fw-bold text-success mb-0"><?= number_format($totalRevenue, 0, ',', '.') ?> VNĐ</p>
+                        <p class="fs-3 fw-bold text-success mb-0">
+                            <?= number_format($totalRevenue, 0, ',', '.') ?> VNĐ
+                            <span class="ms-2 text-muted fw-normal">(~ <?= number_format($totalRevenue / 26000, 2, '.', ',') ?> USD)</span>
+                        </p>
                     </div>
 
                     <div class="mb-5">
@@ -81,7 +86,7 @@
                         <ul class="list-group shadow-sm">
                             <?php foreach ($orderCounts as $item): ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <?= translateStatusToVietnamese($item['status']) ?>
+                                    <span><?= getStatusIcon($item['status']) ?><?= translateStatusToVietnamese($item['status']) ?></span>
                                     <span class="badge bg-secondary rounded-pill fs-6"><?= $item['count'] ?> đơn</span>
                                 </li>
                             <?php endforeach; ?>
@@ -95,10 +100,10 @@
                         <table id="revenueTable" class="table table-striped table-bordered align-middle table-hover">
                             <thead class="table-light text-center align-middle">
                                 <tr>
-                                    <th style="width: 5%;">Mã đơn hàng</th>
-                                    <th style="width: 20%;">Tên người đặt</th>
-                                    <th style="width: 15%;">Tổng tiền</th>
-                                    <th style="width: 20%;">Thời gian đặt hàng</th>
+                                    <th style="width: 5%;"><i class="bi bi-upc-scan"></i> Mã đơn</th>
+                                    <th style="width: 20%;"><i class="bi bi-person"></i> Người đặt</th>
+                                    <th style="width: 15%;"><i class="bi bi-cash-stack"></i> Tổng tiền</th>
+                                    <th style="width: 20%;"><i class="bi bi-clock-history"></i> Thời gian</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -175,6 +180,16 @@ function translateStatusToVietnamese(string $status): string {
         'Processing' => 'Đang xử lý',
         'Shipped' => 'Đang giao hàng',
         default => $status,
+    };
+}
+
+function getStatusIcon(string $status): string {
+    return match($status) {
+        'Delivered' => '<i class="bi bi-check-circle-fill text-success me-1"></i>',
+        'Cancelled' => '<i class="bi bi-x-circle-fill text-danger me-1"></i>',
+        'Processing' => '<i class="bi bi-arrow-repeat text-warning me-1"></i>',
+        'Shipped' => '<i class="bi bi-truck-front-fill text-info me-1"></i>',
+        default => '<i class="bi bi-question-circle-fill text-secondary me-1"></i>',
     };
 }
 ?>

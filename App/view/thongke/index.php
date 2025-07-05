@@ -8,11 +8,9 @@
         max-width: 480px;
         margin-bottom: 30px;
     }
-    /* Làm bảng có hiệu ứng hover rõ nét */
     #revenueTable tbody tr:hover {
         background-color: #f1f7ff;
     }
-    /* Căn giữa cột trạng thái và người đặt */
     .text-center-vertical {
         vertical-align: middle !important;
         text-align: center;
@@ -97,17 +95,17 @@
                         <table id="revenueTable" class="table table-striped table-bordered align-middle table-hover">
                             <thead class="table-light text-center align-middle">
                                 <tr>
-                                    <th style="width: 5%;">ID</th>
-                                    <th style="width: 15%;">Người đặt</th>
+                                    <th style="width: 5%;">Mã đơn hàng</th>
+                                    <th style="width: 20%;">Tên người đặt</th>
                                     <th style="width: 15%;">Tổng tiền</th>
-                                    <th style="width: 20%;">Ngày đặt</th>
+                                    <th style="width: 20%;">Thời gian đặt hàng</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($deliveredOrders as $order): ?>
                                     <tr>
                                         <td class="text-center-vertical"><?= $order['id'] ?></td>
-                                        <td class="text-center-vertical"><?= $order['user_id'] ?></td>
+                                        <td class="text-center-vertical"><?= htmlspecialchars($order['user_name']) ?></td>
                                         <td class="text-end text-success fw-semibold"><?= number_format($order['total_amount'], 0, ',', '.') ?> VNĐ</td>
                                         <td class="text-center-vertical"><?= $order['created_at'] ?></td>
                                     </tr>

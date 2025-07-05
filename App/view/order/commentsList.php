@@ -32,8 +32,8 @@
                         <table id="commentsTable" class="table table-bordered table-hover align-middle">
                             <thead class="table-light text-center">
                                 <tr>
-                                    <th>ID Đơn hàng</th>
-                                    <th>ID Người dùng</th>
+                                    <th>Mã Đơn hàng</th>
+                                    <th>Mã Người dùng</th>
                                     <th>Tên người dùng</th>
                                     <th>Tổng tiền</th>
                                     <th>Bình luận</th>

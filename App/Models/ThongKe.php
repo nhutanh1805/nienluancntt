@@ -84,21 +84,25 @@ class ThongKe
     {
         self::initDb();
 
-        $sql = "SELECT * FROM orders WHERE status = 'Delivered'";
+        $sql = "SELECT orders.*, users.name AS user_name 
+                FROM orders 
+                JOIN users ON orders.user_id = users.id 
+                WHERE orders.status = 'Delivered'";
+        
         $params = [];
 
         if ($filterType === 'day' && $filterValue) {
-            $sql .= " AND DATE(created_at) = ?";
+            $sql .= " AND DATE(orders.created_at) = ?";
             $params[] = $filterValue;
         } elseif ($filterType === 'month' && $filterValue) {
-            $sql .= " AND DATE_FORMAT(created_at, '%Y-%m') = ?";
+            $sql .= " AND DATE_FORMAT(orders.created_at, '%Y-%m') = ?";
             $params[] = $filterValue;
         } elseif ($filterType === 'year' && $filterValue) {
-            $sql .= " AND DATE_FORMAT(created_at, '%Y') = ?";
+            $sql .= " AND DATE_FORMAT(orders.created_at, '%Y') = ?";
             $params[] = $filterValue;
         }
 
-        $sql .= " ORDER BY created_at DESC";
+        $sql .= " ORDER BY orders.created_at DESC";
 
         $stmt = self::$db->prepare($sql);
         $stmt->execute($params);

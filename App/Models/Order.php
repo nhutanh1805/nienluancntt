@@ -71,28 +71,38 @@ class Order
 
 
 
- // Lấy tất cả đơn hàng
- public static function getAllOrders(): array
- {
-     self::initDb();
-     
-     // Lấy tất cả đơn hàng từ bảng orders
-     $stmt = self::$db->prepare("SELECT * FROM orders");
-     $stmt->execute();
+// Lấy tất cả đơn hàng kèm tên người dùng
+public static function getAllOrders(): array
+{
+    self::initDb();
 
-     return $stmt->fetchAll(PDO::FETCH_ASSOC);  
- }
+    $stmt = self::$db->prepare("
+        SELECT o.id, o.user_id, o.address, o.total_amount, o.status, o.created_at, o.updated_at, u.name
+        FROM orders o
+        JOIN users u ON o.user_id = u.id
+    ");
+    
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
  
-    // Lấy tất cả đơn hàng của người dùng
-    public static function getUserOrders(int $userId): array
-    {
-        self::initDb();
-        $stmt = self::$db->prepare("SELECT o.id, o.address, o.total_amount, o.status, o.created_at, o.updated_at 
-                                    FROM orders o
-                                    WHERE o.user_id = ?");
-        $stmt->execute([$userId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+ // Lấy tất cả đơn hàng của một người dùng, kèm tên người dùng
+public static function getUserOrders(int $userId): array
+{
+    self::initDb();
+    
+    $stmt = self::$db->prepare("
+        SELECT o.id, o.user_id, o.address, o.total_amount, o.status, o.created_at, o.updated_at, u.name
+        FROM orders o
+        JOIN users u ON o.user_id = u.id
+        WHERE o.user_id = ?
+    ");
+
+    $stmt->execute([$userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
     // Cập nhật địa chỉ của đơn hàng
     public static function updateOrderAddress(int $orderId, string $newAddress): void

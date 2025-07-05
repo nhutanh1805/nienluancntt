@@ -17,8 +17,9 @@
                         <table class="table table-bordered align-middle table-hover">
                             <thead class="table-dark text-center">
                                 <tr>
-                                    <th>ID Đơn Hàng</th>
-                                    <th>ID Người Dùng</th>
+                                    <th>Mã Đơn Hàng</th>
+                                    <th>Mã Người Dùng</th>
+                                    <th>Tên Người Dùng</th> 
                                     <th>Tổng Tiền</th>
                                     <th>Trạng Thái</th>
                                     <th>Ngày Tạo</th>
@@ -30,6 +31,7 @@
                                     <tr id="order_<?= $order['id'] ?>">
                                         <td class="text-center"><?= htmlspecialchars($order['id']) ?></td>
                                         <td class="text-center"><?= htmlspecialchars($order['user_id']) ?></td>
+                                        <td class="text-center"><?= htmlspecialchars($order['name']) ?></td> <!-- Dòng mới -->
                                         <td class="text-end text-success fw-bold">
                                             <?= number_format($order['total_amount'] ?? 0, 0, ',', '.') ?> VNĐ
                                         </td>

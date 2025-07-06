@@ -115,6 +115,29 @@
               </div>
               <h5 class="card-title"><?= htmlspecialchars($contact->name) ?></h5>
               <p class="card-text"><?= htmlspecialchars($contact->description) ?></p>
+              <?php $averageRating = $contact->getAverageRating(); ?>
+<div class="mb-2">
+  <span class="text-warning">
+    <?php for ($i = 1; $i <= 5; $i++): ?>
+      <i class="bi <?= $i <= round($averageRating) ? 'bi-star-fill' : 'bi-star' ?>"></i>
+    <?php endfor; ?>
+  </span>
+  <small class="text-muted">(<?= number_format($averageRating, 1) ?> ★)</small>
+</div>
+<?php $latestReview = $contact->getLatestReview(); ?>
+<?php if ($latestReview): ?>
+  <div class="bg-light rounded px-2 py-1 mt-2 small text-start border border-secondary-subtle">
+    <i class="fa-solid fa-comment-dots text-secondary"></i>
+    <strong><?= htmlspecialchars($latestReview['user_name']) ?>:</strong>
+    <em><?= htmlspecialchars($latestReview['comment']) ?></em>
+    <div class="text-warning small">
+      <?php for ($i = 1; $i <= 5; $i++): ?>
+        <i class="fa<?= $i <= $latestReview['rating'] ? 's' : 'r' ?> fa-star"></i>
+      <?php endfor; ?>
+    </div>
+  </div>
+<?php endif; ?>
+
             </div>
 
             <div class="card-footer text-center">
@@ -123,27 +146,38 @@
               // Lấy số lượng tồn kho
               $quantityInStock = $contact->getStockQuantity();
               ?>
-              <p class="stock-quantity mb-2">
-                <strong>Số lượng còn lại:</strong>
-                <span class="badge <?php echo ($quantityInStock <= 5) ? 'bg-danger' : 'bg-success'; ?>">
-                  <?= htmlspecialchars($quantityInStock) ?> sản phẩm
-                </span>
-              </p>
-<!-- Số lượng đã bán -->
-<?php $soldQuantity = $contact->getSoldQuantity(); ?>
-<p class="sold-quantity mb-2">
-  <strong>Đã bán:</strong>
-  <span class="badge bg-primary">
-    <?= $soldQuantity ?> sản phẩm
-  </span>
-</p>
+              <?php
+  $quantityInStock = $contact->getStockQuantity();
+  $soldQuantity = $contact->getSoldQuantity();
+?>
+<div class="text-start mb-3 border rounded p-2 bg-white shadow-sm">
+  <div class="mb-2 d-flex align-items-center">
+    <i class="fa-solid fa-box-open text-success me-2"></i>
+    <strong class="me-1">Còn lại:</strong>
+    <span class="badge <?= ($quantityInStock <= 5) ? 'bg-danger' : 'bg-success'; ?>">
+      <?= htmlspecialchars($quantityInStock) ?> sản phẩm
+    </span>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <i class="fa-solid fa-check-double text-primary me-2"></i>
+    <strong class="me-1">Đã bán:</strong>
+    <span class="badge bg-primary">
+      <?= htmlspecialchars($soldQuantity) ?> sản phẩm
+    </span>
+  </div>
+</div>
+
 
               <!-- Thanh tiến trình -->
-              <div class="progress mb-2" style="height: 25px;">
-                <div class="progress-bar" role="progressbar" style="width: <?= ($quantityInStock > 0 ? min(100, ($quantityInStock / 100) * 100) : 0) ?>%" aria-valuenow="<?= $quantityInStock ?>" aria-valuemin="0" aria-valuemax="100">
-                  <?= $quantityInStock ?> sản phẩm còn
-                </div>
-              </div>
+<div class="progress mb-2" style="height: 25px;">
+  <div class="progress-bar bg-success" role="progressbar"
+       style="width: <?= ($quantityInStock > 0 ? min(100, ($quantityInStock / 100) * 100) : 0) ?>%"
+       aria-valuenow="<?= $quantityInStock ?>" aria-valuemin="0" aria-valuemax="100">
+    <?= $quantityInStock ?> sản phẩm còn
+  </div>
+</div>
+
 
               <button type="button" class="btn btn-outline-secondary mt-2" data-bs-toggle="modal" data-bs-target="#productModal-<?= $contact->id ?>">
                 <i class="fa-solid fa-circle-info"></i> Chi tiết

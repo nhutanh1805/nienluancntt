@@ -373,5 +373,31 @@ public function getSoldQuantity(): int
     return $row && $row['total_sold'] ? (int) $row['total_sold'] : 0;
 }
 
+public function getAverageRating(): float
+{
+    $statement = $this->db->prepare("
+        SELECT AVG(rating) AS avg_rating
+        FROM reviews
+        WHERE product_id = :product_id
+    ");
+    $statement->execute(['product_id' => $this->id]);
+    $row = $statement->fetch();
+
+    return $row && $row['avg_rating'] !== null ? round((float) $row['avg_rating'], 1) : 0.0;
+}
+public function getLatestReview(): ?array
+{
+    $stmt = $this->db->prepare("
+        SELECT r.rating, r.comment, u.name AS user_name
+        FROM reviews r
+        JOIN users u ON r.user_id = u.id
+        WHERE r.product_id = :product_id
+        ORDER BY r.created_at DESC
+        LIMIT 1
+    ");
+    $stmt->execute(['product_id' => $this->id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row ?: null;
+}
 
 }

@@ -112,34 +112,50 @@ public function indexAll(): void
 
     // Cập nhật trạng thái đơn hàng
     public function updateStatus($orderId): void
-    {
-        $userId = $_SESSION['user_id'];
-        $status = isset($_POST['status']) ? $_POST['status'] : '';
-    
-        // Kiểm tra trạng thái hợp lệ
-        if (!in_array($status, ['Processing', 'Shipped', 'Delivered', 'Cancelled'])) {
-            $this->sendPage('order/view', ['error' => 'Trạng thái không hợp lệ']);
-            return;
-        }
-    
-        // Kiểm tra nếu người dùng có quyền cập nhật trạng thái đơn hàng (có thể chỉ admin hoặc người tạo đơn)
-        $order = Order::getAllOrders();
-        if ($order[0]['user_id'] != $userId) {
-            $this->sendPage('order/view', ['error' => 'Bạn không có quyền cập nhật trạng thái của đơn hàng này']);
-            return;
-        }
-    
-        try {
-            // Cập nhật trạng thái của đơn hàng
-            Order::updateOrderStatus($orderId, $status);
-    
-            // Sau khi cập nhật trạng thái thành công, chuyển hướng lại trang chi tiết đơn hàng
-            redirect("/order/view/{$orderId}");
-        } catch (Exception $e) {
-            // Nếu có lỗi khi cập nhật trạng thái, hiển thị thông báo lỗi
-            $this->sendPage('order/view', ['error' => $e->getMessage()]);
+{
+    $userId = $_SESSION['user_id'];
+    $status = isset($_POST['status']) ? $_POST['status'] : '';
+
+    // Kiểm tra trạng thái hợp lệ
+    if (!in_array($status, ['Processing', 'Shipped', 'Delivered', 'Cancelled'])) {
+        $this->sendPage('order/view', ['error' => 'Trạng thái không hợp lệ']);
+        return;
+    }
+
+    // Lấy đơn hàng cần cập nhật
+    $orders = Order::getAllOrders(); // ❌ lỗi ở đây: lấy tất cả đơn hàng, không phải chỉ 1 đơn
+    $order = null;
+    foreach ($orders as $o) {
+        if ($o['id'] == $orderId) {
+            $order = $o;
+            break;
         }
     }
+
+    if (!$order) {
+        $this->sendPage('order/view', ['error' => 'Không tìm thấy đơn hàng']);
+        return;
+    }
+
+    // Kiểm tra quyền người dùng
+    if ($order['user_id'] != $userId) {
+        $this->sendPage('order/view', ['error' => 'Bạn không có quyền cập nhật trạng thái của đơn hàng này']);
+        return;
+    }
+
+    try {
+        if ($status === 'Cancelled') {
+            Order::cancelOrder($orderId); // ✅ sẽ cộng lại kho
+        } else {
+            Order::updateOrderStatus($orderId, $status, $userId); // trạng thái khác
+        }
+
+        redirect("/order/view/{$orderId}");
+    } catch (Exception $e) {
+        $this->sendPage('order/view', ['error' => $e->getMessage()]);
+    }
+}
+
     
 
     // Hủy đơn hàng

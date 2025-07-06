@@ -125,13 +125,26 @@ public static function getUserOrders(int $userId): array
 
 
     // Hủy đơn hàng
-    public static function cancelOrder(int $orderId): void
-    {
-        self::initDb();
-        // Hủy đơn hàng, có thể cập nhật trạng thái thay vì xóa trực tiếp
-        $stmt = self::$db->prepare("UPDATE orders SET status = 'Cancelled', updated_at = CURRENT_TIMESTAMP WHERE id = ?");
-        $stmt->execute([$orderId]);
+   public static function cancelOrder(int $orderId): void
+{
+    self::initDb();
+
+    // Lấy tất cả sản phẩm trong đơn hàng
+    $stmt = self::$db->prepare("SELECT product_id, quantity FROM order_details WHERE order_id = ?");
+    $stmt->execute([$orderId]);
+    $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Cộng lại số lượng vào inventory
+    foreach ($items as $item) {
+        $stmt = self::$db->prepare("UPDATE inventory SET quantity_in_stock = quantity_in_stock + ? WHERE product_id = ?");
+        $stmt->execute([$item['quantity'], $item['product_id']]);
     }
+
+    // Cập nhật trạng thái đơn hàng là Cancelled
+    $stmt = self::$db->prepare("UPDATE orders SET status = 'Cancelled', updated_at = CURRENT_TIMESTAMP WHERE id = ?");
+    $stmt->execute([$orderId]);
+}
+
     // Trong Order model
     public static function deleteOrder(int $orderId): void
     {

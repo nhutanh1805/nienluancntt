@@ -310,6 +310,27 @@ $router->post('/chat/revoke', function() {
     $chatController->revoke();
 });
 
+// Review routes
+use App\Controllers\ReviewController;
+
+// Hiển thị tất cả đánh giá của 1 sản phẩm
+$router->get('/product/(\d+)/reviews', function($productId) {
+    $controller = new ReviewController();
+    $controller->index((int)$productId);
+});
+
+// Gửi đánh giá (POST form)
+$router->post('/reviews/add', function() {
+    $controller = new ReviewController();
+    $controller->add();
+});
+
+// Xem đánh giá mới nhất của user cho 1 sản phẩm
+$router->get('/reviews/(\d+)/user/(\d+)', function($productId, $userId) {
+    $controller = new ReviewController();
+    $controller->viewLatest((int)$userId, (int)$productId);
+});
+
 
 // Run the router
 $router->run();

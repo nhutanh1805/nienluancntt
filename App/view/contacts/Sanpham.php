@@ -151,6 +151,10 @@
               <a href="/cart/add/<?= $contact->id ?>/<?= urlencode($contact->name) ?>" class="btn btn-primary mt-2">
                 <i class="fa-solid fa-cart-plus"></i> Mua Hàng
               </a>
+               <!-- Nút đánh giá -->
+  <a href="/product/<?= $contact->id ?>/reviews" class="btn btn-warning mt-2">
+    <i class="fa-solid fa-star"></i> Đánh giá
+  </a>
             </div>
           </div>
         </div>

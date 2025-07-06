@@ -357,4 +357,21 @@ public function getStockQuantity(): int
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+// Lấy tổng số lượng sản phẩm đã bán
+public function getSoldQuantity(): int
+{
+    $statement = $this->db->prepare("
+        SELECT SUM(od.quantity) AS total_sold
+        FROM order_details od
+        JOIN orders o ON od.order_id = o.id
+        WHERE od.product_id = :product_id AND o.status != 'Cancelled'
+    ");
+    $statement->execute(['product_id' => $this->id]);
+    $row = $statement->fetch();
+
+    return $row && $row['total_sold'] ? (int) $row['total_sold'] : 0;
+}
+
+
 }

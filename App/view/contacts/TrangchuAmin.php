@@ -23,45 +23,50 @@
         <?php unset($_SESSION['success_message']); ?>
     <?php endif; ?>
 
-    <div class="container">
-        <div class="text-center">
+   <div class="container">
+    <div class="text-center mb-3">
         <h2><i class="fa-solid fa-list-check me-2"></i>Chọn Mục</h2>
-<ul class="nav nav-tabs" id="categoryTabs">
-    <li class="nav-item">
-        <a class="nav-link" href="/contacts/create/">
-            <i class="fa-solid fa-plus me-1"></i>Thêm Sản Phẩm
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/inventory">
-            <i class="fa-solid fa-warehouse me-1"></i>Quản Lý Kho Hàng
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/orders">
-            <i class="fa-solid fa-boxes-packing me-1"></i>Quản Lý Đơn hàng
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/members">
-            <i class="fa-solid fa-users-gear me-1"></i>Quản Lý Người dùng
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/thongke">
-            <i class="fa-solid fa-chart-line me-1"></i>Thống kê Doanh thu
-        </a>
-    </li>
-    <li class="nav-item">
-                <a class="nav-link" href="/orders/stats">
-                    <i class="fa-solid fa-chart-column me-1"></i>Sản phẩm bán được
-                </a>
-    <li class="nav-item">
-        <a class="nav-link" href="/orders/comments">
-            <i class="fa-solid fa-comments me-1"></i>Quản Lý Bình Luận
-        </a>
-    </li>
-</ul>
+    </div>
+
+    <ul class="nav nav-pills justify-content-center flex-wrap gap-2" id="categoryTabs">
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-primary" href="/contacts/create/">
+                <i class="fa-solid fa-plus me-1"></i>Thêm Sản Phẩm
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-primary" href="/inventory">
+                <i class="fa-solid fa-warehouse me-1"></i>Quản Lý Kho Hàng
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-primary" href="/orders">
+                <i class="fa-solid fa-boxes-packing me-1"></i>Quản Lý Đơn hàng
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-primary" href="/members">
+                <i class="fa-solid fa-users-gear me-1"></i>Quản Lý Người dùng
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-primary" href="/thongke">
+                <i class="fa-solid fa-chart-line me-1"></i>Thống kê Doanh thu
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-primary" href="/orders/stats">
+                <i class="fa-solid fa-chart-column me-1"></i>Sản phẩm bán được
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-outline-primary" href="/orders/comments">
+                <i class="fa-solid fa-comments me-1"></i>Quản Lý Bình Luận
+            </a>
+        </li>
+    </ul>
+</div>
+
 
 
 

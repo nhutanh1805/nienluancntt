@@ -129,6 +129,14 @@
                   <?= htmlspecialchars($quantityInStock) ?> sản phẩm
                 </span>
               </p>
+<!-- Số lượng đã bán -->
+<?php $soldQuantity = $contact->getSoldQuantity(); ?>
+<p class="sold-quantity mb-2">
+  <strong>Đã bán:</strong>
+  <span class="badge bg-primary">
+    <?= $soldQuantity ?> sản phẩm
+  </span>
+</p>
 
               <!-- Thanh tiến trình -->
               <div class="progress mb-2" style="height: 25px;">

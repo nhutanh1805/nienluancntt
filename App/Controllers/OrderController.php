@@ -234,6 +234,21 @@ public function showAllComments(): void
     }
 }
 
+// Thống kê sản phẩm đã bán được (dành cho admin)
+public function stats(): void
+{
+    try {
+        $stats = Order::getProductSalesStats(); // gọi model mới tạo
+
+        $this->sendPage('order/stats', [
+            'stats' => $stats
+        ]);
+    } catch (Exception $e) {
+        $this->sendPage('order/stats', [
+            'error' => $e->getMessage()
+        ]);
+    }
+}
 
 
 }

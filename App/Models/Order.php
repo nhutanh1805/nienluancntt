@@ -183,6 +183,28 @@ public static function getAllComments(): array
 }
 
 
+// Lấy thống kê số lượng sản phẩm đã bán ra
+public static function getProductSalesStats(): array
+{
+    self::initDb();
+
+    $stmt = self::$db->prepare("
+        SELECT 
+            p.id AS product_id,
+            p.name AS product_name,
+            SUM(od.quantity) AS total_quantity_sold,
+            SUM(od.total_price) AS total_revenue
+        FROM order_details od
+        JOIN orders o ON od.order_id = o.id
+        JOIN product p ON od.product_id = p.id
+        WHERE o.status != 'Cancelled'
+        GROUP BY p.id, p.name
+        ORDER BY total_quantity_sold DESC
+    ");
+
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 
 }

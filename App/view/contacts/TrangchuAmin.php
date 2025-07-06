@@ -53,6 +53,10 @@
         </a>
     </li>
     <li class="nav-item">
+                <a class="nav-link" href="/orders/stats">
+                    <i class="fa-solid fa-chart-column me-1"></i>Sản phẩm bán được
+                </a>
+    <li class="nav-item">
         <a class="nav-link" href="/orders/comments">
             <i class="fa-solid fa-comments me-1"></i>Quản Lý Bình Luận
         </a>

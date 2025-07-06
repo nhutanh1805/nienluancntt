@@ -173,6 +173,10 @@ $router->get('/orders/comments', function() {
     $orderController->showAllComments();
 });
 
+$router->get('/orders/stats', function() {
+    $orderController = new OrderController();
+    $orderController->stats();  
+});
 
 
 use App\Controllers\InventoryController;

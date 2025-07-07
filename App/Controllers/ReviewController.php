@@ -7,21 +7,24 @@ use Exception;
 class ReviewController extends Controller
 {
     // Hiển thị tất cả đánh giá của 1 sản phẩm
-    public function index(int $productId): void
-    {
-        try {
-            $reviews = Review::getReviewsByProduct($productId);
-            $averageRating = Review::getAverageRating($productId);
+   public function index(int $productId): void
+{
+    try {
+        $reviews = Review::getReviewsByProduct($productId);
+        $averageRating = Review::getAverageRating($productId);
+        $totalReviews = Review::getTotalReviews($productId); // ✅ Thêm dòng này
 
-            $this->sendPage('review/index', [
-                'reviews' => $reviews,
-                'averageRating' => $averageRating,
-                'productId' => $productId
-            ]);
-        } catch (Exception $e) {
-            $this->sendPage('review/index', ['error' => $e->getMessage()]);
-        }
+        $this->sendPage('review/index', [
+            'reviews' => $reviews,
+            'averageRating' => $averageRating,
+            'totalReviews' => $totalReviews, // ✅ Truyền sang View
+            'productId' => $productId
+        ]);
+    } catch (Exception $e) {
+        $this->sendPage('review/index', ['error' => $e->getMessage()]);
     }
+}
+
 
     // Thêm đánh giá mới từ form POST
     public function add(): void

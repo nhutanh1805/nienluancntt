@@ -124,6 +124,9 @@
   </span>
   <small class="text-muted">(<?= number_format($averageRating, 1) ?> ★)</small>
 </div>
+<?php $totalReviews = $contact->getTotalReviews(); ?>
+<small class="text-muted">(<?= $totalReviews ?> lượt đánh giá)</small>
+
 <?php $latestReview = $contact->getLatestReview(); ?>
 <?php if ($latestReview): ?>
   <div class="bg-light rounded px-2 py-1 mt-2 small text-start border border-secondary-subtle">

@@ -92,5 +92,19 @@ class Review
     return $avg !== null ? round((float)$avg, 1) : 0.0;
 }
 
+
+// Lấy tổng số lượng đánh giá của sản phẩm
+public static function getTotalReviews(int $productId): int
+{
+    self::initDb();
+
+    $sql = "SELECT COUNT(*) FROM reviews WHERE product_id = :product_id";
+    $stmt = self::$db->prepare($sql);
+    $stmt->execute([':product_id' => $productId]);
+
+    return (int)$stmt->fetchColumn();
+}
+
+
 }
 ?>

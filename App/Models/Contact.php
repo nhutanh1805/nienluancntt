@@ -400,4 +400,9 @@ public function getLatestReview(): ?array
     return $row ?: null;
 }
 
+public function getTotalReviews(): int
+{
+    return Review::getTotalReviews($this->id);
+}
+
 }

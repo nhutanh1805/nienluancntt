@@ -268,7 +268,16 @@
       <ul class="pagination justify-content-center">
         <li class="page-item disabled">
         </li>
-        <li class="page-item active"><a class="page-link" href="#">Về đầu trang</a></li>
+       <!-- Nút về đầu trang -->
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center mt-3">
+                            <li class="page-item active">
+                                <a class="page-link" href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                                    <i class="bi bi-arrow-up-circle"></i> Về đầu trang
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
         <li class="page-item">
         </li>
       </ul>

@@ -203,8 +203,8 @@ public function updateComment($orderId): void
         // Cập nhật bình luận trực tiếp, ai cũng có thể bình luận mà không cần kiểm tra quyền
         Order::updateOrderComment($orderId, $comment);
 
-        // Sau khi cập nhật, chuyển hướng về trang chi tiết đơn hàng
-        redirect("/order/view/{$orderId}");
+        // Sau khi cập nhật, chuyển hướng về trang bình luận
+        redirect("/order/index");
     } catch (Exception $e) {
         $this->sendPage('order/view', ['error' => $e->getMessage(), 'orderId' => $orderId]);
     }

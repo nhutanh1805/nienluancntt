@@ -142,7 +142,7 @@ public function indexAll(): void
             Order::updateOrderStatus($orderId, $status);
         }
 
-        redirect("/order/view/{$orderId}");
+        redirect("/order/index");
     } catch (Exception $e) {
         $this->sendPage('order/view', ['error' => $e->getMessage()]);
     }

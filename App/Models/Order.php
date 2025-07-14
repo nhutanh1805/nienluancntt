@@ -47,6 +47,10 @@ class Order
         // Lấy ID của đơn hàng vừa tạo
         $orderId = self::$db->lastInsertId();
     
+        // Cập nhật bảng checkouts để gắn order_id với checkout mới nhất của user
+$stmt = self::$db->prepare("UPDATE checkouts SET order_id = ? WHERE user_id = ? ORDER BY id DESC LIMIT 1");
+$stmt->execute([$orderId, $userId]);
+
         // Lấy giỏ hàng của người dùng
         $cartItems = Cart::getCart($userId);  
     

@@ -146,6 +146,7 @@ $router->get('/order/delete/{orderId}', function($orderId) {
 // Cập nhật route để hiển thị chi tiết đơn hàng
 $router->get('/order/details/(:num)', 'OrderDetailsController@view');
 
+
 $router->post('/order/updateStatus/[i:orderId]', 'OrderController@updateStatus');
 
 // Hiển thị tất cả đơn hàng của người dùng

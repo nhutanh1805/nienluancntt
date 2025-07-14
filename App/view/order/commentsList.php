@@ -33,7 +33,7 @@
                             <thead class="table-light text-center">
                                 <tr>
                                     <th><i class="bi bi-upc-scan me-1"></i>Mã Đơn hàng</th>
-                                    <th><i class="bi bi-person-badge me-1"></i>Mã Người dùng</th>
+                                    <!-- <th><i class="bi bi-person-badge me-1"></i>Mã Người dùng</th> -->
                                     <th><i class="bi bi-person-circle me-1"></i>Tên người dùng</th>
                                     <th><i class="bi bi-cash-stack me-1"></i>Tổng tiền</th>
                                     <th><i class="bi bi-chat-left-text me-1"></i>Bình luận</th>
@@ -43,7 +43,7 @@
                                 <?php foreach ($comments as $comment): ?>
                                     <tr>
                                         <td class="text-center text-muted"><?= htmlspecialchars($comment['id']) ?></td>
-                                        <td class="text-center"><?= htmlspecialchars($comment['user_id']) ?></td>
+                                        <!-- <td class="text-center"><?= htmlspecialchars($comment['user_id']) ?></td> -->
                                         <td>
                                             <i class="bi bi-person-circle text-primary me-1"></i>
                                             <?= htmlspecialchars($comment['user_name']) ?>

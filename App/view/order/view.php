@@ -9,12 +9,13 @@
     <div class="container py-4">
         <div class="card shadow-sm border-0">
             <div class="card-header bg-primary text-white text-center">
-                <h4 class="mb-0"><i class="bi bi-receipt-cutoff"></i> Chi tiết Đơn hàng #<?= htmlspecialchars($order[0]['id'] ?? 'Chưa có ID') ?></h4>
+                <h4 class="mb-0"><i class="bi bi-receipt-cutoff"></i> Chi tiết Đơn hàng #<?= htmlspecialchars($orderItems[0]['order_id'] ?? 'Chưa có ID') ?></h4>
             </div>
             <div class="card-body">
-                <div class="mb-3 text-center">
-                    <p><strong>Địa chỉ giao hàng:</strong> <?= htmlspecialchars($order[0]['address'] ?? 'Chưa có địa chỉ') ?></p>
-                    <!-- <p><strong>Trạng thái:</strong> <?= htmlspecialchars($order[0]['status'] ?? 'Chưa có trạng thái') ?></p> -->
+                <div class="mb-3">
+                    <p><strong>Người nhận:</strong> <?= htmlspecialchars($orderItems[0]['checkout_name'] ?? 'Không rõ') ?></p>
+                    <p><strong>Số điện thoại:</strong> <?= htmlspecialchars($orderItems[0]['checkout_phone'] ?? 'Chưa có') ?></p>
+                    <p><strong>Địa chỉ giao hàng:</strong> <?= htmlspecialchars($orderItems[0]['checkout_address'] ?? 'Chưa có địa chỉ') ?></p>
                 </div>
 
                 <h5 class="mb-3"><i class="bi bi-box-seam"></i> Sản phẩm trong đơn hàng</h5>

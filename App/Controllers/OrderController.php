@@ -113,17 +113,15 @@ public function indexAll(): void
     // Cập nhật trạng thái đơn hàng
     public function updateStatus($orderId): void
 {
-    $userId = $_SESSION['user_id'];
-    $status = isset($_POST['status']) ? $_POST['status'] : '';
+    $status = $_POST['status'] ?? '';
 
-    // Kiểm tra trạng thái hợp lệ
     if (!in_array($status, ['Processing', 'Shipped', 'Delivered', 'Cancelled'])) {
         $this->sendPage('order/view', ['error' => 'Trạng thái không hợp lệ']);
         return;
     }
 
-    // Lấy đơn hàng cần cập nhật
-    $orders = Order::getAllOrders(); // ❌ lỗi ở đây: lấy tất cả đơn hàng, không phải chỉ 1 đơn
+    // Tìm đơn hàng
+    $orders = Order::getAllOrders();
     $order = null;
     foreach ($orders as $o) {
         if ($o['id'] == $orderId) {
@@ -137,17 +135,11 @@ public function indexAll(): void
         return;
     }
 
-    // Kiểm tra quyền người dùng
-    if ($order['user_id'] != $userId) {
-        $this->sendPage('order/view', ['error' => 'Bạn không có quyền cập nhật trạng thái của đơn hàng này']);
-        return;
-    }
-
     try {
         if ($status === 'Cancelled') {
-            Order::cancelOrder($orderId); // ✅ sẽ cộng lại kho
+            Order::cancelOrder($orderId);
         } else {
-            Order::updateOrderStatus($orderId, $status, $userId); // trạng thái khác
+            Order::updateOrderStatus($orderId, $status);
         }
 
         redirect("/order/view/{$orderId}");

@@ -179,6 +179,11 @@ $router->get('/orders/stats', function() {
     $orderController->stats();  
 });
 
+$router->get('/order/filter', function() {
+    $controller = new \App\Controllers\OrderController();
+    $controller->filterByDate();  
+});
+
 
 use App\Controllers\InventoryController;
 

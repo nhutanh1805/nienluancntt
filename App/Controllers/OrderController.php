@@ -141,7 +141,7 @@ public function indexAll(): void
         } else {
             Order::updateOrderStatus($orderId, $status);
         }
-
+ // Sau khi cập nhật, chuyển hướng về trang đơn hàng của tôi
         redirect("/order/index");
     } catch (Exception $e) {
         $this->sendPage('order/view', ['error' => $e->getMessage()]);
@@ -203,7 +203,7 @@ public function updateComment($orderId): void
         // Cập nhật bình luận trực tiếp, ai cũng có thể bình luận mà không cần kiểm tra quyền
         Order::updateOrderComment($orderId, $comment);
 
-        // Sau khi cập nhật, chuyển hướng về trang bình luận
+        // Sau khi cập nhật, chuyển hướng về trang đơn hàng của tôi
         redirect("/order/index");
     } catch (Exception $e) {
         $this->sendPage('order/view', ['error' => $e->getMessage(), 'orderId' => $orderId]);
@@ -230,7 +230,7 @@ public function showAllComments(): void
 public function stats(): void
 {
     try {
-        $stats = Order::getProductSalesStats(); // gọi model mới tạo
+        $stats = Order::getProductSalesStats(); 
 
         $this->sendPage('order/stats', [
             'stats' => $stats
@@ -238,6 +238,40 @@ public function stats(): void
     } catch (Exception $e) {
         $this->sendPage('order/stats', [
             'error' => $e->getMessage()
+        ]);
+    }
+}
+
+public function filterByDate(): void
+{
+    // Lấy dữ liệu lọc từ query string
+    $filterType = $_GET['filterType'] ?? 'all';   // all | day | month | year
+    $filterValue = $_GET['filterValue'] ?? null;
+
+    // Validate đơn giản filterValue
+    if ($filterType === 'day' && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $filterValue)) {
+        $filterValue = null;
+    } elseif ($filterType === 'month' && !preg_match('/^\d{4}-\d{2}$/', $filterValue)) {
+        $filterValue = null;
+    } elseif ($filterType === 'year' && !preg_match('/^\d{4}$/', $filterValue)) {
+        $filterValue = null;
+    }
+
+    try {
+        // Gọi model để lấy danh sách đơn hàng đã lọc
+        $orders = Order::filterOrdersByDate($filterType, $filterValue);
+
+        // Gửi dữ liệu sang view order/filterResult.php
+        $this->sendPage('order/indexAll', [
+            'orders' => $orders,
+            'filterType' => $filterType,
+            'filterValue' => $filterValue
+        ]);
+    } catch (Exception $e) {
+        $this->sendPage('order/indexAll', [
+            'error' => $e->getMessage(),
+            'filterType' => $filterType,
+            'filterValue' => $filterValue
         ]);
     }
 }

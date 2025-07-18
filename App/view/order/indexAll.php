@@ -8,9 +8,39 @@
                 <h3 class="mb-0"><i class="bi bi-card-list"></i> Danh Sách Đơn Hàng</h3>
             </div>
             <div class="card-body">
+
+                <!-- Form lọc đơn hàng -->
+                <form method="get" action="/order/filter" class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <label for="filterType" class="form-label">Loại lọc</label>
+                        <select name="filterType" id="filterType" class="form-select">
+                            <option value="all" <?= ($_GET['filterType'] ?? '') == 'all' ? 'selected' : '' ?>>Tất cả</option>
+                            <option value="day" <?= ($_GET['filterType'] ?? '') == 'day' ? 'selected' : '' ?>>Theo ngày</option>
+                            <option value="month" <?= ($_GET['filterType'] ?? '') == 'month' ? 'selected' : '' ?>>Theo tháng</option>
+                            <option value="year" <?= ($_GET['filterType'] ?? '') == 'year' ? 'selected' : '' ?>>Theo năm</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="filterValue" class="form-label">Giá trị lọc</label>
+                        <input type="text" class="form-control" name="filterValue" id="filterValue" 
+                            placeholder="VD: 2025-07-18 hoặc 2025-07 hoặc 2025" 
+                            value="<?= htmlspecialchars($_GET['filterValue'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="bi bi-filter"></i> Lọc
+                        </button>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <a href="/order/index" class="btn btn-secondary w-100">
+                            <i class="bi bi-arrow-counterclockwise"></i> Reset
+                        </a>
+                    </div>
+                </form>
+
                 <?php if (empty($orders)): ?>
                     <div class="alert alert-info text-center">
-                        <i class="bi bi-cart-x"></i> Bạn chưa có đơn hàng nào. Hãy thử mua sắm ngay!
+                        <i class="bi bi-cart-x"></i> Không có đơn hàng phù hợp với tiêu chí lọc.
                     </div>
                 <?php else: ?>
                     <div class="table-responsive">
@@ -31,7 +61,7 @@
                                     <tr id="order_<?= $order['id'] ?>">
                                         <td class="text-center"><?= htmlspecialchars($order['id']) ?></td>
                                         <td class="text-center"><?= htmlspecialchars($order['user_id']) ?></td>
-                                        <td class="text-center"><?= htmlspecialchars($order['name']) ?></td> <!-- Dòng mới -->
+                                        <td class="text-center"><?= htmlspecialchars($order['name']) ?></td>
                                         <td class="text-end text-success fw-bold">
                                             <?= number_format($order['total_amount'] ?? 0, 0, ',', '.') ?> VNĐ
                                         </td>
@@ -82,6 +112,7 @@
                             </tbody>
                         </table>
                     </div>
+
                     <!-- Nút về đầu trang -->
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center mt-3">

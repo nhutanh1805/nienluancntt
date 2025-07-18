@@ -210,6 +210,38 @@ public static function getProductSalesStats(): array
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+public static function filterOrdersByDate(string $filterType = 'all', ?string $filterValue = null): array
+{
+    self::initDb();
+
+    $sql = "
+        SELECT o.id, o.user_id, o.address, o.total_amount, o.status, o.created_at, o.updated_at, u.name
+        FROM orders o
+        JOIN users u ON o.user_id = u.id
+        WHERE 1 = 1
+    ";
+
+    $params = [];
+
+    if ($filterType === 'day' && $filterValue) {
+        $sql .= " AND DATE(o.created_at) = ?";
+        $params[] = $filterValue;
+    } elseif ($filterType === 'month' && $filterValue) {
+        $sql .= " AND DATE_FORMAT(o.created_at, '%Y-%m') = ?";
+        $params[] = $filterValue;
+    } elseif ($filterType === 'year' && $filterValue) {
+        $sql .= " AND DATE_FORMAT(o.created_at, '%Y') = ?";
+        $params[] = $filterValue;
+    }
+
+    $sql .= " ORDER BY o.created_at DESC";
+
+    $stmt = self::$db->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 }
 ?>

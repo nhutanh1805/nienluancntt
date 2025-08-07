@@ -56,15 +56,17 @@ class OrderDetail
                c.phone AS checkout_phone,
                c.address AS checkout_address
         FROM order_details od 
-        JOIN product p ON od.product_id = p.id
-        JOIN orders o ON od.order_id = o.id
-        JOIN users u ON o.user_id = u.id
+        LEFT JOIN product p ON od.product_id = p.id
+        LEFT JOIN orders o ON od.order_id = o.id
+        LEFT JOIN users u ON o.user_id = u.id
         LEFT JOIN checkouts c ON o.id = c.order_id
         WHERE od.order_id = ?
     ");
+    
     $stmt->execute([$orderId]);
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 }
